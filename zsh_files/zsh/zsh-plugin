@@ -1,0 +1,29 @@
+##PLUGINS
+
+# plugin for command auto-suggestions :
+##### git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+# plugin for syntax highlighting :
+### git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+# plugin for autojump, install by package manager
+
+
+#oh-my-zsh plugins
+plugins=(
+    fzf-tab
+    zsh-autosuggestions
+    docker
+    autojump
+    sudo
+    zsh-syntax-highlighting
+    npm
+    git
+    z
+    zsh-bat
+)
+
+VI_MODE_SET_CURSOR=true
+
+source $ZSH/oh-my-zsh.sh
+

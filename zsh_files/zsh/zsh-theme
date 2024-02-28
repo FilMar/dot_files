@@ -1,0 +1,10 @@
+# theme : typewritten (fast and light theme) git clone https://github.com/reobin/typewritten.git "$HOME/.zsh/typewritten"
+ZSH_THEME="typewritten/typewritten"
+
+## personal configuration:
+
+export TYPEWRITTEN_PROMPT_LAYOUT="multiline"
+export TYPEWRITTEN_RELATIVE_PATH="adaptive"
+export TYPEWRITTEN_CURSOR="beam"
+
+
