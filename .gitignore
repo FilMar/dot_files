@@ -1,0 +1,4 @@
+vim_files/pack
+vim_files/plugin
+vim_files/.*
+vim_files/lazy-lock.json
