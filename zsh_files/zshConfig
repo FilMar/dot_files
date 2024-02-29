@@ -22,7 +22,7 @@ if [[ -e ~/.profile ]]; then
 fi
 
 ### variabili per dotfiles
-export CONFIG_HOME=$HOME/MEGA/dot_files/ 
+export CONFIG_HOME=$HOME/git_project/dot_files/ 
 export VIM_FILES=$CONFIG_HOME/vim_files
 export ZSH_FILES=$CONFIG_HOME/zsh_files
 export I3WM_FILES=$CONFIG_HOME/i3wm_files
@@ -39,9 +39,6 @@ fi
 # Source for zsh plugins
 if [[ -e $ZSH_FILES/zsh/zsh-plugin ]]; then
   source $ZSH_FILES/zsh/zsh-plugin
-fi
-if [[ -e $ZSH_FILES/zsh/zsh-secret]]; then
-  source $ZSH_FILES/zsh/zsh-secret
 fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
