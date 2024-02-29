@@ -40,6 +40,8 @@ fi
 if [[ -e $ZSH_FILES/zsh/zsh-plugin ]]; then
   source $ZSH_FILES/zsh/zsh-plugin
 fi
-
+if [[ -e $ZSH_FILES/zsh/zsh-secret]]; then
+  source $ZSH_FILES/zsh/zsh-secret
+fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
