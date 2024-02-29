@@ -1,0 +1,48 @@
+## PERSONAL CONFIGURATION FOR ZSH SHELL
+
+DISABLE_MAGIC_FUNCTIONS=true
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+COMPLETION_WAITING_DOTS=true
+DISABLE_UNTRACKED_FILES_DIRTY=true
+set -o vi
+## Alias section 
+alias cp="cp -i"        # Confirm before overwriting something
+alias df='df -h'        # Human-readable sizes
+alias free='free -m'    # Show sizes in MB
+alias gitu='git add . && git commit && git push'
+alias gith="git log --graph --oneline"
+alias vim="nvim"
+alias vid="nvim ."
+alias vimrc="nvim $HOME/.config/nvim/init.vim"
+alias batInfo="sudo tlp-stat -b"
+alias python="python3"
+alias tree="tree -C"
+alias py="python"
+alias pyenv= "source .venv/bin/activate"
+alias pydenv="deactivate"
+alias cat="bat"
+alias ls="exa -l"
+alias la="exa -lah"
+# temp Alias for ssh siteground
+alias ssmax="ssh -i ~/.ssh/LightsailDefaultKey-eu-west-3.pem ubuntu@35.181.223.102"
+# alias for emotion
+alias ssemot="ssh root@82.165.124.120"
+export CONFILE_HOME=$HOME/MEGA/dot_files
+
+autoload -U compinit
+compinit
+
+setopt SHARE_HISTORY
+HISTFILE=$CONFILE_HOME/zsh_files/.zsh_history
+SAVEHIST=1000
+HISTSIZE=1000
+setopt HIST_IGNORE_ALL_DUPS
+
+
+
+#little script for close bash when gui app is lauched
+openclose() {
+    "$@" &
+    disown
+    exit
+}
