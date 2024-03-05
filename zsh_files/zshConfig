@@ -22,7 +22,11 @@ if [[ -e ~/.profile ]]; then
 fi
 
 ### variabili per dotfiles
-export CONFIG_HOME=$HOME/git_project/dot_files/ 
+if [[ -e $HOME/MEGA/dot_files/ ]]; then
+  export CONFIG_HOME=$HOME/MEGA/dot_files/
+else
+    export CONFIG_HOME=$HOME/git_project/dot_files/ 
+fi
 export VIM_FILES=$CONFIG_HOME/vim_files
 export ZSH_FILES=$CONFIG_HOME/zsh_files
 export I3WM_FILES=$CONFIG_HOME/i3wm_files
