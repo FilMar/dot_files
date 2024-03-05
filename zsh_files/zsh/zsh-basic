@@ -27,7 +27,6 @@ alias la="exa -lah"
 alias ssmax="ssh -i ~/.ssh/LightsailDefaultKey-eu-west-3.pem ubuntu@35.181.223.102"
 # alias for emotion
 alias ssemot="ssh root@82.165.124.120"
-export CONFILE_HOME=$HOME/MEGA/dot_files
 
 autoload -U compinit
 compinit
