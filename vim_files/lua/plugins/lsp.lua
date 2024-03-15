@@ -29,10 +29,27 @@ cmp.setup({
 })
 
 vim.keymap.set('n', '<leader>dd', vim.lsp.buf.definition, { silent = true, desc = 'Go to definition' })
---vim.keymap.set('n', '<leader>dh', vim.lsp.buf.hover, { silent = true, desc = 'Show hover' })
---vim.keymap.set('n', '<leader>di', vim.lsp.buf.implementation, { silent = true, desc = 'Go to implementation' })
---vim.keymap.set('n', '<leader>dr', vim.lsp.buf.references, { silent = true, desc = 'Show references' })
+vim.keymap.set('n', '<leader>dD', vim.lsp.buf.implementation, { silent = true, desc = 'Go to implementation' })
+
 vim.opt.updatetime = 1000
+vim.cmd("highlight LspDiagnosticsLineNrWarning guifg=#E5C07B guibg=#4E4942 gui=bold")
+vim.diagnostic.config({
+    virtual_text = {
+        format = function(_)
+            return string.format('')
+        end,
+        prefix = '',
+    },
+    float = {
+        source = 'always',
+        focusable = false,
+        border = 'rounded',
+    },
+})
 vim.api.nvim_create_autocmd('CursorHold', {
-    callback = vim.diagnostic.open_float,
+    callback = vim.diagnostic.open_float
+})
+
+vim.api.nvim_create_autocmd('CursorHoldI', {
+    callback = vim.lsp.buf.hover
 })
