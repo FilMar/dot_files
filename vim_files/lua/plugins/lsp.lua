@@ -36,7 +36,7 @@ vim.cmd("highlight LspDiagnosticsLineNrWarning guifg=#E5C07B guibg=#4E4942 gui=b
 vim.diagnostic.config({
     virtual_text = {
         format = function(_)
-            return string.format('')
+            return string.format("!!")
         end,
         prefix = '',
     },
@@ -49,7 +49,4 @@ vim.diagnostic.config({
 vim.api.nvim_create_autocmd('CursorHold', {
     callback = vim.diagnostic.open_float
 })
-
-vim.api.nvim_create_autocmd('CursorHoldI', {
-    callback = vim.lsp.buf.hover
-})
+-- diagnostic.get return a table with the errors
