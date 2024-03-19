@@ -29,7 +29,8 @@ cmp.setup({
 })
 
 vim.keymap.set('n', '<leader>dd', vim.lsp.buf.definition, { silent = true, desc = 'Go to definition' })
-vim.keymap.set('n', '<leader>dD', vim.lsp.buf.implementation, { silent = true, desc = 'Go to implementation' })
+vim.keymap.set('n', '<leader>dD', vim.lsp.buf.references, { silent = true, desc = 'Go to implementation' })
+vim.keymap.set('n', '<leader>d', vim.lsp.buf.hover, { silent = true, desc = 'detail' })
 
 vim.opt.updatetime = 1000
 vim.cmd("highlight LspDiagnosticsLineNrWarning guifg=#E5C07B guibg=#4E4942 gui=bold")
