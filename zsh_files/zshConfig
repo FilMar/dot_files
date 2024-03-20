@@ -31,6 +31,12 @@ export VIM_FILES=$CONFIG_HOME/vim_files
 export ZSH_FILES=$CONFIG_HOME/zsh_files
 export I3WM_FILES=$CONFIG_HOME/i3wm_files
 export PATH=$PATH:$CONFIG_HOME/scripts
+### variabile per notes
+if [[ -e $HOME/MEGA/2_areas/notes/ ]]; then
+  export NOTES_HOME=$HOME/MEGA/2_areas/notes/
+else
+    export NOTES_HOME=$HOME/mega/2_areas/notes/
+fi
 
 
 # Source my zsh config
