@@ -11,20 +11,20 @@ vim.keymap.set({ 'n', 'x' }, '<leader>d', '"+d', { desc = "cut by system clipboa
 vim.keymap.set({ 'n', 'x' }, '<leader>p', '"+p', { desc = "paste by system clipboard" })
 -- comandi di selezione e movimento personalizzati
 -- shift + arrow
-vim.keymap.set({ 'n', 'v' }, "<S-h>", "b", { desc = "move and select word back" })
-vim.keymap.set({ 'n', 'v' }, "<S-l>", "w", { desc = "move and select word up" })
+vim.keymap.set({ 'n', 'v' }, "<S-h>", "5h", { desc = "move and select word back" })
+vim.keymap.set({ 'n', 'v' }, "<S-l>", "5l", { desc = "move and select word up" })
 vim.keymap.set({ 'n', 'v' }, "<S-j>", "5j", { desc = "selec" })
 vim.keymap.set({ 'n', 'v' }, "<S-k>", "5k", { desc = "select 5 line up" })
 -- leader + arrow
-vim.keymap.set({ 'n', 'v' }, "<leader>h", "B", { desc = "select begin of line" })
-vim.keymap.set({ 'n', 'v' }, "<leader>l", "W", { desc = "select end of line" })
-vim.keymap.set({ 'n', 'v' }, "<leader>j", "15j", { desc = "selec" })
-vim.keymap.set({ 'n', 'v' }, "<leader>k", "15k", { desc = "select 5 line up" })
+vim.keymap.set({ 'n', 'v' }, "<C-h>", "10h", { desc = "select begin of line" })
+vim.keymap.set({ 'n', 'v' }, "<C-l>", "10l", { desc = "select end of line" })
+vim.keymap.set({ 'n', 'v' }, "<C-j>", "15jzz", { desc = "selec" })
+vim.keymap.set({ 'n', 'v' }, "<C-k>", "15kzz", { desc = "select 5 line up" })
 --leader + shift + arrow
-vim.keymap.set({ 'n', 'v' }, "<leader-S>h", "0", { desc = "select begin of line" })
-vim.keymap.set({ 'n', 'v' }, "<leader-S>l", "$", { desc = "select end of line" })
-vim.keymap.set({ 'n', 'v' }, "<leader-S>j", "G", { desc = "selec" })
-vim.keymap.set({ 'n', 'v' }, "<leader-S>k", "gg", { desc = "select 5 line up" })
+vim.keymap.set({ 'n', 'v' }, "<leader>h", "0", { desc = "select begin of line" })
+vim.keymap.set({ 'n', 'v' }, "<leader>l", "$", { desc = "select end of line" })
+vim.keymap.set({ 'n', 'v' }, "<leader>j", "G", { desc = "selec" })
+vim.keymap.set({ 'n', 'v' }, "<leader>k", "gg", { desc = "select 5 line up" })
 -- switch buffer
 vim.keymap.set("n", "<Tab>", vim.cmd.bNext, { desc = "jump to next buffer open" })
 vim.keymap.set("n", "<leader>q", vim.cmd.bd, { desc = "close current buffer" })
