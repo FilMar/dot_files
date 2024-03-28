@@ -1,6 +1,0 @@
-
-if [[ ! -d $PWD/.venv ]]; then
-    echo 'Creating virtual environment'
-    python -m venv $PWD/.venv
-fi
-source $PWD/.venv/bin/activate
