@@ -21,7 +21,8 @@ alias py="python"
 alias cat="bat"
 alias ls="exa -l"
 alias la="exa -lah"
-alias go="cd \$(find $HOME -type d -not -path '*/.*' 2>/dev/null | fzf)"
+alias dd="cd \$(find $HOME -type d -not -path '*/.*' 2>/dev/null | fzf)"
+alias sheet="curl cht.sh/\$(curl cht.sh/:list | fzf)"
 # temp Alias for ssh siteground
 alias ssmax="ssh -i ~/.ssh/LightsailDefaultKey-eu-west-3.pem ubuntu@35.181.223.102"
 # alias for emotion
