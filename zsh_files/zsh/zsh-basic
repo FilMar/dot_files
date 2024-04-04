@@ -23,6 +23,7 @@ alias ls="exa -l"
 alias la="exa -lah"
 alias warp="cd \$(find $HOME -type d -not -path '*/.*' 2>/dev/null | fzf)"
 alias sheet="curl cht.sh/\$(curl cht.sh/:list | fzf)"
+alias hist="history | fzf"
 # temp Alias for ssh siteground
 alias ssmax="ssh -i ~/.ssh/LightsailDefaultKey-eu-west-3.pem ubuntu@35.181.223.102"
 # alias for emotion
@@ -34,11 +35,12 @@ fi
 autoload -U compinit
 compinit
 
-setopt SHARE_HISTORY
+setopt share_history
+setopt hist_ignore_dups
+setopt inc_append_history
 HISTFILE=$CONFILE_HOME/zsh_files/.zsh_history
 SAVEHIST=1000
 HISTSIZE=1000
-setopt HIST_IGNORE_ALL_DUPS
 
 
 

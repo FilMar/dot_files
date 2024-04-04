@@ -19,7 +19,6 @@ plugins=(
     zsh-syntax-highlighting
     npm
     git
-    z
 )
 
 VI_MODE_SET_CURSOR=true
