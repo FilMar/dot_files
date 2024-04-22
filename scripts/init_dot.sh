@@ -11,7 +11,7 @@ if [ -e $HOME/git_projects/dot_files ]; then
     echo "wezterm"
     ln -sfn $HOME/git_projects/dot_files/wezterm_files $HOME/.config/wezterm
     echo "waybar"
-    ln -sfn $HOME/git_projects/dot_files/waybar_files $HOME/.config/waybar
+    ln -sfn $HOME/git_projects/dot_files/bar_files $HOME/.config/waybar
     echo "wofi"
     ln -sfn $HOME/git_projects/dot_files/wofi_files $HOME/.config/wofi
 fi
