@@ -16,10 +16,10 @@ vim.keymap.set({ 'n', 'v' }, "<S-l>", "5l", { desc = "move and select word up" }
 vim.keymap.set({ 'n', 'v' }, "<S-j>", "5j", { desc = "selec" })
 vim.keymap.set({ 'n', 'v' }, "<S-k>", "5k", { desc = "select 5 line up" })
 -- leader + arrow
-vim.keymap.set({ 'n', 'v' }, "<C-h>", "10h", { desc = "select begin of line" })
-vim.keymap.set({ 'n', 'v' }, "<C-l>", "10l", { desc = "select end of line" })
-vim.keymap.set({ 'n', 'v' }, "<C-j>", "15jzz", { desc = "selec" })
-vim.keymap.set({ 'n', 'v' }, "<C-k>", "15kzz", { desc = "select 5 line up" })
+vim.keymap.set({ 'n', 'v' }, "<C-h>", "<C-w>h", { desc = "select begin of line" })
+vim.keymap.set({ 'n', 'v' }, "<C-l>", "<C-w>l", { desc = "select end of line" })
+vim.keymap.set({ 'n', 'v' }, "<C-j>", "<C-w>j", { desc = "selec" })
+vim.keymap.set({ 'n', 'v' }, "<C-k>", "<C-w>k", { desc = "select 5 line up" })
 --leader + shift + arrow
 vim.keymap.set({ 'n', 'v' }, "<leader>h", "0", { desc = "select begin of line" })
 vim.keymap.set({ 'n', 'v' }, "<leader>l", "$", { desc = "select end of line" })
