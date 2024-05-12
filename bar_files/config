@@ -1,8 +1,7 @@
 {
     "modules-left": ["hyprland/workspaces"],
-    "modules-center": ["clock", "idle_inhibitor"],
-    /* "modules-right": ["tray", "custom/scratchpad-indicator", "pulseaudio", "custom/power"], */
-    "modules-right": ["tray", "custom/scratchpad-indicator", "pulseaudio", "custom/power", "network"],
+    "modules-center": ["clock"],
+    "modules-right": ["pulseaudio", "network", "battery#int", "battery#ext", "custom/power"],
 
     "hyprland/mode": {
         "format": "<span style=\"italic\">{}</span>"
@@ -14,22 +13,10 @@
         "max-length": 50,
         "on-click": "wezterm -e 'nmtui'"
     },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        },
-		"on-click": "bash ~/.local/bin/toggleRemote"
-    },
-    "tray": {
-        "icon-size": 15,
-        "spacing": 10
-    },
     "clock": {
-        // "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        // "format-alt": "{:%Y-%m-%d}"
-		"on-click": "gnome-calendar"
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}",
+		"on-click": "wezterm -e 'cal -y -m'"
     },
     "pulseaudio": {
         "format": "{volume}% {icon} ",
@@ -53,13 +40,26 @@
 		"format": " ",
 		"on-click": "swaynag -t warning -m 'Power Menu Options' -b 'Logout' 'swaymsg exit' -b 'Restart' 'shutdown -r now' -b 'Shutdown'  'shutdown -h now' --background=#005566 --button-background=#009999 --button-border=#002b33 --border-bottom=#002b33"
 	},
-    "custom/scratchpad-indicator": {
-        "format-text": "{}hi",
-        "return-type": "json",
-        "interval": 3,
-        "exec": "~/.local/bin/scratchpad-indicator 2> /dev/null",
-        "exec-if": "exit 0",
-        "on-click": "swaymsg 'scratchpad show'",
-        "on-click-right": "swaymsg 'move scratchpad'"
-    }
+    "battery#ext": {
+      	"bat": "BAT0",
+      	"interval": 60,
+      	"states": {
+      		"warning": 30,
+      		"critical": 15
+      	},
+      	"format": "{capacity}% {icon}",
+      	"format-icons": ["", "", "", "", ""],
+      	"max-length": 25
+      },
+    "battery#int": {
+      	"bat": "BAT1",
+      	"interval": 60,
+      	"states": {
+      		"warning": 30,
+      		"critical": 15
+      	},
+      	"format": "{capacity}% {icon}",
+      	"format-icons": ["", "", "", "", ""],
+      	"max-length": 25
+      }
 }
