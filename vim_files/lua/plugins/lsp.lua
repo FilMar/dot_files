@@ -19,7 +19,7 @@ cmp.setup({
         ['<Tab>'] = cmp_action.tab_complete(),
         ['<S-Tab>'] = cmp_action.select_prev_or_fallback(),
         ['<C-Space>'] = cmp.mapping.complete(),
-        ['<Space>'] = cmp.mapping.confirm({ select = false }),
+        ['<Return>'] = cmp.mapping.confirm({ select = false }),
     })
 })
 

@@ -21,6 +21,12 @@ local notes_home = "$NOTES_HOME"
 vim.keymap.set('n', '<leader>nf', function()
     builtin.find_files({ cwd = notes_home })
 end, { desc = "telescope find file in note dir" })
+
+vim.keymap.set('n', '<leader>nw', function()
+    builtin.live_grep({ cwd = notes_home })
+end, { desc = "telescope search in notes folder" })
+
 vim.keymap.set('n', '<leader>nw', function()
     builtin.live_grep({ cwd = notes_home .. "/index" })
 end, { desc = "telescope find note in note dir" })
+
