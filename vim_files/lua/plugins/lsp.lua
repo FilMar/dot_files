@@ -3,14 +3,15 @@ local lsp = require('lsp-zero')
 local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
 
-lsp.on_attach(lsp.buffer_autoformat)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = {},
+    ensure_installed = { "rust_analyzer", "gopls" },
     handlers = {
         lsp.default_setup,
         require('lspconfig').rust_analyzer.setup,
+        require('lspconfig').pylsp.setup,
+        require('lspconfig').gopls.setup,
     }
 })
 
