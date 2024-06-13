@@ -46,3 +46,8 @@ vim.diagnostic.config({
 vim.api.nvim_create_autocmd('CursorHold', {
     callback = vim.diagnostic.open_float
 })
+vim.api.nvim_create_autocmd("BufWritePre", {
+    callback = function()
+        vim.lsp.buf.format { async = false }
+    end
+})
