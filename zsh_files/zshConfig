@@ -30,7 +30,7 @@ fi
 export VIM_FILES=$CONFIG_HOME/vim_files
 export ZSH_FILES=$CONFIG_HOME/zsh_files
 export I3WM_FILES=$CONFIG_HOME/i3wm_files
-export PATH=$PATH:$CONFIG_HOME/scripts
+export PATH=$PATH:$CONFIG_HOME/scripts:/home/filmar/.cargo/bin
 ### variabile per notes
 if [[ -e $HOME/MEGA/2_areas/notes/ ]]; then
   export NOTES_HOME=$HOME/MEGA/2_areas/notes/
