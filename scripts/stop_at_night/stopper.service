@@ -1,0 +1,12 @@
+[Unit]
+Description=kill hyprland after 23 every day and continue to kill untill 8 of next morning
+
+[Service]
+User=filmar
+WorkingDirectory=$CONFIG_HOME/scripts/stop_at_night
+ExecStart=python3 ./stopper.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

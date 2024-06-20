@@ -177,7 +177,34 @@ local plugins = {
             vim.keymap.set("n", "<leader>b", ":URLOpenUnderCursor<CR>", { noremap = true, silent = true })
         end,
     },
-    -- vimwiki
+    -- copilot chat
+    {
+        "CopilotC-Nvim/CopilotChat.nvim",
+        branch = "canary",
+        dependencies = {
+            { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+            { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
+        },
+        opts = {
+            debug = true, -- Enable debugging
+        },
+        config = function()
+            require("CopilotChat").setup({
+                window = {
+                    layout = 'float',
+                    relative = 'cursor',
+                    width = 1,
+                    height = 0.4,
+                    row = 0.9
+                },
+                keymap = {
+                    toggle = "<C-a>",
+                },
+            })
+            vim.keymap.set("n", "<leader>aa", vim.cmd.CopilotChatToggle, { noremap = true, silent = true })
+            vim.keymap.set("n", "<leader>at", vim.cmd.CopilotChatToggle, { noremap = true, silent = true })
+        end,
+    },
 
 }
 require("lazy").setup(plugins, opts)
