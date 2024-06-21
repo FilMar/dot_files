@@ -173,38 +173,38 @@ local plugins = {
             if not status_ok then
                 return
             end
-            url_open.setup({})
-            vim.keymap.set("n", "<leader>b", ":URLOpenUnderCursor<CR>", { noremap = true, silent = true })
-        end,
-    },
-    -- copilot chat
-    {
-        "CopilotC-Nvim/CopilotChat.nvim",
-        branch = "canary",
-        dependencies = {
-            { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
-            { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
-        },
-        opts = {
-            debug = true, -- Enable debugging
-        },
-        config = function()
-            require("CopilotChat").setup({
-                window = {
-                    layout = 'float',
-                    relative = 'cursor',
-                    width = 1,
-                    height = 0.4,
-                    row = 0.9
-                },
-                keymap = {
-                    toggle = "<C-a>",
+            url_open.setup({
+                highlight_url = {
+                    all_urls = {
+                        fg = "text", -- text will set underline same color with text
+                        underline = true,
+                    },
                 },
             })
-            vim.keymap.set("n", "<leader>aa", vim.cmd.CopilotChatToggle, { noremap = true, silent = true })
-            vim.keymap.set("n", "<leader>at", vim.cmd.CopilotChatToggle, { noremap = true, silent = true })
+            vim.keymap.set("n", "<leader>b", ":URLOpenUnderCursor<CR>", { noremap = true, silent = true })
         end,
+
     },
+    --twilight
+    {
+        "folke/twilight.nvim",
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        },
+        config = function()
+            require("twilight").setup({})
+        end
+    },
+    --zenmode
+    {
+        "folke/zen-mode.nvim",
+        config = function()
+            require("zen-mode").setup({})
+            vim.keymap.set("n", "<leader>z", "<cmd>ZenMode<CR>", { noremap = true, silent = true })
+        end
+    }
 
 }
 require("lazy").setup(plugins, opts)
