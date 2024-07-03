@@ -6,7 +6,11 @@ local cmp_action = require('lsp-zero').cmp_action()
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = { "rust_analyzer", "gopls" },
+    ensure_installed = {
+        "rust_analyzer",
+        "gopls",
+        "pylsp",
+    },
     handlers = {
         lsp.default_setup,
         require('lspconfig').rust_analyzer.setup,
@@ -44,7 +48,9 @@ vim.diagnostic.config({
     },
 })
 vim.api.nvim_create_autocmd('CursorHold', {
-    callback = vim.diagnostic.open_float
+    callback = function()
+        vim.diagnostic.open_float({ scope = 'line' })
+    end
 })
 vim.api.nvim_create_autocmd("BufWritePre", {
     callback = function()
