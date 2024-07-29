@@ -204,7 +204,48 @@ local plugins = {
             require("zen-mode").setup({})
             vim.keymap.set("n", "<leader>z", "<cmd>ZenMode<CR>", { noremap = true, silent = true })
         end
-    }
+    },
+    -- better markdown view
+    {
+        'MeanderingProgrammer/markdown.nvim',
+        name = 'render-markdown',              -- Only needed if you have another plugin named markdown.nvim
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter', -- Mandatory
+            'nvim-tree/nvim-web-devicons',     -- Optional but recommended
+        },
+        config = function()
+            require('render-markdown').setup({})
+        end,
+    },
+    -- obsidian
+    {
+        "epwalsh/obsidian.nvim",
+        version = "*", -- recommended, use latest release instead of latest commit
+        lazy = true,
+        ft = "markdown",
+        dependencies = {
+            -- Required.
+            "nvim-lua/plenary.nvim",
+        },
 
+        config = function()
+            vim.opt.conceallevel = 1
+            require("obsidian").setup({
+                ui = {
+                    enable = false
+                },
+                workspaces = {
+                    {
+                        name = "notes_2",
+                        path = "~/MEGA/2_areas/notes/",
+                    },
+                    {
+                        name = "notes_1",
+                        path = "~/mega/2_areas/notes/",
+                    }
+                },
+            })
+        end,
+    }
 }
 require("lazy").setup(plugins, opts)
