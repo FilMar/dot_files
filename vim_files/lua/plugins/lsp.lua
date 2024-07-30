@@ -54,6 +54,9 @@ vim.api.nvim_create_autocmd('CursorHold', {
 })
 vim.api.nvim_create_autocmd("BufWritePre", {
     callback = function()
+        if vim.bo.filetype == 'markdown' then
+            return
+        end
         vim.lsp.buf.format { async = false }
     end
 })

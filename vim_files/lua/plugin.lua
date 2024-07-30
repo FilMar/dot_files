@@ -236,15 +236,13 @@ local plugins = {
                 },
                 workspaces = {
                     {
-                        name = "notes_2",
+                        name = "notes",
                         path = "~/MEGA/2_areas/notes/",
-                    },
-                    {
-                        name = "notes_1",
-                        path = "~/mega/2_areas/notes/",
                     }
                 },
             })
+            vim.keymap.set("n", "<leader>of", ":ObsidianFollowLink<CR>")
+            vim.keymap.set("n", "<leader>ob", ":ObsidianBacklinks<CR>")
         end,
     }
 }
