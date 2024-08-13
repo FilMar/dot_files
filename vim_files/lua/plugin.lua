@@ -234,12 +234,14 @@ local plugins = {
                 ui = {
                     enable = false
                 },
+
                 workspaces = {
                     {
                         name = "notes",
                         path = "~/MEGA/2_areas/notes/",
                     }
                 },
+                note_frontmatter_func = function(note) end,
             })
             vim.keymap.set("n", "<leader>of", ":ObsidianFollowLink<CR>")
             vim.keymap.set("n", "<leader>ob", ":ObsidianBacklinks<CR>")

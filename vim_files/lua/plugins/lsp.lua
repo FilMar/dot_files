@@ -16,6 +16,10 @@ require('mason-lspconfig').setup({
         require('lspconfig').rust_analyzer.setup,
         require('lspconfig').pylsp.setup,
         require('lspconfig').gopls.setup,
+        require('lspconfig').omnisharp.setup,
+        require('lspconfig').html.setup,
+        require('lspconfig').htmx.setup,
+        require('lspconfig').tailwindcss.setup,
     }
 })
 
@@ -31,6 +35,7 @@ cmp.setup({
 vim.keymap.set('n', '<leader>dd', vim.lsp.buf.definition, { silent = true, desc = 'Go to definition' })
 vim.keymap.set('n', '<leader>dD', vim.lsp.buf.references, { silent = true, desc = 'Go to implementation' })
 vim.keymap.set('n', '<leader>d', vim.lsp.buf.hover, { silent = true, desc = 'detail' })
+vim.keymap.set('n', '<leader>df', vim.lsp.buf.format, { silent = true, desc = 'format file' })
 
 vim.opt.updatetime = 1000
 vim.cmd("highlight LspDiagnosticsLineNrWarning guifg=#E5C07B guibg=#4E4942 gui=bold")
@@ -52,11 +57,11 @@ vim.api.nvim_create_autocmd('CursorHold', {
         vim.diagnostic.open_float({ scope = 'line' })
     end
 })
-vim.api.nvim_create_autocmd("BufWritePre", {
-    callback = function()
-        if vim.bo.filetype == 'markdown' then
-            return
-        end
-        vim.lsp.buf.format { async = false }
-    end
-})
+--vim.api.nvim_create_autocmd("BufWritePre", {
+--    callback = function()
+--        if vim.bo.filetype == 'markdown' then
+--            return
+--        end
+--        vim.lsp.buf.format { async = false }
+--    end
+--})
