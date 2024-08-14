@@ -17,7 +17,7 @@ vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = "telescope see keyma
 -- comments fuzzy finder
 vim.keymap.set('n', '<leader>fc', vim.cmd.TodoTelescope, { desc = "telescope find particolar comment" })
 -- note archive fuzzy finder
-local notes_home = "$NOTES_HOME"
+local notes_home = "$NOTES_HOME/second_brain"
 vim.keymap.set('n', '<leader>nf', function()
     builtin.find_files({ cwd = notes_home })
 end, { desc = "telescope find file in note dir" })

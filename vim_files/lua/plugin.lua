@@ -224,7 +224,6 @@ local plugins = {
         lazy = true,
         ft = "markdown",
         dependencies = {
-            -- Required.
             "nvim-lua/plenary.nvim",
         },
 
@@ -234,14 +233,24 @@ local plugins = {
                 ui = {
                     enable = false
                 },
-
                 workspaces = {
                     {
                         name = "notes",
                         path = "~/MEGA/2_areas/notes/",
                     }
                 },
-                note_frontmatter_func = function(note) end,
+                note_frontmatter_func = function(note)
+                    local out = { tags = note.tags }
+                    if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
+                        for k, v in pairs(note.metadata) do
+                            out[k] = v
+                        end
+                    end
+                    return out
+                end,
+                note_id_func = function(title)
+                    return title
+                end,
             })
             vim.keymap.set("n", "<leader>of", ":ObsidianFollowLink<CR>")
             vim.keymap.set("n", "<leader>ob", ":ObsidianBacklinks<CR>")
