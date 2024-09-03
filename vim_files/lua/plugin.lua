@@ -217,6 +217,13 @@ local plugins = {
             require('render-markdown').setup({})
         end,
     },
+    -- lint-nvim
+    {
+        "mfussenegger/nvim-lint",
+        dependencies = {
+            "rshkarin/mason-nvim-lint",
+        },
+    },
     -- obsidian
     {
         "epwalsh/obsidian.nvim",

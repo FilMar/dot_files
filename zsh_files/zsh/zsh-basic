@@ -24,6 +24,8 @@ alias warp="cd \$(find $HOME -type d -not -path '*/.*' 2>/dev/null | fzf) && if 
 alias sheet="curl cht.sh/\$(curl cht.sh/:list | fzf)"
 alias hist="history | fzf"
 alias ngit="nvim -c Neogit"
+alias nuget="mono /usr/local/bin/nuget.exe"
+
 # temp Alias for ssh siteground
 alias ssmax="ssh -i ~/.ssh/LightsailDefaultKey-eu-west-3.pem ubuntu@35.181.223.102"
 # alias for emotion
@@ -35,18 +37,8 @@ fi
 autoload -U compinit
 compinit
 
+HISTFILE=$CONFIG_HOME/.zsh_history
+SAVEHIST=5000
+HISTSIZE=5000
 setopt share_history
 setopt hist_ignore_dups
-setopt inc_append_history
-HISTFILE=$CONFILE_HOME/zsh_files/.zsh_history
-SAVEHIST=1000
-HISTSIZE=1000
-
-
-
-#little script for close bash when gui app is lauched
-openclose() {
-    "$@" &
-    disown
-    exit
-}

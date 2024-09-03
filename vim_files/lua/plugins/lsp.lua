@@ -57,11 +57,16 @@ vim.api.nvim_create_autocmd('CursorHold', {
         vim.diagnostic.open_float({ scope = 'line' })
     end
 })
---vim.api.nvim_create_autocmd("BufWritePre", {
---    callback = function()
---        if vim.bo.filetype == 'markdown' then
---            return
---        end
---        vim.lsp.buf.format { async = false }
---    end
---})
+
+-- linters
+require("lint").linters_by_ft = {
+    python = { "mypy" },
+    lua = { "luacheck" },
+}
+require("mason-nvim-lint").setup({
+    ensure_installed = {
+        "mypy",
+        "luacheck"
+    }
+
+})
