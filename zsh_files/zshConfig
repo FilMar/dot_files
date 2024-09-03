@@ -52,3 +52,5 @@ if [[ -e $ZSH_FILES/zsh/zsh-plugin ]]; then
   source $ZSH_FILES/zsh/zsh-plugin
 fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+. "$HOME/.cargo/env"

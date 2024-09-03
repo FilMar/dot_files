@@ -60,12 +60,12 @@ vim.api.nvim_create_autocmd('CursorHold', {
 
 -- linters
 require("lint").linters_by_ft = {
-    python = { "mypy" },
+    python = {"ruff" },
     lua = { "luacheck" },
 }
 require("mason-nvim-lint").setup({
     ensure_installed = {
-        "mypy",
+        "ruff",
         "luacheck"
     }
 
