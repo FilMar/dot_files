@@ -11,11 +11,6 @@ export TERM="xterm-256color" # This sets up colors properly
 # set shell
 export SHELL=/usr/bin/zsh
 
-# If you come from bash you might have to change your $PATH.
-#export NODE_PATH=$NODE_PATH:$HOME/.npm-global/lib/node_modules
-#export JAVA_HOME=/usr/java/latest
-#export PATH=$JAVA_HOME/bin:~/.npm-global/bin:$HOME/bin:/usr/local/bin:$PATH
-
 # Add exports from your profile
 if [[ -e ~/.profile ]]; then
     source ~/.profile
@@ -29,8 +24,6 @@ else
 fi
 export VIM_FILES=$CONFIG_HOME/vim_files
 export ZSH_FILES=$CONFIG_HOME/zsh_files
-export I3WM_FILES=$CONFIG_HOME/i3wm_files
-#export PATH=$PATH:$CONFIG_HOME/scripts:/home/filmar/.cargo/bin
 ### variabile per notes
 if [[ -e $HOME/MEGA/2_areas/notes/ ]]; then
   export NOTES_HOME=$HOME/MEGA/2_areas/notes/
@@ -52,5 +45,3 @@ if [[ -e $ZSH_FILES/zsh/zsh-plugin ]]; then
   source $ZSH_FILES/zsh/zsh-plugin
 fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-. "$HOME/.cargo/env"

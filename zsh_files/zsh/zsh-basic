@@ -9,8 +9,6 @@ set -o vi
 alias cp="cp -i"        # Confirm before overwriting something
 alias df='df -h'        # Human-readable sizes
 alias free='free -m'    # Show sizes in MB
-alias gitu='git add . && git commit && git push'
-alias gith="git log --graph --oneline"
 alias vim="nvim"
 alias vid="nvim ."
 alias batInfo="sudo tlp-stat -b"
@@ -19,12 +17,35 @@ alias py="python3"
 alias cat="bat"
 alias ls="exa -l"
 alias la="exa -lah"
-alias warp="cd \$(find $HOME -type d -not -path '*/.*' 2>/dev/null | fzf) && if [[ -e .venv ]]; then source .venv/bin/activate; else deactivate 2>/dev/null; fi"
+#alias warp="cd \$(find $HOME -type d -not -path '*/.*' 2>/dev/null | fzf) && if [[ -e .venv ]]; then source .venv/bin/activate; else deactivate 2>/dev/null; fi"
 alias sheet="curl cht.sh/\$(curl cht.sh/:list | fzf)"
 alias hist="history | fzf"
 alias ngit="nvim -c Neogit"
-alias nuget="mono /usr/local/bin/nuget.exe"
 
+
+# warp unlimited power
+function warp {
+    cd $HOME
+    cd $(fd -t d 2> /dev/null |fzf)
+    if [[ -e .venv ]]; then
+        source .venv/bin/activate
+    else
+        deactivate 2> /dev/null
+    fi
+}
+
+#function warf { non funziona ancora
+#    rows=""
+#    for file in $(fd -t f)
+#    do
+#        rows=$rows$(cat $file)
+#    done
+#     vim $(echo $rows | fzf)
+#}
+
+# gitflow utility
+alias gitu='git add . && git commit && git push'
+alias gith="git log --graph --oneline"
 function ginit(){
     git init
     touch .gitignore README.md
@@ -61,11 +82,6 @@ function grelease(){
     fi
 }
 
-
-# temp Alias for ssh siteground
-alias ssmax="ssh -i ~/.ssh/LightsailDefaultKey-eu-west-3.pem ubuntu@35.181.223.102"
-# alias for emotion
-alias ssemot="ssh root@82.165.124.120"
 if [[ -e $CONFIG_HOME/scripts/ ]]; then
     alias gitignore=gitignore.sh
 fi
