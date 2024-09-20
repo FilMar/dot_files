@@ -13,7 +13,6 @@ alias gitu='git add . && git commit && git push'
 alias gith="git log --graph --oneline"
 alias vim="nvim"
 alias vid="nvim ."
-alias vimrc="nvim $HOME/.config/nvim/init.vim"
 alias batInfo="sudo tlp-stat -b"
 alias tree="tree -C"
 alias py="python3"
@@ -25,6 +24,43 @@ alias sheet="curl cht.sh/\$(curl cht.sh/:list | fzf)"
 alias hist="history | fzf"
 alias ngit="nvim -c Neogit"
 alias nuget="mono /usr/local/bin/nuget.exe"
+
+function ginit(){
+    git init
+    touch .gitignore README.md
+    echo "$(pwd)" > README.md
+    git add --all
+    git commit -m "I'm Batman"
+    git checkout -b develop
+}
+
+function gif(){
+    export name=feature/$1
+    git checkout -b $name
+    git push --set-upstream origin $name
+}
+
+function gir(){
+    export name=refactor/$1
+    git checkout -b $name
+    git push --set-upstream origin $name
+}
+
+function gib(){
+    export name=bugfix/$1
+    git checkout -b $name
+    git push --set-upstream origin $name
+}
+
+function grelease(){
+    export name=feature/$1
+    git checkout -b $name
+    git push --set-upstream origin $name
+    if [[ -e ./scripts/docker_build.py ]]; then
+        py ./scripts/docker_build.py --latest
+    fi
+}
+
 
 # temp Alias for ssh siteground
 alias ssmax="ssh -i ~/.ssh/LightsailDefaultKey-eu-west-3.pem ubuntu@35.181.223.102"

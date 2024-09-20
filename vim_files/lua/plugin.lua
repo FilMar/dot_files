@@ -97,22 +97,6 @@ local plugins = {
             require("todo-comments").setup()
         end
     },
-    -- copilot
-    {
-        "zbirenbaum/copilot.lua",
-        cmd = "Copilot",
-        event = "InsertEnter",
-        config = function()
-            require("copilot").setup({
-                suggestion = {
-                    auto_trigger = true,
-                    keymap = {
-                        accept = "<S-space>",
-                    },
-                }
-            })
-        end,
-    },
     -- vim_be_good
     { 'ThePrimeagen/vim-be-good' },
     -- oil
