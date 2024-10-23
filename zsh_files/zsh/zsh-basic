@@ -74,7 +74,7 @@ function gib(){
 }
 
 function grelease(){
-    export name=feature/$1
+    export name=release/$1
     git checkout -b $name
     git push --set-upstream origin $name
     if [[ -e ./scripts/docker_build.py ]]; then
@@ -82,9 +82,11 @@ function grelease(){
     fi
 }
 
-if [[ -e $CONFIG_HOME/scripts/ ]]; then
-    alias gitignore=gitignore.sh
-fi
+function getignore() {
+    export url=https://raw.githubusercontent.com/github/gitignore/main/$1.gitignore
+    curl $url
+}
+
 
 autoload -U compinit
 compinit

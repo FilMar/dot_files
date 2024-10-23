@@ -45,3 +45,4 @@ if [[ -e $ZSH_FILES/zsh/zsh-plugin ]]; then
   source $ZSH_FILES/zsh/zsh-plugin
 fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="$PATH:/home/fildev/.modular/bin"
