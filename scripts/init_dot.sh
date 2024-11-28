@@ -14,4 +14,6 @@ if [ -e $HOME/git_projects/dot_files ]; then
     ln -sfn $HOME/git_projects/dot_files/bar_files $HOME/.config/waybar
     echo "wofi"
     ln -sfn $HOME/git_projects/dot_files/wofi_files $HOME/.config/wofi
+    echo "qterm"
+    ln -sfn $HOME/git_projects/dot_files/qtile_files $HOME/.config/qtile
 fi
