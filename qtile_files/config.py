@@ -1,16 +1,13 @@
 from libqtile.lazy import lazy
-from libqtile.config import Key, Group, DropDown, ScratchPad, Match, Click, Drag, Screen
+from libqtile.config import Key, Group, Match, Click, Drag, Screen
 from libqtile import layout, hook, bar
-from locale import setlocale, LC_ALL
 import subprocess
 import os
 from libqtile import widget
 from libqtile import qtile
 
-#setlocale(LC_ALL, "")
-
 mod = "mod1"
-terminal = "xfce4-terminal"
+terminal = "wezterm"
 
 ####################################################
 ####################################################
@@ -26,9 +23,8 @@ keys = [
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
-    Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
     # Rofi
-    Key([mod], "r", lazy.spawn("rofi -show drun"), desc="spawn rofi"),
+    Key([mod], "p", lazy.spawn("rofi -show drun"), desc="spawn rofi"),
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
     Key(
@@ -60,7 +56,7 @@ keys = [
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
-    Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
+    Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "shift", "control"], "h", lazy.layout.swap_column_left()),
     Key([mod, "shift", "control"], "l", lazy.layout.swap_column_right()),
     Key([mod, "shift"], "space", lazy.layout.flip()),
