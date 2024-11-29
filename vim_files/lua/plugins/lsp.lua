@@ -16,7 +16,6 @@ require('mason-lspconfig').setup({
         require('lspconfig').rust_analyzer.setup,
         require('lspconfig').pylsp.setup,
         require('lspconfig').gopls.setup,
-        require('lspconfig').omnisharp.setup,
         require('lspconfig').html.setup,
         require('lspconfig').htmx.setup,
         require('lspconfig').tailwindcss.setup,

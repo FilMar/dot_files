@@ -169,38 +169,6 @@ local plugins = {
         end,
 
     },
-    --twilight
-    {
-        "folke/twilight.nvim",
-        opts = {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
-        },
-        config = function()
-            require("twilight").setup({})
-        end
-    },
-    --zenmode
-    {
-        "folke/zen-mode.nvim",
-        config = function()
-            require("zen-mode").setup({})
-            vim.keymap.set("n", "<leader>z", "<cmd>ZenMode<CR>", { noremap = true, silent = true })
-        end
-    },
-    -- better markdown view
-    {
-        'MeanderingProgrammer/markdown.nvim',
-        name = 'render-markdown',              -- Only needed if you have another plugin named markdown.nvim
-        dependencies = {
-            'nvim-treesitter/nvim-treesitter', -- Mandatory
-            'nvim-tree/nvim-web-devicons',     -- Optional but recommended
-        },
-        config = function()
-            require('render-markdown').setup({})
-        end,
-    },
     -- lint-nvim
     {
         "mfussenegger/nvim-lint",
@@ -245,6 +213,15 @@ local plugins = {
             })
             vim.keymap.set("n", "<leader>of", ":ObsidianFollowLink<CR>")
             vim.keymap.set("n", "<leader>ob", ":ObsidianBacklinks<CR>")
+        end,
+    },
+    -- markdown
+    {
+        "preservim/vim-markdown",
+        config = function()
+            vim.g.vim_markdown_conceal = 2         -- Abilita il concealing avanzato
+            vim.g.vim_markdown_conceal_code_blocks = 0 -- Mostra i blocchi di codice
+            vim.g.vim_markdown_folding_disabled = 1 -- Disabilita il folding
         end,
     }
 }
