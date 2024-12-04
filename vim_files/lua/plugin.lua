@@ -26,7 +26,22 @@ local plugins = {
             end
         end
     },
-    -- telescope
+     -- LSP Config
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
+            "hrsh7th/nvim-cmp",
+            "hrsh7th/cmp-nvim-lsp",
+            "L3MON4D3/LuaSnip",
+        },
+        config = function()
+            -- LSP Configuration (dettagliata sotto)
+            require("plugins.lsp")
+        end,
+    },
+    --telescope
     {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.4',
@@ -61,22 +76,6 @@ local plugins = {
             }
             vim.keymap.set("n", "<C-t>", vim.cmd.ToggleTerm)
             vim.keymap.set("t", "<C-t>", vim.cmd.ToggleTerm)
-        end
-    },
-    --lspzero
-    {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v3.x',
-        dependencies = {
-            { 'neovim/nvim-lspconfig' },
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'hrsh7th/nvim-cmp' },
-            { 'L3MON4D3/LuaSnip' },
-            { 'williamboman/mason.nvim' },
-            { 'williamboman/mason-lspconfig.nvim' },
-        },
-        config = function()
-            require("plugins.lsp")
         end
     },
     -- statusbar
