@@ -1,72 +1,87 @@
 local vim = vim
-local lsp = require('lsp-zero')
 local cmp = require('cmp')
-local cmp_action = require('lsp-zero').cmp_action()
 
-
+-- Configura Mason
 require('mason').setup({})
-require('mason-lspconfig').setup({
-    ensure_installed = {
-        "rust_analyzer",
-        "gopls",
-        "pylsp",
-    },
-    handlers = {
-        lsp.default_setup,
-        require('lspconfig').rust_analyzer.setup,
-        require('lspconfig').pylsp.setup,
-        require('lspconfig').gopls.setup,
-        require('lspconfig').omnisharp.setup,
-        require('lspconfig').html.setup,
-        require('lspconfig').htmx.setup,
-        require('lspconfig').tailwindcss.setup,
-    }
-})
 
+-- Configura Mason-LSPConfig
+require('mason-lspconfig').setup({})
+
+-- Configurazione di base degli LSP
+local lspconfig = require('lspconfig')
+local on_attach = function(client)
+    local bufopts = { noremap = true, silent = true, buffer = bufnr }
+    vim.keymap.set('n', '<leader>dd', vim.lsp.buf.definition, bufopts)
+    vim.keymap.set('n', '<leader>dD', vim.lsp.buf.references, bufopts)
+    vim.keymap.set('n', '<leader>d', vim.lsp.buf.hover, bufopts)
+    vim.keymap.set('n', '<leader>df', vim.lsp.buf.format, bufopts)
+end
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+-- Configura i server supportati
+local servers = {
+    rust_analyzer = {},
+    gopls = {},
+    pylsp = {},
+    html = {},
+    tailwindcss = {},
+    htmx = {},
+    lua_ls = {},
+}
+
+for server, config in pairs(servers) do
+    lspconfig[server].setup(vim.tbl_extend("force", {
+        on_attach = on_attach,
+        capabilities = capabilities,
+    }, config))
+end
+
+-- Configurazione di nvim-cmp per completamento
 cmp.setup({
     mapping = cmp.mapping.preset.insert({
-        ['<Tab>'] = cmp_action.tab_complete(),
-        ['<S-Tab>'] = cmp_action.select_prev_or_fallback(),
+        ['<Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
+        ['<S-Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<Return>'] = cmp.mapping.confirm({ select = false }),
-    })
+    }),
+    sources = {
+        { name = 'nvim_lsp' },
+    },
 })
 
-vim.keymap.set('n', '<leader>dd', vim.lsp.buf.definition, { silent = true, desc = 'Go to definition' })
-vim.keymap.set('n', '<leader>dD', vim.lsp.buf.references, { silent = true, desc = 'Go to implementation' })
-vim.keymap.set('n', '<leader>d', vim.lsp.buf.hover, { silent = true, desc = 'detail' })
-vim.keymap.set('n', '<leader>df', vim.lsp.buf.format, { silent = true, desc = 'format file' })
-
+-- Diagnostica e aggiornamento visivo
 vim.opt.updatetime = 1000
 vim.cmd("highlight LspDiagnosticsLineNrWarning guifg=#E5C07B guibg=#4E4942 gui=bold")
+
 vim.diagnostic.config({
     virtual_text = {
+        prefix = "", -- Simbolo personalizzato
         format = function(_)
-            return string.format("!!")
+            return "!!"
         end,
-        prefix = '',
     },
     float = {
-        source = 'always',
+        source = "always",
         focusable = false,
-        border = 'rounded',
+        border = "rounded",
     },
 })
+
 vim.api.nvim_create_autocmd('CursorHold', {
     callback = function()
         vim.diagnostic.open_float({ scope = 'line' })
     end
-})
-
--- linters
-require("lint").linters_by_ft = {
-    python = {"ruff" },
-    lua = { "luacheck" },
-}
-require("mason-nvim-lint").setup({
-    ensure_installed = {
-        "ruff",
-        "luacheck"
-    }
-
 })

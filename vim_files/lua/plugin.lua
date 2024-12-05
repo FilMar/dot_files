@@ -26,7 +26,22 @@ local plugins = {
             end
         end
     },
-    -- telescope
+     -- LSP Config
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
+            "hrsh7th/nvim-cmp",
+            "hrsh7th/cmp-nvim-lsp",
+            "L3MON4D3/LuaSnip",
+        },
+        config = function()
+            -- LSP Configuration (dettagliata sotto)
+            require("plugins.lsp")
+        end,
+    },
+    --telescope
     {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.4',
@@ -61,22 +76,6 @@ local plugins = {
             }
             vim.keymap.set("n", "<C-t>", vim.cmd.ToggleTerm)
             vim.keymap.set("t", "<C-t>", vim.cmd.ToggleTerm)
-        end
-    },
-    --lspzero
-    {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v3.x',
-        dependencies = {
-            { 'neovim/nvim-lspconfig' },
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'hrsh7th/nvim-cmp' },
-            { 'L3MON4D3/LuaSnip' },
-            { 'williamboman/mason.nvim' },
-            { 'williamboman/mason-lspconfig.nvim' },
-        },
-        config = function()
-            require("plugins.lsp")
         end
     },
     -- statusbar
@@ -169,38 +168,6 @@ local plugins = {
         end,
 
     },
-    --twilight
-    {
-        "folke/twilight.nvim",
-        opts = {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
-        },
-        config = function()
-            require("twilight").setup({})
-        end
-    },
-    --zenmode
-    {
-        "folke/zen-mode.nvim",
-        config = function()
-            require("zen-mode").setup({})
-            vim.keymap.set("n", "<leader>z", "<cmd>ZenMode<CR>", { noremap = true, silent = true })
-        end
-    },
-    -- better markdown view
-    {
-        'MeanderingProgrammer/markdown.nvim',
-        name = 'render-markdown',              -- Only needed if you have another plugin named markdown.nvim
-        dependencies = {
-            'nvim-treesitter/nvim-treesitter', -- Mandatory
-            'nvim-tree/nvim-web-devicons',     -- Optional but recommended
-        },
-        config = function()
-            require('render-markdown').setup({})
-        end,
-    },
     -- lint-nvim
     {
         "mfussenegger/nvim-lint",
@@ -245,6 +212,15 @@ local plugins = {
             })
             vim.keymap.set("n", "<leader>of", ":ObsidianFollowLink<CR>")
             vim.keymap.set("n", "<leader>ob", ":ObsidianBacklinks<CR>")
+        end,
+    },
+    -- markdown
+    {
+        "preservim/vim-markdown",
+        config = function()
+            vim.g.vim_markdown_conceal = 2         -- Abilita il concealing avanzato
+            vim.g.vim_markdown_conceal_code_blocks = 0 -- Mostra i blocchi di codice
+            vim.g.vim_markdown_folding_disabled = 1 -- Disabilita il folding
         end,
     }
 }
