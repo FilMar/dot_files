@@ -216,6 +216,8 @@ colors = [
 
 screens = [
     Screen(
+        wallpaper="~/mega/3_resources/images/wallpapers/black_hole_and_tree.png",
+        wallpaper_mode="stretch",
         top=bar.Bar(
             [
                 widget.Sep(padding=5, linewidth=0, background="#2f343f"),
