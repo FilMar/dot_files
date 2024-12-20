@@ -26,7 +26,7 @@ local plugins = {
             end
         end
     },
-     -- LSP Config
+    -- LSP Config
     {
         "neovim/nvim-lspconfig",
         dependencies = {
@@ -214,14 +214,11 @@ local plugins = {
             vim.keymap.set("n", "<leader>ob", ":ObsidianBacklinks<CR>")
         end,
     },
-    -- markdown
+    -- markview
     {
-        "preservim/vim-markdown",
-        config = function()
-            vim.g.vim_markdown_conceal = 2         -- Abilita il concealing avanzato
-            vim.g.vim_markdown_conceal_code_blocks = 0 -- Mostra i blocchi di codice
-            vim.g.vim_markdown_folding_disabled = 1 -- Disabilita il folding
-        end,
+        "OXY2DEV/markview.nvim",
+        lazy = false, -- Recommended
+        -- ft = "markdown" -- If you decide to lazy-load anyway
     }
 }
 require("lazy").setup(plugins, opts)

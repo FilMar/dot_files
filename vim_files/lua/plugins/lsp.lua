@@ -21,7 +21,42 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Configura i server supportati
 local servers = {
-    rust_analyzer = {},
+    rust_analyzer = {
+        --server = { path = "/opt/homebrew/bin/rust-analyzer" },
+        assist = {
+            importMergeBehavior = "last",
+            importPrefix = "by_self",
+        },
+        files = {
+            excludeDirs = { "target" }
+        },
+        workspace = {
+            symbol = {
+                search = {
+                    limit = 3000
+                }
+            }
+        },
+        procMacro = {
+            enable = true
+        },
+        diagnostics = {
+            enable = true,
+            disabled = { "unresolved-proc-macro" },
+            enableExperimental = true,
+            refreshSupport = false,
+        },
+        diagnostic = {
+            refreshSupport = false,
+        },
+        check = {
+            -- command = "clippy"
+        },
+        cargo = {
+            features = "all",
+            loadOutDirsFromCheck = true,
+        }
+    },
     gopls = {},
     pylsp = {},
     html = {},
