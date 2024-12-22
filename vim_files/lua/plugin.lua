@@ -57,7 +57,6 @@ local plugins = {
             require("plugins.treesitter")
             vim.cmd(':TSUpdate')
         end,
-        dependencies = { "nvim-treesitter/playground" }
     },
     --undotree
     {
@@ -96,8 +95,6 @@ local plugins = {
             require("todo-comments").setup()
         end
     },
-    -- vim_be_good
-    { 'ThePrimeagen/vim-be-good' },
     -- oil
     {
         'stevearc/oil.nvim',
@@ -146,28 +143,6 @@ local plugins = {
             vim.keymap.set("n", "<leader>g", vim.cmd.Neogit, { desc = "open neogit" })
         end
     },
-    -- open url in browser
-    {
-        "sontungexpt/url-open",
-        event = "VeryLazy",
-        cmd = "URLOpenUnderCursor",
-        config = function()
-            local status_ok, url_open = pcall(require, "url-open")
-            if not status_ok then
-                return
-            end
-            url_open.setup({
-                highlight_url = {
-                    all_urls = {
-                        fg = "text", -- text will set underline same color with text
-                        underline = true,
-                    },
-                },
-            })
-            vim.keymap.set("n", "<leader>b", ":URLOpenUnderCursor<CR>", { noremap = true, silent = true })
-        end,
-
-    },
     -- lint-nvim
     {
         "mfussenegger/nvim-lint",
@@ -175,50 +150,30 @@ local plugins = {
             "rshkarin/mason-nvim-lint",
         },
     },
-    -- obsidian
+    -- markdown render
     {
-        "epwalsh/obsidian.nvim",
-        version = "*", -- recommended, use latest release instead of latest commit
-        lazy = true,
-        ft = "markdown",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-
-        config = function()
-            vim.opt.conceallevel = 1
-            require("obsidian").setup({
-                ui = {
-                    enable = false
-                },
-                workspaces = {
-                    {
-                        name = "notes",
-                        path = "~/MEGA/2_areas/notes/",
-                    }
-                },
-                note_frontmatter_func = function(note)
-                    local out = { tags = note.tags }
-                    if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
-                        for k, v in pairs(note.metadata) do
-                            out[k] = v
-                        end
-                    end
-                    return out
-                end,
-                note_id_func = function(title)
-                    return title
-                end,
-            })
-            vim.keymap.set("n", "<leader>of", ":ObsidianFollowLink<CR>")
-            vim.keymap.set("n", "<leader>ob", ":ObsidianBacklinks<CR>")
-        end,
+        'MeanderingProgrammer/render-markdown.nvim',
+        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+        ---@module 'render-markdown'
+        ---@type render.md.UserConfig
+        opts = {},
     },
-    -- markview
+    -- flash search
     {
-        "OXY2DEV/markview.nvim",
-        lazy = false, -- Recommended
-        -- ft = "markdown" -- If you decide to lazy-load anyway
+        "folke/flash.nvim",
+        event = "VeryLazy",
+        ---@type Flash.Config
+        opts = {},
+        -- stylua: ignore
+        keys = {
+            { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+            { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+            { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
+            { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+            { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
+        },
     }
 }
 require("lazy").setup(plugins, opts)
