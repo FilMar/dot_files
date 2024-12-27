@@ -3,7 +3,7 @@ local vim = vim
 require('telescope').setup({
     defaults = {
         preview = {
-            treesitter = false,
+            treesitter = true,
         },
     },
 })
@@ -18,15 +18,45 @@ vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = "telescope see keyma
 vim.keymap.set('n', '<leader>fc', vim.cmd.TodoTelescope, { desc = "telescope find particolar comment" })
 -- note archive fuzzy finder
 local notes_home = "$NOTES_HOME/second_brain"
-vim.keymap.set('n', '<leader>nf', function()
+vim.keymap.set('n', '<leader>ng', function()
     builtin.find_files({ cwd = notes_home })
 end, { desc = "telescope find file in note dir" })
 
-vim.keymap.set('n', '<leader>nw', function()
-    builtin.live_grep({ cwd = notes_home })
-end, { desc = "telescope search in notes folder" })
+local actions = require("telescope.actions")
+local action_state = require("telescope.actions.state")
 
-vim.keymap.set('n', '<leader>nw', function()
-    builtin.live_grep({ cwd = notes_home .. "/index" })
-end, { desc = "telescope find note in note dir" })
+function Super_find_file(opts)
+    opts = opts or {}
+    local cwd = opts.cwd or vim.loop.cwd() -- Usa la directory specificata o quella corrente
+
+    builtin.find_files({
+        cwd = cwd,
+        attach_mappings = function(prompt, map)
+            local create_file = function()
+                local picker = action_state.get_current_picker(prompt)
+                local file_name = picker:_get_prompt()
+                actions.close(prompt)
+                if file_name and file_name ~= "" then
+                    file_name = cwd .. "/" .. file_name .. ".md"
+                    vim.cmd("edit " .. file_name)
+                else
+                    print("file non specificato")
+                end
+            end
+
+            map("i", "<cr>", function()
+                local selection = action_state.get_selected_entry()
+                if selection then
+                    actions.select_default(prompt)
+                else
+                    create_file()
+                end
+            end)
+            return true
+        end,
+    })
+end
+
+vim.keymap.set("n", "<leader>nf", "<cmd>lua Super_find_file({ cwd = '$NOTES_HOME/second_brain'})<CR>",
+    { noremap = true, silent = true })
 

@@ -34,6 +34,15 @@ function warp {
     fi
 }
 
+# notes unlimited note power
+function note {
+    file=$(fd . -t f "$NOTES_HOME/second_brain" | fzf --print-query | tail -n 1)
+    if [[ $file != "$NOTES_HOME/second_brain"*".md" ]];then
+        file="$NOTES_HOME/second_brain/$file.md"
+    fi
+    nvim $file
+}
+
 #function warf { non funziona ancora
 #    rows=""
 #    for file in $(fd -t f)
