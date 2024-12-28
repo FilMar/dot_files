@@ -12,15 +12,13 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "telescope find f
 vim.keymap.set('n', '<leader>fw', builtin.live_grep, { desc = "telescope find word in dir" })
 vim.keymap.set('v', '<leader>fw', builtin.grep_string, { desc = "telescope finder of word evedenced" })
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "telescope see opened buffers" })
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = "telescope find help files" })
+vim.keymap.set('n', '<leader>fh', "<cmd>lua Super_help_fullpage()<CR>", { desc = "telescope find help files" })
 vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = "telescope see keymaps" })
 -- comments fuzzy finder
 vim.keymap.set('n', '<leader>fc', vim.cmd.TodoTelescope, { desc = "telescope find particolar comment" })
 -- note archive fuzzy finder
-local notes_home = "$NOTES_HOME/second_brain"
-vim.keymap.set('n', '<leader>ng', function()
-    builtin.find_files({ cwd = notes_home })
-end, { desc = "telescope find file in note dir" })
+vim.keymap.set("n", "<leader>nf", "<cmd>lua Super_find_file({ cwd = '$NOTES_HOME/second_brain'})<CR>",
+    { noremap = true, silent = true })
 
 local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
@@ -57,6 +55,20 @@ function Super_find_file(opts)
     })
 end
 
-vim.keymap.set("n", "<leader>nf", "<cmd>lua Super_find_file({ cwd = '$NOTES_HOME/second_brain'})<CR>",
-    { noremap = true, silent = true })
+function Super_help_fullpage()
+    builtin.help_tags({
+        attach_mappings = function (_, map)
+            map("i","<cr>", function(prompt)
+                local selection = action_state.get_selected_entry()
+                if selection then
+                    actions.close(prompt)
+                    vim.cmd("help " .. selection.value)
+                    vim.cmd("only")
+                end
+            end)
+            return true
+        end,
+    })
+end
+
 
