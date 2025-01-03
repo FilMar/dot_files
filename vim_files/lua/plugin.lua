@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
     -- theme
-    require"plugins.catpuccine",
+    require "plugins.catpuccine",
     -- LSP Config
     {
         "neovim/nvim-lspconfig",
@@ -149,21 +149,6 @@ local plugins = {
         ---@type render.md.UserConfig
         opts = {},
     },
-    -- flash search
-    {
-        "folke/flash.nvim",
-        event = "VeryLazy",
-        ---@type Flash.Config
-        opts = {},
-        -- stylua: ignore
-        keys = {
-            { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
-            { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
-            { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
-            { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-            { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
-        },
-    },
     -- obsidian
     {
         "epwalsh/obsidian.nvim",
@@ -223,13 +208,29 @@ local plugins = {
                     end
                     return {}
                 end,
-                -- see below for full list of options 👇
+                ---@param title string|?
+                ---@return string
+                note_id_func = function(title)
+                    if title then
+                        return title
+                    else
+                        return ""
+                    end
+                end,
+                ---@param spec { id: string, dir: obsidian.Path, title: string|? }
+                ---@return string|obsidian.Path The full path to the new note.
+                note_path_func = function(spec)
+                    -- This is equivalent to the default behavior.
+                    local path = spec.dir / tostring(spec.id)
+                    return path:with_suffix(".md")
+                end,
             }
             vim.keymap.set("n", "<leader>nn", ":ObsidianFollowLink<cr>",
                 { desc = "segui il wikilink ed apri la nuova nota" })
             vim.keymap.set("n", "<leader>n<S-n>", ":ObsidianBacklinks<cr>",
-                { desc = "segui il wikilink ed apri la nuova nota" })
-            vim.keymap.set("n", "<leader>nw", ":ObsidianSearch<cr>", { desc = "segui il wikilink ed apri la nuova nota" })
+                { desc = "lista link a nota corrente" })
+            vim.keymap.set("n", "<leader>nw", ":ObsidianSearch<cr>", { desc = "cerca parola in tutto il vault" })
+            vim.keymap.set("n", "<leader>nr", ":ObsidianRename --dry-run<cr>", { desc = "rinomina nota sotto link o su buffer" })
         end
     }
 }

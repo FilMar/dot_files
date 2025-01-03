@@ -9,9 +9,8 @@ require('telescope').setup({
 })
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "telescope find file in dir" })
-vim.keymap.set('n', '<leader>fw', builtin.live_grep, { desc = "telescope find word in dir" })
-vim.keymap.set('v', '<leader>fw', builtin.grep_string, { desc = "telescope finder of word evedenced" })
-vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "telescope see opened buffers" })
+vim.keymap.set('n', '<leader>fF', builtin.live_grep, { desc = "telescope find word in dir" })
+vim.keymap.set('v', '<leader>fF', builtin.grep_string, { desc = "telescope finder of word evedenced" })
 vim.keymap.set('n', '<leader>fh', "<cmd>lua Super_help_fullpage()<CR>", { desc = "telescope find help files" })
 vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = "telescope see keymaps" })
 -- comments fuzzy finder
