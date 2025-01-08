@@ -232,6 +232,14 @@ local plugins = {
             vim.keymap.set("n", "<leader>nw", ":ObsidianSearch<cr>", { desc = "cerca parola in tutto il vault" })
             vim.keymap.set("n", "<leader>nr", ":ObsidianRename --dry-run<cr>", { desc = "rinomina nota sotto link o su buffer" })
         end
+    },
+    -- notifier
+    {
+        'rcarriga/nvim-notify',
+        config = function ()
+            require("notify").setup()
+        end
     }
+
 }
 require("lazy").setup(plugins, opts)
