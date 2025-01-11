@@ -25,13 +25,25 @@ alias ngit="nvim -c Neogit"
 
 # warp unlimited power
 function warp {
+    current_dir=$(pwd)
     cd $HOME
-    cd $(fd -t d 2> /dev/null |fzf)
+    new_dir=$(fd -t d 2> /dev/null |fzf)
+    if [[ $new_dir == "" ]]; then
+        cd $current_dir
+    else
+        cd $new_dir
+    fi
     if [[ -e .venv ]]; then
         source .venv/bin/activate
     else
         deactivate 2> /dev/null
     fi
+    if [[ -e .git ]]; then
+        git fetch && git pull
+    fi
+}
+
+function fgf {
 }
 
 # notes unlimited note power
