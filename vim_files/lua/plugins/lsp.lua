@@ -60,6 +60,7 @@ local servers = {
     gopls = {},
     pylsp = {},
     html = {},
+    bashls = {},
     tailwindcss = {},
     htmx = {},
     lua_ls = {},
