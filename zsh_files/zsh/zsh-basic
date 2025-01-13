@@ -38,9 +38,6 @@ function warp {
     else
         deactivate 2> /dev/null
     fi
-    if [[ -e .git ]]; then
-        git fetch && git pull
-    fi
 }
 
 function fgf {
