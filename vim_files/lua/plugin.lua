@@ -16,6 +16,8 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
     -- theme
     require "plugins.catpuccine",
+    -- which key
+    require "plugins.which_key",
     -- LSP Config
     require "plugins.lsp",
     --telescope
