@@ -22,6 +22,13 @@ alias sheet="curl cht.sh/\$(curl cht.sh/:list | fzf)"
 alias hist="history | fzf"
 alias ngit="nvim -c Neogit"
 
+function _pandoc { #non funxionz
+    if hash docker 2>/dev/null; then
+        docker container run --rm -v $(pwd):/data --user $(id -u):$(id -g) pandoc/extra "$@"
+    else
+        echo "install docker for use contenerized pandoc"
+    fi
+}
 
 # warp unlimited power
 function warp {

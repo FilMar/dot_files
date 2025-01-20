@@ -40,6 +40,8 @@ local plugins = {
     require "plugins.neogit",
     -- markdown render
     require "plugins.markdown",
+    -- math render
+    require "plugins.math",
     -- obsidian
     require "plugins.obsidian",
     -- sorrund
