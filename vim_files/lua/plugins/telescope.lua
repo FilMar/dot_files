@@ -76,7 +76,7 @@ return {
         -- comments fuzzy finder
         vim.keymap.set('n', '<leader>fc', vim.cmd.TodoTelescope, { desc = "telescope find particolar comment" })
         -- note archive fuzzy finder
-        vim.keymap.set("n", "<leader>nf", "<cmd>lua Super_find_file({ cwd = '$NOTES_HOME/second_brain'})<CR>",
+        vim.keymap.set("n", "<leader>nf", "<cmd>lua Super_find_file({ cwd = '$NOTES_HOME'})<CR>",
             { noremap = true, silent = true })
 
     end
