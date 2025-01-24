@@ -47,21 +47,12 @@ function warp {
     fi
 }
 
-function fgf {
-    current_dir=$(pwd)
-    cd $HOME
+function _fgf {
     new_dir=$(fd -t d -H -g '.git' -E '.*/*' '.git' ~/mega ~/git_projects 2> /dev/null  | sed 's/\/\.git//')
     for dir in $new_dir; do
         cd $dir
-        if [[ git status == "already up to date"]]; then
-            echo "$dir"
-        fi
+        git pull
     done
-    if [[ $new_dir == "" ]]; then
-        cd $new_dir
-    else
-        cd $new_dir
-    fi
 }
 
 # notes unlimited note power

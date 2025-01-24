@@ -64,6 +64,7 @@ return {
             local lines = {}
             for _, attach in pairs(files) do
                 local attach_name = vim.fn.fnamemodify(attach, ":t")
+                attach_name = attach_name:gsub("%.%w+$", "")
                 table.insert(lines, "# " .. attach_name)
                 table.insert(lines, "[" .. attach_name .. "](file:///" .. attach .. ")")
             end
