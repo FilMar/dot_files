@@ -45,6 +45,8 @@ local plugins = {
     -- obsidian
     require "plugins.obsidian",
     -- sorrund
-    require "plugins.surround"
+    require "plugins.surround",
+    -- ai assistant
+    require "plugins.ai"
 }
 require("lazy").setup(plugins, opts)
