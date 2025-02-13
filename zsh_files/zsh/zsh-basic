@@ -57,13 +57,10 @@ function _fgf {
 
 # notes unlimited note power
 function note {
-    file=$(fd . -t f "$NOTES_HOME/second_brain" | fzf --print-query | tail -n 1)
+    file=$(fd . -t f -d 1 "$NOTES_HOME" 2> /dev/null | fzf --print-query 2> /dev/null | tail -n 1 2> /dev/null )
     if [[ $file == "" ]];then
         echo "devi scrivere qualcosa"
         return
-    fi
-    if [[ $file != "$NOTES_HOME/second_brain"*".md" ]];then
-        file="$NOTES_HOME/second_brain/$file.md"
     fi
     nvim $file
 }
