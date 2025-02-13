@@ -47,6 +47,8 @@ local plugins = {
     -- sorrund
     require "plugins.surround",
     -- ai assistant
-    require "plugins.ai"
+    require "plugins.ai",
+    -- rustowl
+    require "plugins.rustowl"
 }
 require("lazy").setup(plugins, opts)
