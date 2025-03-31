@@ -21,6 +21,7 @@ alias la="exa -lah"
 alias sheet="curl cht.sh/\$(curl cht.sh/:list | fzf)"
 alias hist="history | fzf"
 alias ngit="nvim -c Neogit"
+alias ssmax="ssh -i ~/.ssh/LightsailDefaultKey-eu-west-3.pem ubuntu@35.181.223.102"
 
 function _pandoc { #non funxionz
     if hash docker 2>/dev/null; then

@@ -20,11 +20,20 @@ return {
         -- Configurazione di base degli LSP
         local lspconfig = require('lspconfig')
         local on_attach = function(client)
-            local bufopts = { noremap = true, silent = true, buffer = bufnr }
-            vim.keymap.set('n', '<leader>dd', vim.lsp.buf.definition, bufopts)
-            vim.keymap.set('n', '<leader>dD', vim.lsp.buf.references, bufopts)
-            vim.keymap.set('n', '<leader>d', vim.lsp.buf.hover, bufopts)
+            local bufopts = { noremap = true, silent = true }
+            bufopts.desc = "format file"
             vim.keymap.set('n', '<leader>df', vim.lsp.buf.format, bufopts)
+            bufopts.desc = "go to definition"
+            vim.keymap.set('n', '<leader>dd', vim.lsp.buf.definition, bufopts)
+            bufopts.desc = "open all references"
+            vim.keymap.set('n', '<leader>dD', vim.lsp.buf.references, bufopts)
+            bufopts.desc = "open docs detail"
+            bufopts.desc = "open errors details"
+            vim.keymap.set('n', '<leader>d', function()
+                vim.lsp.buf.hover()
+                vim.diagnostic.open_float({ scope = 'line', pos = 10 })
+            end, bufopts
+            )
         end
 
         local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -68,7 +77,8 @@ return {
                 }
             },
             gopls = {},
-            pylsp = {},
+            ruff = {},
+            pyright = {},
             html = {},
             bashls = {},
             tailwindcss = {},
@@ -128,27 +138,12 @@ return {
         })
 
         -- Diagnostica e aggiornamento visivo
-        vim.opt.updatetime = 1000
         vim.cmd("highlight LspDiagnosticsLineNrWarning guifg=#E5C07B guibg=#4E4942 gui=bold")
 
         vim.diagnostic.config({
             virtual_text = {
-                prefix = "", -- Simbolo personalizzato
-                format = function(_)
-                    return "!!"
-                end,
+                current_line = true
             },
-            float = {
-                source = "always",
-                focusable = false,
-                border = "rounded",
-            },
-        })
-
-        vim.api.nvim_create_autocmd('CursorHold', {
-            callback = function()
-                vim.diagnostic.open_float({ scope = 'line' })
-            end
         })
     end,
 }
