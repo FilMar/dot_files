@@ -22,7 +22,7 @@ return {
         local on_attach = function(client)
             local bufopts = { noremap = true, silent = true }
             bufopts.desc = "format file"
-            vim.keymap.set('n', '<leader>df', vim.lsp.buf.format, bufopts)
+            vim.keymap.set({"n", "v"}, '<leader>df', vim.lsp.buf.format, bufopts)
             bufopts.desc = "go to definition"
             vim.keymap.set('n', '<leader>dd', vim.lsp.buf.definition, bufopts)
             bufopts.desc = "open all references"
@@ -79,6 +79,7 @@ return {
             gopls = {},
             ruff = {},
             pyright = {},
+            pylsp = {},
             html = {},
             bashls = {},
             tailwindcss = {},
@@ -141,7 +142,7 @@ return {
         vim.cmd("highlight LspDiagnosticsLineNrWarning guifg=#E5C07B guibg=#4E4942 gui=bold")
 
         vim.diagnostic.config({
-            virtual_text = {
+            virtual_lines = {
                 current_line = true
             },
         })
