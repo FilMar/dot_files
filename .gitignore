@@ -4,4 +4,6 @@ vim_files/.*
 vim_files/lazy-lock.json
 zsh_files/.zsh_history
 .zsh_history
-
+emacs_files/auto-save-list/
+emacs_files/eln-cache/
+emacs_files/elpa/
