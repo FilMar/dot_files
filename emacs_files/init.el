@@ -28,7 +28,7 @@
   (evil-mode 1))
 
 (defun my/vterm-setup ()
-  (display-line-numbers-mode 0)
+  (display-line-numbers-mode -1)
   (evil-local-mode -1))
 (add-hook 'vterm-mode-hook #'my/vterm-setup)
 
