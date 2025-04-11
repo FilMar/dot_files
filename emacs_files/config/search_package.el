@@ -2,7 +2,8 @@
 (use-package ivy
   :demand
   :config
-  (ivy-mode))
+  (ivy-mode)
+)
 
 (use-package which-key
   :demand
@@ -13,9 +14,16 @@
 
 (use-package company-mode
   :init
-  (global-company-mode))
+  (global-company-mode)
+)
+
+(use-package flycheck
+    :init
+    (global-flycheck-mode)
+)
 
 (use-package rg
   :general
   (leader-keys
-    "f" '(rg-menu :which-key "find")))
+    "f" '(rg-menu :which-key "find"))
+)

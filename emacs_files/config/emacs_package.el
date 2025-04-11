@@ -1,4 +1,3 @@
-
 (use-package emacs
   :hook (rust-mode . eglot-ensure)
   :hook (python-mode . eglot-ensure)
@@ -6,6 +5,7 @@
   :general
   (leader-keys
     "l" '(:ignore t :which-key "lsp")
+    "e" '(dired ("./") :which-key "directory")
     "l <escape>" '(keyboard-escape-quit :which-key t)
     "l r" '(eglot-rename :which-key "rename")
     "l a" '(eglot-code-actions :which-key "code actions"))
@@ -29,7 +29,7 @@
   (setq-default tab-width 4)
   (set-face-attribute 'default nil
     :font "Fira Code Nerd Font"
-    :height 120)
+    :height 110)
   (defun ab/enable-line-numbers ()
     "Enable relative line numbers"
     (interactive)
@@ -42,8 +42,8 @@
   ;;(setq ns-use-proxy-icon  nil)
   (setq frame-title-format nil)
   ;;(setq-default fill-column 80)
-  (set-face-attribute 'fill-column-indicator nil
-                      :foreground "#717C7C" ; katana-gray
-                      :background "transparent")
-  (global-display-fill-column-indicator-mode 1)
+  ;;(set-face-attribute 'fill-column-indicator nil
+  ;;                   :foreground "#717C7C" ; katana-gray
+  ;;                    :background "transparent")
+  ;;(global-display-fill-column-indicator-mode 1)
 )

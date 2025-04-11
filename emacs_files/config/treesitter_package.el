@@ -23,3 +23,8 @@
     "m c" '(rust-run-clippy :which-key "clippy"))
 )
 (use-package python-mode)
+
+(use-package slime
+    :init
+    (setq inferior-lisp-program "sbcl")
+)
