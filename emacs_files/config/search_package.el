@@ -1,8 +1,7 @@
-
-(use-package ivy
-  :demand
-  :config
-  (ivy-mode)
+(use-package helm
+:straight t
+:init
+(helm-mode 1)
 )
 
 (use-package which-key
@@ -22,8 +21,4 @@
     (global-flycheck-mode)
 )
 
-(use-package rg
-  :general
-  (leader-keys
-    "f" '(rg-menu :which-key "find"))
-)
+(use-package rg)

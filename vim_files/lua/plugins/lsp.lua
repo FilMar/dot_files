@@ -142,7 +142,7 @@ return {
         vim.cmd("highlight LspDiagnosticsLineNrWarning guifg=#E5C07B guibg=#4E4942 gui=bold")
 
         vim.diagnostic.config({
-            virtual_lines = {
+            virtual_text = {
                 current_line = true
             },
         })

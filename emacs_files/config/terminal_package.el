@@ -4,7 +4,13 @@
 
 (use-package multi-vterm)
 
+(use-package shell-pop
+    :init
+    (setq shell-pop-autocd-to-working-dir t)
+)
+
 (use-package exec-path-from-shell
   :init
   (exec-path-from-shell-initialize))
+
 
