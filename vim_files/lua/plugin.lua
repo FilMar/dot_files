@@ -49,6 +49,6 @@ local plugins = {
     -- ai assistant
     require "plugins.ai",
     -- rustowl
-    require "plugins.rustowl"
+    -- require "plugins.rustowl"
 }
 require("lazy").setup(plugins, opts)
