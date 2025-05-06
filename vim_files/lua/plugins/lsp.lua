@@ -19,21 +19,20 @@ return {
 
         -- Configurazione di base degli LSP
         local lspconfig = require('lspconfig')
+
+
         local on_attach = function(client)
             local bufopts = { noremap = true, silent = true }
             bufopts.desc = "format file"
-            vim.keymap.set({"n", "v"}, '<leader>df', vim.lsp.buf.format, bufopts)
+            vim.keymap.set({ "n", "v" }, '<leader>df', vim.lsp.buf.format, bufopts)
             bufopts.desc = "go to definition"
             vim.keymap.set('n', '<leader>dd', vim.lsp.buf.definition, bufopts)
             bufopts.desc = "open all references"
-            vim.keymap.set('n', '<leader>dD', vim.lsp.buf.references, bufopts)
+            vim.keymap.set('n', '<leader>dc', vim.lsp.buf.references, bufopts)
             bufopts.desc = "open docs detail"
+            vim.keymap.set('n', '<leader>ds', vim.lsp.buf.hover, bufopts)
             bufopts.desc = "open errors details"
-            vim.keymap.set('n', '<leader>d', function()
-                vim.lsp.buf.hover()
-                vim.diagnostic.open_float({ scope = 'line', pos = 10 })
-            end, bufopts
-            )
+            vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, bufopts)
         end
 
         local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -79,7 +78,6 @@ return {
             gopls = {},
             ruff = {},
             pyright = {},
-            pylsp = {},
             html = {},
             bashls = {},
             tailwindcss = {},
@@ -142,9 +140,7 @@ return {
         vim.cmd("highlight LspDiagnosticsLineNrWarning guifg=#E5C07B guibg=#4E4942 gui=bold")
 
         vim.diagnostic.config({
-            virtual_text = {
-                current_line = true
-            },
+            virtual_text = false
         })
     end,
 }
