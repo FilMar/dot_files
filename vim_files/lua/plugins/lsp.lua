@@ -76,9 +76,8 @@ return {
                 }
             },
             gopls = {},
-            ruff = {},
-            pyright = {},
             html = {},
+            pylsp = {},
             bashls = {},
             tailwindcss = {},
             htmx = {},
