@@ -48,7 +48,7 @@ local plugins = {
     require "plugins.surround",
     -- ai assistant
     require "plugins.ai",
-    -- rustowl
-    -- require "plugins.rustowl"
+    -- spectre search and replace
+    require "plugins.spectre"
 }
 require("lazy").setup(plugins, opts)

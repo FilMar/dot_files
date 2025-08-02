@@ -14,12 +14,12 @@ return {
 
             workspaces = {
                 {
-                    name = "notes",
-                    path = "~/mega/2_areas/notes",
+                    name = "wandering_sun",
+                    path = "~/mega/1_projects/wandering_sun",
                 },
             },
             attachments = {
-                img_folder = "~/mega/2_areas/notes/attachments",
+                img_folder = "~/mega/1_projects/wandering_sun/attachments",
             },
             -- Disabilita la UI integrata
             ui = {
