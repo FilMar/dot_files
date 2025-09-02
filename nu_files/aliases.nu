@@ -5,8 +5,8 @@ alias vim = nvim
 alias vid = nvim .
 alias py = python3
 alias cat = bat
-alias ls = ls -l
-alias la = ls -lah
+# Use Nushell's built-in ls (much better than exa - creates tables!)
+alias la = ls -la
 alias gith = git log --graph --oneline
 alias ngit = nvim -c Neogit
 

@@ -34,3 +34,104 @@ fd -t d
 warp
 curl -sS https://starship.rs/install.sh | sh
 exit
+warp
+cd hypr_files/
+cd ..
+ls
+la
+ls
+ls | to json
+clear
+ls
+la
+vid
+exit
+warp
+exit
+warp
+perfetto
+clear
+claude --continue
+la
+ls 
+ls -la
+la
+exit
+la
+la | order-by modified
+la | sort modified
+la | sort 
+la | sort size
+la | sort-by size
+la | sort-by modified
+la | sort-by modified --reverse
+la | sort-by modified --reverse | <\n>
+clear
+vid
+exit
+ls
+la
+ls
+warp
+git status
+git status | describe
+git status | table 
+git branch
+git branch --merged
+warp
+git branch
+git log
+git log | lines
+git log | lines | split column 
+git log | lines | split column ":"
+cler
+clear
+warp
+ls
+la
+ls
+multiverse 
+multiverse query "select * from locations"
+claude
+warp
+clear
+ls
+multiverse query "select * from locations"
+warp
+multiverse query "select * from locations"
+ls
+multiverse query "select * from locations"
+multiverse query "select * from locations" 
+claude --continue
+cargo install --path .
+multiverse query "select * from locations" 
+multiverse query "select * from locations" | from json 
+multiverse query "select * from locations" | from json | table
+claude --continue
+cargo install --path .
+warp
+ls
+multiverse query "select * from locations" | from json | table
+multiverse query "select * from locations"
+multiverse query "select * from locations" | where metadata.condition = "Completamente mineralizzate"
+multiverse query "select * from locations" | where metadata = "Completamente mineralizzate"
+multiverse query "select * from locations" | from json
+multiverse query "select * from locations" | from json | to csv
+multiverse query "select * from locations" | from json | to yaml
+multiverse query "select * from locations" | from json | table
+multiverse query "select * from locations" | from json
+warp
+ls
+claude --continue
+cargo test
+warp
+ls
+multiverse query "select * from locations" | from json
+multiverse world info
+multiverse character info
+multiverse character list
+multiverse location list
+multiverse location info campi_minatori
+warp
+vid
+warp

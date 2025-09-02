@@ -1,19 +1,19 @@
 # Nushell Functions - Converted from zsh
 
 # Warp function - navigate with fzf and auto-activate venv
-def warp [] {
-    let current_dir = (pwd)
+def --env warp [] {
     cd $env.HOME
-    let new_dir = (fd -t d | fzf)
-    if ($new_dir | is-empty) {
-        cd $current_dir
-        return
-    }
-    cd $new_dir
-    # Check for virtual environment and activate
-    if (".venv" | path exists) {
-        # Nushell doesn't have direct venv activation, but you can set PATH
-        print "Virtual environment found in .venv"
+    
+    let new_dir = (do { ^fd -t d } | ^fzf)
+    
+    if ($new_dir | is-not-empty) {
+        cd $new_dir
+        
+        # Check for virtual environment and activate  
+        if (".venv" | path exists) {
+            print "Virtual environment found in .venv"
+            # Could activate venv: $env.PATH = ([$"(pwd)/.venv/bin"] ++ $env.PATH)
+        }
     }
 }
 

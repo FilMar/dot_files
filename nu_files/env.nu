@@ -4,7 +4,8 @@
 $env.PROMPT_MULTILINE_INDICATOR = "::: "
 
 # Starship prompt (modern alternative to typewritten theme)
-$env.STARSHIP_SHELL = "nu"
+mkdir ($nu.data-dir | path join "vendor/autoload")
+starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
 
 # History configuration
 $env.config = ($env.config | upsert history {
