@@ -59,7 +59,7 @@ return {
                     enable = true
                 },
                 diagnostics = {
-                    enable = true,
+                    enable = false,
                     disabled = { "unresolved-proc-macro" },
                     enableExperimental = true,
                     refreshSupport = false,
