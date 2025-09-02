@@ -1,0 +1,36 @@
+vid
+/exit
+exit
+git status | describe
+git status; git status
+git status && git status
+git status and git status
+clera
+clear
+warp
+vim
+exit
+ls
+la
+^ls
+^la
+la
+ls
+ls | table
+ls | to json
+ls
+vid
+warp
+vi
+vid
+ls
+:wq
+ciao come va?
+vid
+fd -t d 2>/dev/null 
+fd -t d
+cd 
+fd -t d
+warp
+curl -sS https://starship.rs/install.sh | sh
+exit
