@@ -135,3 +135,109 @@ multiverse location info campi_minatori
 warp
 vid
 warp
+gitu
+warp
+gitu
+clear
+vim
+vid
+warp
+vid
+warp
+clera
+clear
+warp
+multiverse query "select * from locations" | from json
+multiverse query "select * from locations"
+multiverse query "select * from locations" | from json
+ciao
+vid
+clear
+warp
+ls
+ls | to json
+ls | to json | to yaml
+ls 
+ls | where size=66.3
+ls | where size = 66.3kb
+ls | sort-by size
+ls | sort-by size | select type
+https emotion-test.eu/api/towers
+https emotion-test.eu/api/towers | to json
+https emotion-test.eu/api/towers | from json 
+https emotion-test.eu/api/towers | from json | select is_european
+https emotion-test.eu/api/towers | from json | where max_power = 100
+https emotion-test.eu/api/tower-plugs
+https emotion-test.eu/api/tower-plugs | from json
+https emotion-test.eu/api/tower-plugs | from json | reverse
+https emotion-test.eu/api/tower-plugs | from json | where status = Occupied
+https emotion-test.eu/api/tower-plugs | from json | where status == Occupied
+https emotion-test.eu/api/tower-plugs | from json | where status == Occupied | to json
+https emotion-test.eu/api/tower-plugs | from json | where status == Occupied | to yaml
+https emotion-test.eu/api/tower-plugs | from json | where status == Occupied | to yaml | save plug.json
+vid
+multiverse query "select * from locations"
+warp
+la
+multiverse ls
+multiverse --help
+vid
+multiverse query "select * from locations"
+multiverse query "select * from locations" | from json
+multiverse query "select * from locations" | from json | where status == Active
+multiverse query "select * from locations" | from json | where row.status == Active
+multiverse query "select * from locations" | from json | where rows.status == Active
+multiverse query "select * from locations" | from json | get status |<\n>
+multiverse query "select * from locations" | from json | get status 
+multiverse query "select * from locations" | from json | get rows
+multiverse query "select * from locations" | from json | get rows.status
+multiverse query "select * from locations" | from json | select rows
+multiverse query "select * from locations" | from json | get rows
+multiverse query "select * from locations" | from json | get rows | where status == Active
+exit
+top
+clear
+ps
+htop
+ps
+ps | sort-by mem
+ip addr
+ip addr | from text
+ip addr | from 
+ip addr | from raw
+ip addr | autodetect
+ip addr | detect lines
+ps | explore
+ls 
+ls | inspect
+warp
+:w
+clear
+s
+ghostty
+https emotion-test.eu/new-api/tower-plugs | from json | where status == Occupied | to yaml | save plug.json
+https emotion-test.eu/new-api/towers
+https emotion-test.eu/api/towers
+https emotion-test.eu/new-api/towers
+warp
+vid
+warp
+ls
+la
+vid
+clear
+claude
+vid
+warp
+ls
+la
+claude
+eww 
+eww daemon
+claude
+eww daemon
+clear
+eww open launcher
+ls
+ls | where name == wired
+exit
