@@ -9,7 +9,7 @@
         "format": "{}",
         "return-type": "json",
         "interval": 1,
-        "exec": "python3 /home/fildev/git_projects/dot_files/scripts/waybar_window_list.py",
+        "exec": "python3 $HOME/git_projects/dot_files/scripts/waybar_window_list.py",
         "max-length": 120,
         "escape": false
     },

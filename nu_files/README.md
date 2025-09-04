@@ -32,8 +32,8 @@ Configurazione Nushell convertita dalla configurazione zsh esistente.
 ```bash
 # Link config files
 mkdir -p ~/.config/nushell
-ln -sf /home/fildev/git_projects/dot_files/nu_files/config.nu ~/.config/nushell/config.nu
-ln -sf /home/fildev/git_projects/dot_files/nu_files/env.nu ~/.config/nushell/env.nu
+ln -sf $HOME/git_projects/dot_files/nu_files/config.nu ~/.config/nushell/config.nu
+ln -sf $HOME/git_projects/dot_files/nu_files/env.nu ~/.config/nushell/env.nu
 
 # Install starship for modern prompt
 curl -sS https://starship.rs/install.sh | sh

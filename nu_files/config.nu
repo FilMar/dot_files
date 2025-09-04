@@ -5,7 +5,7 @@ $env.TERM = "xterm-256color"
 
 # Shell settings equivalent to zsh vi mode
 $env.config = {
-    edit_mode: vi
+    edit_mode: emacs
     show_banner: false
     use_ansi_coloring: true
     color_config: {

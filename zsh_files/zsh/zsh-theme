@@ -1,10 +1,5 @@
-# theme : typewritten (fast and light theme) git clone https://github.com/reobin/typewritten.git "$HOME/.zsh/typewritten"
-ZSH_THEME="typewritten/typewritten"
-
-## personal configuration:
-
-export TYPEWRITTEN_PROMPT_LAYOUT="multiline"
-export TYPEWRITTEN_RELATIVE_PATH="adaptive"
-export TYPEWRITTEN_CURSOR="beam"
+# Starship prompt (modern cross-shell prompt)
+# Install with: curl -sS https://starship.rs/install.sh | sh
+eval "$(starship init zsh)"
 
 

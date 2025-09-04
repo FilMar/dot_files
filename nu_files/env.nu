@@ -1,5 +1,24 @@
 # Nushell Environment Configuration
 
+# Import POSIX environment variables from shared env.sh file
+let env_script = ($nu.config-path | path dirname | path join "env.sh")
+
+# Source the POSIX env file and import variables (excluding system ones)
+if ($env_script | path exists) {
+    let env_vars = (bash -c $"source ($env_script) && env" | lines | where ($it | str contains "=") | parse "{name}={value}")
+    for var in $env_vars {
+        # Try to set each variable, skip if it fails (Nu-managed vars)
+        try {
+            load-env {($var.name): ($var.value)}
+        } catch {
+            # Silently skip variables that Nu doesn't allow (like PWD, etc.)
+        }
+    }
+}
+
+# Override shell identification for starship  
+$env.STARSHIP_SHELL = "nu"
+
 # Default environment variables
 $env.PROMPT_MULTILINE_INDICATOR = "::: "
 

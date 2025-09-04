@@ -1,18 +1,17 @@
 # Nushell Functions - Converted from zsh
 
-# Warp function - navigate with fzf and auto-activate venv
+# Warp function - navigate with fzf
 def --env warp [] {
     cd $env.HOME
     
-    let new_dir = (do { ^fd -t d } | ^fzf)
+    let new_dir = (^fd -t d --exclude 'node_modules' --exclude '__pycache__' --exclude 'target' --exclude 'dist' --exclude 'build' | ^fzf --preview 'exa -la --color=always {}')
     
     if ($new_dir | is-not-empty) {
         cd $new_dir
         
-        # Check for virtual environment and activate  
+        # Check for virtual environment
         if (".venv" | path exists) {
-            print "Virtual environment found in .venv"
-            # Could activate venv: $env.PATH = ([$"(pwd)/.venv/bin"] ++ $env.PATH)
+            print "Virtual environment found"
         }
     }
 }

@@ -241,3 +241,165 @@ eww open launcher
 ls
 ls | where name == wired
 exit
+warp
+ls
+la
+claude
+multiverse query "select * from episodes join character_episode_relations as c on episodes.id == c.character<\n>"
+multiverse query "select * from episodes join character_episode_relations as c on episodes.id == c.from_id"
+claude
+gitu
+with-env { CIAO: "merluzzo"  }
+with-env { CIAO: "merluzzo"  }{$env.CIAO<\n>}
+with-env { CIAO: "merluzzo"  }{$env.CIAO}
+with-env { CIAO: "merluzzo"  }{$CIAO}
+with-env { CIAO: "merluzzo"  }
+warp
+clear
+vid
+$env.home
+vid
+warp
+$HOME
+$home
+$env.home
+$($env.home)
+vid
+warp
+vid
+claude
+chsh -s /usr/bin/zsh
+clear
+vid
+warp
+ls
+warp
+ls
+vid
+ls
+warp
+vid
+uv run swap-env --to-prod ../ocpp_manager/ocpp_stack.yml 
+uv
+warp
+vid
+uv
+warp
+uv
+uv run swap-env --to-prod ../ocpp_manager/ocpp_stack.yml 
+warp
+uv run swap-env --to-prod ../ocpp_manager/ocpp_stack.yml > ocpp.yml
+vid
+uv run swap-env --to-prod ../ocpp_manager/ocpp_stack.yml | file ocpp.yml
+ls
+uv
+ls
+uv run swap-env --to-prod ../ocpp_manager/ocpp_stack.yml | file ocpp.yml
+touch ocpp.yml
+uv run swap-env --to-prod ../ocpp_manager/ocpp_stack.yml | file ocpp.yml
+ls
+vi
+vid
+uv run swap-env --to-prod ../ocpp_manager/ocpp_stack.yml --help
+uv run swap-env --to-prod ../ocpp_manager/ocpp_stack.yml --suffix .prod
+vid
+ls
+vid
+warp
+vid
+warp
+vid
+warp
+ls
+uv
+exit
+$env.path
+$env.home
+warp
+vid
+warp
+vid
+warp
+ls
+vid
+warp
+ls
+vid
+warp
+ls
+vid
+vi
+vid
+:wq
+warp
+vid
+warp
+ls
+uv 
+szh
+uv
+https emotion-test.eu/new-api/towers
+zsh
+zsh
+rp
+warp
+ls
+clear
+warp
+vid
+warp
+ls
+claude
+clear
+$env.home
+$env.path
+$env.
+$env
+$env.CONFIG_HOME
+clear
+ls
+claude --continue
+vid
+warp
+clera
+clear
+ls
+warp
+:q
+clera
+warp
+zs
+zsh
+warp
+vid
+claude --continue
+clera
+clear
+d
+df
+d
+ciao
+warp
+alacritty migrate
+warp
+python scripts/focus_mode.py
+claude --continue
+warp
+vid
+warp
+ping 10.137.92.80
+ssh pi@10.137.92.80
+ssh pi@10.137.92.80 -23
+ssh pi@10.137.92.80 -p 23
+ssh pi@10.137.92.80
+ssh pi@10.137.92.80 -p 23
+clera
+clear
+ssh pi@10.137.92.80 -p 23
+ssh pi@10.137.92.80 
+ping 10.137.92.80
+clear
+warp
+vid
+ping 10.137.92.80
+warp
