@@ -241,3 +241,7 @@ eww open launcher
 ls
 ls | where name == wired
 exit
+git restore nu_files/history.txt
+git pull
+git push
+git status
