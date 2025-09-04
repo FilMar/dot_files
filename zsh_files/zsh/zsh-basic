@@ -4,7 +4,7 @@ DISABLE_MAGIC_FUNCTIONS=true
 ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 COMPLETION_WAITING_DOTS=true
 DISABLE_UNTRACKED_FILES_DIRTY=true
-set -o vi
+# set -o vi  # Disabled vi mode
 ## Alias section 
 alias cp="cp -i"        # Confirm before overwriting something
 alias df='df -h'        # Human-readable sizes

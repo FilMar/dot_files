@@ -1,0 +1,1 @@
+../nu_files/env.sh
