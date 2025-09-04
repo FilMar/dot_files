@@ -1,19 +1,38 @@
 
+#!/bin/bash
+# Initialize all dotfiles symlinks
 
-if [ -e $HOME/git_projects/dot_files ]; then
+DOT_FILES="$HOME/git_projects/dot_files"
+
+if [ -e "$DOT_FILES" ]; then
     echo "dot_files found"
-    echo "zsh"
-    ln -sf $HOME/git_projects/dot_files/zsh_files/zshConfig $HOME/.zshrc
+    
+    echo "bashrc (env.sh)"
+    ln -sf "$DOT_FILES/nu_files/env.sh" "$HOME/.bashrc"
+    
+    echo "nushell"
+    ln -sf "$DOT_FILES/nu_files" "$HOME/.config/nushell"
+    
     echo "neovim"
-    ln -sfn $HOME/git_projects/dot_files/vim_files $HOME/.config/nvim
+    ln -sf "$DOT_FILES/vim_files" "$HOME/.config/nvim"
+    
     echo "hyprland"
-    ln -sfn $HOME/git_projects/dot_files/hypr_files $HOME/.config/hypr
-    echo "wezterm"
-    ln -sfn $HOME/git_projects/dot_files/wezterm_files $HOME/.config/wezterm
+    ln -sf "$DOT_FILES/hypr_files" "$HOME/.config/hypr"
+    
+    echo "alacritty"
+    ln -sf "$DOT_FILES/alacritty_files" "$HOME/.config/alacritty"
+    
     echo "waybar"
-    ln -sfn $HOME/git_projects/dot_files/bar_files $HOME/.config/waybar
-    echo "wofi"
-    ln -sfn $HOME/git_projects/dot_files/wofi_files $HOME/.config/wofi
-    echo "qterm"
-    ln -sfn $HOME/git_projects/dot_files/qtile_files $HOME/.config/qtile
+    ln -sf "$DOT_FILES/bar_files" "$HOME/.config/waybar"
+    
+    echo "wired"
+    ln -sf "$DOT_FILES/wired_files" "$HOME/.config/wired"
+    
+    echo "starship"
+    ln -sf "$DOT_FILES/nu_files/starship.toml" "$HOME/.config/starship.toml"
+    
+    echo "Setup complete!"
+else
+    echo "Error: dot_files directory not found"
+    exit 1
 fi

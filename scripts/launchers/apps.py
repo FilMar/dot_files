@@ -5,7 +5,8 @@ import subprocess
 import re
 from pathlib import Path
 
-def get_desktop_apps():
+def get_items():
+    """Get list of desktop applications"""
     apps = []
     desktop_dirs = [
         Path("/usr/share/applications"),
@@ -41,29 +42,16 @@ def get_desktop_apps():
     
     return apps
 
-def main():
-    apps = get_desktop_apps()
-    
-    # Run fzf
-    fzf_input = '\n'.join(apps)
-    try:
-        result = subprocess.run(
-            ['fzf', '--prompt=❯ ', '--height=40%', '--layout=reverse', '--border'],
-            input=fzf_input,
-            text=True,
-            capture_output=True
-        )
-        
-        if result.returncode == 0 and result.stdout.strip():
-            selected = result.stdout.strip()
-            cmd = selected.split('|')[1]
-            
-            # Launch app in background
-            subprocess.Popen(cmd.split(), start_new_session=True, 
-                           stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-                           
-    except Exception as e:
-        print(f"Error: {e}")
+def get_prompt():
+    """Get fzf prompt for this mode"""
+    return "❯ "
 
-if __name__ == "__main__":
-    main()
+def handle_selection(selected_item):
+    """Handle the selected item"""
+    if '|' in selected_item:
+        cmd = selected_item.split('|')[1]
+        # Launch app in background
+        subprocess.Popen(cmd.split(), start_new_session=True, 
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        return True
+    return False

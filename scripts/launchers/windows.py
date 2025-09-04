@@ -3,7 +3,8 @@
 import subprocess
 import json
 
-def get_windows():
+def get_items():
+    """Get list of windows from hyprctl"""
     try:
         # Get windows from hyprctl
         result = subprocess.run(
@@ -38,36 +39,21 @@ def get_windows():
         print(f"Error getting windows: {e}")
         return []
 
-def focus_window(address):
-    try:
-        subprocess.run(['hyprctl', 'dispatch', 'focuswindow', f'address:{address}'])
-    except Exception as e:
-        print(f"Error focusing window: {e}")
+def get_prompt():
+    """Get fzf prompt for this mode"""
+    return "🪟 "
 
-def main():
-    windows = get_windows()
-    
-    if not windows:
-        print("No windows found")
-        return
-        
-    # Run fzf
-    fzf_input = '\n'.join(windows)
-    try:
-        result = subprocess.run(
-            ['fzf', '--prompt=🪟 ', '--height=40%', '--layout=reverse', '--border'],
-            input=fzf_input,
-            text=True,
-            capture_output=True
-        )
-        
-        if result.returncode == 0 and result.stdout.strip():
-            selected = result.stdout.strip()
-            address = selected.split('|')[1]
-            focus_window(address)
-                           
-    except Exception as e:
-        print(f"Error: {e}")
-
-if __name__ == "__main__":
-    main()
+def handle_selection(selected_item):
+    """Handle the selected item"""
+    if '|' in selected_item:
+        address = selected_item.split('|')[1]
+        try:
+            # Focus the window first
+            subprocess.run(['hyprctl', 'dispatch', 'focuswindow', f'address:{address}'])
+            # Then swap it to master position
+            subprocess.run(['hyprctl', 'dispatch', 'layoutmsg', 'swapwithmaster'])
+            return True
+        except Exception as e:
+            print(f"Error focusing/mastering window: {e}")
+            return False
+    return False
