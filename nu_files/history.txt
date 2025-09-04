@@ -1,6 +1,0 @@
-git rm nu_files/history.txt -f
-ls
-git status
-vid
-vim .gitignore
-git status

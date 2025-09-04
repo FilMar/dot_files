@@ -3,8 +3,7 @@ vim_files/plugin
 vim_files/.*
 vim_files/lazy-lock.json
 zsh_files/.zsh_history
-nu_files/history
-nu_files/.nu_history
+nu_files/history.txt
 .zsh_history
 emacs_files/auto-save-list/
 emacs_files/eln-cache/
