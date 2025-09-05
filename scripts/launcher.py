@@ -20,16 +20,22 @@ def load_mode(mode_name):
     
     return module
 
-def run_fzf(items, prompt="❯ "):
-    """Run fzf with given items and prompt"""
+def run_fzf(items, prompt="❯ ", preview_command=None):
+    """Run fzf with given items and prompt, optionally with preview"""
     if not items:
         print("No items found")
         return None
     
     fzf_input = '\n'.join(items)
+    fzf_args = ['fzf', '--prompt=' + prompt, '--layout=reverse', '--border']
+    
+    if preview_command:
+        fzf_args.extend(['--preview', preview_command])
+        fzf_args.extend(['--preview-window', 'hidden'])  # Initially hidden, will be controlled by preview script
+    
     try:
         result = subprocess.run(
-            ['fzf', '--prompt=' + prompt, '--layout=reverse', '--border'],
+            fzf_args,
             input=fzf_input,
             text=True,
             capture_output=True
@@ -90,7 +96,12 @@ def main():
         print(f"No items found for mode '{mode_name}'")
         return 1
     
-    selected = run_fzf(items, mode.get_prompt())
+    # Check if mode supports preview
+    preview_command = None
+    if hasattr(mode, 'get_preview_command'):
+        preview_command = mode.get_preview_command()
+    
+    selected = run_fzf(items, mode.get_prompt(), preview_command)
     if selected:
         success = mode.handle_selection(selected)
         return 0 if success else 1

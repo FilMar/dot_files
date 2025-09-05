@@ -36,8 +36,8 @@ def get_items():
     wallpaper_dirs = [
         os.path.expanduser("~/Pictures/Wallpapers"),
         os.path.expanduser("~/wallpapers"),
+        os.path.expanduser("~/mega/3_resources/images"),
         os.path.expanduser("~/Pictures"),
-        "/usr/share/pixmaps",
     ]
     
     all_wallpapers = []
@@ -59,6 +59,12 @@ def get_items():
 def get_prompt():
     """Get fzf prompt for this mode"""
     return "🖼️ "
+
+def get_preview_command():
+    """Get preview command for fzf"""
+    script_dir = Path(__file__).parent.parent
+    preview_script = script_dir / "preview_wallpaper.py"
+    return f"python3 {preview_script} {{}}"
 
 def set_wallpaper(wallpaper_path, monitor=None, transition="fade"):
     """Set wallpaper using swww"""
