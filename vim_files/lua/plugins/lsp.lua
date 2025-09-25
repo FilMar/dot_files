@@ -40,44 +40,32 @@ return {
         -- Configura i server supportati
         local servers = {
             rust_analyzer = {
-                --server = { path = "/opt/homebrew/bin/rust-analyzer" },
-                assist = {
-                    importMergeBehavior = "last",
-                    importPrefix = "by_self",
-                },
-                files = {
-                    excludeDirs = { "target" }
-                },
-                workspace = {
-                    symbol = {
-                        search = {
-                            limit = 3000
+                settings = {
+                    ["rust-analyzer"] = {
+                        assist = {
+                            importMergeBehavior = "last",
+                            importPrefix = "by_self",
+                        },
+                        files = {
+                            excludeDirs = { "target" }
+                        },
+                        procMacro = {
+                            enable = true
+                        },
+                        diagnostics = {
+                            disabled = { "unresolved-proc-macro" },
+                        },
+                        cargo = {
+                            features = "all",
+                            loadOutDirsFromCheck = true,
                         }
                     }
-                },
-                procMacro = {
-                    enable = true
-                },
-                diagnostics = {
-                    enable = false,
-                    disabled = { "unresolved-proc-macro" },
-                    enableExperimental = true,
-                    refreshSupport = false,
-                },
-                diagnostic = {
-                    refreshSupport = false,
-                },
-                check = {
-                    -- command = "clippy"
-                },
-                cargo = {
-                    features = "all",
-                    loadOutDirsFromCheck = true,
                 }
             },
             gopls = {},
             html = {},
-            pylsp = {},
+            ruff = {},
+            jedi_language_server = {},
             bashls = {},
             tailwindcss = {},
             htmx = {},
