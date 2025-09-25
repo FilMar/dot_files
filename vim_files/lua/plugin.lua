@@ -26,8 +26,6 @@ local plugins = {
     require "plugins.treesitter",
     --undotree
     require "plugins.undotree",
-    --toggleterm
-    require "plugins.toggle_term",
     -- statusbar
     require "plugins.lualine",
     -- todo comments
