@@ -2,21 +2,16 @@
 
 # Warp function - navigate with fzf
 def --env warp [] {
-    pwd
     let dir = pwd
     cd $env.HOME
-    
-    let new_dir = (^fd -t d --exclude 'node_modules' --exclude '__pycache__' --exclude 'target' --exclude 'dist' --exclude 'build' | ^fzf --preview 'exa -la --color=always {}')
-    
-    if ($new_dir | is-not-empty) {
-        cd $new_dir
-        
+    let new_dir = (^fd -t d --exclude 'node_modules' --exclude '__pycache__' --exclude 'target' --exclude 'dist' --exclude 'build' | ^fzf --preview 'exa -la --color=always {}' | complete)
+    if ($new_dir.exit_code == 0 and ($new_dir.stdout | str trim | is-not-empty)) {
+        cd ($new_dir.stdout | str trim)
         # Check for virtual environment
         if (".venv" | path exists) {
             print "Virtual environment found"
         }
     } else {
-        print $dir
         cd $dir
     }
 }
