@@ -1,3 +1,6 @@
+-- DEPRECATED: Using new modular LSP config in config/lsp/
+-- This file is kept for reference but commented out
+--[[
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -15,7 +18,12 @@ return {
         require('mason').setup({})
 
         -- Configura Mason-LSPConfig
-        require('mason-lspconfig').setup({})
+        require('mason-lspconfig').setup({
+            handlers = {
+                -- Disabilita auto-setup per tutti i server
+                function() end,
+            }
+        })
 
         -- Configurazione di base degli LSP
         local lspconfig = require('lspconfig')
@@ -131,3 +139,4 @@ return {
         })
     end,
 }
+--]]

@@ -18,8 +18,12 @@ local plugins = {
     require "plugins.catpuccine",
     -- which key
     require "plugins.which_key",
-    -- LSP Config
-    require "plugins.lsp",
+    -- LSP Config (DEPRECATED: Using modular LSP config in lua/lsp/)
+    -- require "plugins.lsp",
+    -- Mason for LSP server management
+    require "plugins.mason",
+    -- Completion
+    require "plugins.completion",
     --telescope
     require "plugins.telescope",
     -- treesitter

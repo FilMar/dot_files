@@ -40,4 +40,5 @@ vim.opt.listchars = "tab:▸ ,trail:·,extends:❯,precedes:❮,space:·"
 
 require("keybinds")
 require("plugin")
+require("lsp")
 --require("plugins")
