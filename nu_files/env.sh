@@ -24,7 +24,7 @@ export TERM="xterm-256color"
 export SHELL="/usr/bin/bash"
 
 # Path modifications (portable)
-export PATH="$PATH:$HOME/.modular/bin"
+export PATH="$PATH:$HOME/.modular/bin":$HOME/.elan/env
 
 # Shell identification for starship
 export STARSHIP_SHELL="bash"

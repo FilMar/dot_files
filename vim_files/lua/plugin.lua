@@ -13,42 +13,38 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-local plugins = {
-    -- theme
-    require "plugins.catpuccine",
-    -- which key
-    require "plugins.which_key",
-    -- Mason for LSP server management
-    require "plugins.mason",
-    -- Completion
-    require "plugins.completion",
-    --telescope
-    require "plugins.telescope",
-    -- treesitter
-    require "plugins.treesitter",
-    --undotree
-    require "plugins.undotree",
-    -- statusbar
-    require "plugins.lualine",
-    -- todo comments
-    require "plugins.todocomment",
-    -- oil
-    require "plugins.oil",
-    -- rainbow-sql
-    require "plugins.rainbowsql",
-    -- neogit
-    require "plugins.neogit",
-    -- markdown render
-    require "plugins.markdown",
-    -- math render
-    require "plugins.math",
-    -- obsidian
-    require "plugins.obsidian",
-    -- sorrund
-    require "plugins.surround",
-    -- ai assistant
-    require "plugins.ai",
-    -- spectre search and replace
-    require "plugins.spectre"
+-- Auto-load all plugins except disabled ones
+local plugins = {}
+
+-- Lista dei plugin da disabilitare (commenta/decommenta per attivare/disattivare)
+local disabled_plugins = {
+    -- "which_key",  -- riabilitato
+    -- "lean",       -- decommentare per disabilitare lean
+    -- "obsidian",   -- decommentare per disabilitare obsidian
+    -- "ai",         -- decommentare per disabilitare ai
 }
+
+-- Crea set per lookup veloce
+local disabled_set = {}
+for _, plugin in ipairs(disabled_plugins) do
+    disabled_set[plugin] = true
+end
+
+-- Carica automaticamente tutti i plugin dalla cartella
+local plugins_path = vim.fn.stdpath('config') .. '/lua/plugins'
+for name, file_type in vim.fs.dir(plugins_path) do
+    if file_type == 'file' and name:match('%.lua$') then
+        local plugin_name = name:gsub('%.lua$', '')
+        if not disabled_set[plugin_name] then
+            local ok, plugin = pcall(require, 'plugins.' .. plugin_name)
+            if ok and type(plugin) == 'table' then
+                table.insert(plugins, plugin)
+            elseif ok then
+                print("Plugin " .. plugin_name .. " non ritorna una table (tipo: " .. type(plugin) .. ")")
+            else
+                print("Errore caricando plugin " .. plugin_name .. ": " .. tostring(plugin))
+            end
+        end
+    end
+end
 require("lazy").setup(plugins, opts)
