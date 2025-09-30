@@ -1,11 +1,10 @@
 vim.lsp.config.lean4 = {
   cmd = { "lean", "--server" },
   filetypes = { "lean" },
-  root_markers = { "leanpkg.toml", "lean-toolchain", ".git", vim.uv.cwd() },
+  root_markers = { "leanpkg.toml", "lean-toolchain", ".git" },
   settings = {
     lean = {
-      -- Disabilita il LSP di lean.nvim se preferisci usare solo questo
-      lsp = { enable = true },
+      -- Gestisce solo LSP, infoview gestita da lean.nvim
     },
   },
 }

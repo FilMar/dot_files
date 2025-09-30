@@ -20,7 +20,7 @@ return {
   ---@type lean.Config
   opts = {
     mappings = true,
-    lsp = { enable = false }, -- usa il nostro LSP custom
+    lsp = { enable = true }, -- lean.nvim gestisce tutto
     stderr = { enable = true },
     infoview = {
       autoopen = true,

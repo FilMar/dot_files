@@ -18,6 +18,7 @@ local plugins = {}
 
 -- Lista dei plugin da disabilitare (commenta/decommenta per attivare/disattivare)
 local disabled_plugins = {
+    "rustowl"
     -- "which_key",  -- riabilitato
     -- "lean",       -- decommentare per disabilitare lean
     -- "obsidian",   -- decommentare per disabilitare obsidian

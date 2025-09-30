@@ -5,7 +5,7 @@ require('lsp.commands')
 -- Lista degli LSP server da disabilitare (usa il nome del file, non del server)
 local disabled_servers = {
     -- "lua",        -- riabilitato lua.lua (server lua_ls)
-    -- "lean",       -- decommentare per disabilitare lean LSP
+    "lean",       -- decommentare per disabilitare lean LSP
     -- "python",     -- decommentare per disabilitare python LSP
     -- "rust",       -- decommentare per disabilitare rust LSP
 }

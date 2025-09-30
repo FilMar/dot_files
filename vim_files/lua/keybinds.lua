@@ -38,3 +38,7 @@ vim.keymap.set("v", "<leader>r", ":s/", { desc = "delete and enter in insert mod
 -- redo and undo
 vim.keymap.set("n", "u", "u", { desc = "undo" })
 vim.keymap.set("n", "U", "<C-r>", { desc = "redo" })
+
+-- quit all with :q
+vim.api.nvim_create_user_command('Q', 'qa', {})
+vim.cmd('cnoreabbrev q qa')
