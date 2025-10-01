@@ -21,6 +21,7 @@ return {
     -- LSP group labels
     wk.add({
       { "<leader>d", group = "LSP" },
+      { "<leader>L", group = "Lean" },
     })
     
     -- Force refresh dopo setup LSP
