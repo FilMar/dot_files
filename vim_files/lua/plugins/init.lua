@@ -34,7 +34,7 @@ end
 -- Carica automaticamente tutti i plugin dalla cartella
 local plugins_path = vim.fn.stdpath('config') .. '/lua/plugins'
 for name, file_type in vim.fs.dir(plugins_path) do
-    if file_type == 'file' and name:match('%.lua$') then
+    if file_type == 'file' and name:match('%.lua$') and name ~= 'init.lua' then
         local plugin_name = name:gsub('%.lua$', '')
         if not disabled_set[plugin_name] then
             local ok, plugin = pcall(require, 'plugins.' .. plugin_name)

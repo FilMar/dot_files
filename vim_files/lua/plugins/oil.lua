@@ -10,6 +10,6 @@ return {
                     ["<leader><cr>"] = "actions.parent",
                 },
             })
-            vim.keymap.set("n", "<leader>e", "<cmd>Oil<cr>", { noremap = true, silent = true })
+            vim.keymap.set("n", "<leader>e", "<cmd>Oil<cr>", { desc = "File explorer" })
         end
     }

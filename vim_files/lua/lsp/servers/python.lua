@@ -4,7 +4,8 @@ vim.lsp.config.basedpyright = {
   cmd = { "basedpyright-langserver", "--stdio" },
   settings = {
     python = {
-      venvPath = vim.fn.expand("~") .. "/.virtualenvs",
+      venvPath = ".",
+      defaultInterpreter = "./.venv/bin/python",
     },
     basedpyright = {
       disableOrganizeImports = true,
@@ -33,7 +34,8 @@ vim.api.nvim_create_autocmd("FileType", {
       venv.setup()
     end
     local root = vim.fs.root(0, {
-      "pyproject.toml",
+      ".venv",
+      "pyproject.toml", 
       "setup.py",
       "setup.cfg",
       "requirements.txt",

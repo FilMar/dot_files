@@ -18,9 +18,16 @@ return {
       preset = "modern",
     })
     
-    -- LSP group labels
+    -- ═══ GROUP LABELS ═══
     wk.add({
-      { "<leader>d", group = "LSP" },
+      { "<leader>f", group = "Find" },
+      { "<leader>g", group = "Git" },
+      { "<leader>d", group = "Diagnostics/LSP" },
+      { "<leader>c", group = "Clipboard/Code" },
+      { "<leader>b", group = "Buffers" },
+      { "<leader>w", group = "Windows" },
+      { "<leader>n", group = "Notes" },
+      { "<leader>s", group = "Search/Replace" },
       { "<leader>L", group = "Lean" },
     })
     
