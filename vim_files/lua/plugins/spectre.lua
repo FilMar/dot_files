@@ -6,6 +6,6 @@ return {
   end,
   -- Puoi aggiungere delle keymaps qui per un accesso rapido
   keys = {
-    {"<leader>S", "<cmd>lua require('spectre').open()<CR>", desc = "Open Spectre"},
+    {"<leader>R", "<cmd>lua require('spectre').open()<CR>", desc = "Open Spectre"},
   },
 }

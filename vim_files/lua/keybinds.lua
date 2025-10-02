@@ -7,10 +7,9 @@ vim.keymap.set({ 'n', 'x' }, '<leader>cx', '"+d', { desc = "Cut to clipboard" })
 vim.keymap.set({ 'n', 'x' }, '<leader>cp', '"+p', { desc = "Paste from clipboard" })
 
 -- ═══ BUFFERS ═══
-vim.keymap.set("n", "<leader>bn", vim.cmd.bnext, { desc = "Next buffer" })
-vim.keymap.set("n", "<leader>bp", vim.cmd.bprevious, { desc = "Previous buffer" })
-vim.keymap.set("n", "<leader>bd", vim.cmd.bdelete, { desc = "Delete buffer" })
-vim.keymap.set("n", "<Tab>", vim.cmd.bnext, { desc = "Next buffer (quick)" })
+vim.keymap.set("n", "<Tab>", vim.cmd.bnext, { desc = "Next buffer" })
+vim.keymap.set("n", "<S-Tab", vim.cmd.bprevious, { desc = "Previous buffer" })
+vim.keymap.set("n", "<leader>q", vim.cmd.bdelete, { desc = "Delete buffer" })
 
 -- ═══ WINDOWS ═══
 vim.keymap.set({ 'n', 'v' }, "<C-h>", "<C-w>h", { desc = "Window left" })
@@ -36,8 +35,8 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Down page and center cursor" }
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Up page and center cursor" })
 
 -- ═══ SEARCH & REPLACE ═══
-vim.keymap.set("n", "<leader>sr", ":%s/", { desc = "Search and replace (global)" })
-vim.keymap.set("v", "<leader>sr", ":s/", { desc = "Search and replace (selection)" })
+vim.keymap.set("n", "<leader>r", ":%s/", { desc = "Search and replace (global)" })
+vim.keymap.set("v", "<leader>r", ":s/", { desc = "Search and replace (selection)" })
 
 -- ═══ UNDO/REDO ═══
 vim.keymap.set("n", "u", "u", { desc = "Undo" })
