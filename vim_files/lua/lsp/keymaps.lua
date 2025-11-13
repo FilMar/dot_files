@@ -63,5 +63,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     keymap("n", "<Leader>dI", vim.cmd.LspInfo, bufopts)
     bufopts.desc = "mason"
     keymap("n", "<Leader>dM", vim.cmd.Mason, bufopts)
+    bufopts.desc = "create pyrightconfig.json"
+    keymap("n", "<Leader>dP", vim.cmd.PyrightConfig, bufopts)
   end,
 })

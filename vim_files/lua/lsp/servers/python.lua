@@ -35,7 +35,7 @@ vim.api.nvim_create_autocmd("FileType", {
     end
     local root = vim.fs.root(0, {
       ".venv",
-      "pyproject.toml", 
+      "pyproject.toml",
       "setup.py",
       "setup.cfg",
       "requirements.txt",
@@ -50,4 +50,22 @@ vim.api.nvim_create_autocmd("FileType", {
       vim.lsp.buf_attach_client(0, client)
     end
   end,
+})
+
+vim.api.nvim_create_user_command("PyrightConfig", function()
+  local config_content = [[{
+  "venvPath": ".",
+  "venv": ".venv"
+}
+]]
+  local file = io.open("pyrightconfig.json", "w")
+  if file then
+    file:write(config_content)
+    file:close()
+    vim.notify("pyrightconfig.json created in current directory")
+  else
+    vim.notify("Failed to create pyrightconfig.json", vim.log.levels.ERROR)
+  end
+end, {
+  desc = "Create pyrightconfig.json in current directory",
 })
