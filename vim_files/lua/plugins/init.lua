@@ -48,4 +48,10 @@ for name, file_type in vim.fs.dir(plugins_path) do
         end
     end
 end
-require("lazy").setup(plugins, opts)
+
+-- lazy gestisce le sue versioni di lua grazie a hererocks
+require("lazy").setup(plugins, {
+    rocks = {
+        hererocks = true
+    }
+})
