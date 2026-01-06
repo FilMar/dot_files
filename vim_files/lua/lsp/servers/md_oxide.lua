@@ -8,6 +8,18 @@ vim.lsp.config.markdown_oxide = {
         dynamicRegistration = true,
       },
     },
+    textDocument = {
+      hover = {
+        dynamicRegistration = true,
+        contentFormat = { "markdown", "plaintext" },
+      },
+      completion = {
+        dynamicRegistration = true,
+        completionItem = {
+          snippetSupport = true,
+        },
+      },
+    },
   },
 }
 
