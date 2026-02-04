@@ -22,9 +22,11 @@ fi
 # Shell configuration
 export TERM="xterm-256color"
 export SHELL="/usr/bin/bash"
+export EDITOR="/usr/bin/nvim"
+
 
 # Path modifications (portable)
-export PATH="$PATH:$HOME/.modular/bin":$HOME/.elan/env
+export PATH="$PATH:$HOME/.modular/bin":$HOME/.elan/env:$HOME/.opencode/bin:$HOME/.local/bin
 
 # Shell identification for starship
 export STARSHIP_SHELL="bash"
