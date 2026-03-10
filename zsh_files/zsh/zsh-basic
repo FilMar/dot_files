@@ -35,7 +35,7 @@ function _pandoc { #non funxionz
 function warp {
     current_dir=$(pwd)
     cd $HOME
-    new_dir=$(fd -t d 2> /dev/null |fzf)
+    new_dir=$(fd -t d --exclude 'node_modules' --exclude '__pycache__' --exclude 'target' --exclude 'dist' --exclude 'build' 2>/dev/null | fzf --preview 'exa -la --color=always {}')
     if [[ $new_dir == "" ]]; then
         cd $current_dir
     else
@@ -44,7 +44,7 @@ function warp {
     if [[ -e .venv ]]; then
         source .venv/bin/activate
     else
-        deactivate 2> /dev/null
+        deactivate 2>/dev/null
     fi
 }
 

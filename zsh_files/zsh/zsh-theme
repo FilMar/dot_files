@@ -1,5 +1,6 @@
 # Starship prompt (modern cross-shell prompt)
 # Install with: curl -sS https://starship.rs/install.sh | sh
+export STARSHIP_CONFIG="$ZSH_FILES/starship.toml"
 eval "$(starship init zsh)"
 
 

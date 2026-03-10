@@ -1,6 +1,5 @@
-#!/bin/bash
-# Minimal .bashrc with environment variables
-# This file serves as both env config and .bashrc
+#!/bin/zsh
+# Shared environment variables for zsh
 
 # Dotfiles configuration path with portable fallback
 if [[ -e $HOME/MEGA/dot_files/ ]]; then
@@ -11,6 +10,8 @@ fi
 
 # Derived paths
 export VIM_FILES="$CONFIG_HOME/vim_files"
+export ZSH_FILES="$CONFIG_HOME/zsh_files"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Notes path with portable fallback
 if [[ -e $HOME/MEGA/2_areas/notes/ ]]; then
@@ -21,7 +22,7 @@ fi
 
 # Shell configuration
 export TERM="xterm-256color"
-export SHELL="/usr/bin/bash"
+export SHELL="/usr/bin/zsh"
 export EDITOR="/usr/bin/nvim"
 
 
@@ -29,7 +30,7 @@ export EDITOR="/usr/bin/nvim"
 export PATH="$PATH:$HOME/.modular/bin":$HOME/.elan/env:$HOME/.opencode/bin:$HOME/.local/bin
 
 # Shell identification for starship
-export STARSHIP_SHELL="bash"
+export STARSHIP_SHELL="zsh"
 
 # Add more variables here as needed
 # export PROJECT_HOME="$HOME/projects"
@@ -40,8 +41,3 @@ if [[ -e ~/.profile ]]; then
     source ~/.profile
 fi
 
-# Launch Nushell for interactive sessions while keeping bash as login shell
-if [[ $- == *i* ]] && [[ -z "$NU_STARTED" ]] && [[ -n "$PS1" ]]; then
-    export NU_STARTED=1
-    exec nu
-fi

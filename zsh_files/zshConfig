@@ -33,10 +33,3 @@ if [[ -e $ZSH_FILES/zsh/zsh-plugin ]]; then
   source $ZSH_FILES/zsh/zsh-plugin
 fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# PATH modification now in env.sh
-
-# Launch Nushell for interactive sessions while keeping zsh as login shell
-if [[ $- == *i* ]] && [[ -z "$NU_STARTED" ]] && [[ -n "$PS1" ]]; then
-    export NU_STARTED=1
-    exec nu
-fi
