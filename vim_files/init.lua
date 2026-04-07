@@ -23,6 +23,7 @@ vim.opt.tabstop = 4
 vim.opt.scrolloff = 25
 -- set colorscheme
 vim.opt.termguicolors = true
+vim.opt.signcolumn = "yes"
 --vim.opt.colorcolumn = "80"
 --fold settings
 vim.opt.foldmethod = "expr"
@@ -38,6 +39,7 @@ vim.opt.undodir = os.getenv("HOME") .. "/.config/nvim/.undodir"
 vim.opt.list = true
 vim.opt.listchars = "tab:▸ ,trail:·,extends:❯,precedes:❮,space:·"
 
+require("pack")
+require("config")
 require("keybinds")
-require("plugins")
 require("lsp")

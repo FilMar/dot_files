@@ -1,0 +1,23 @@
+vim.pack.add({
+    'https://github.com/catppuccin/nvim',
+    'https://github.com/nvim-lualine/lualine.nvim',
+    'https://github.com/nvim-tree/nvim-web-devicons',
+    'https://github.com/nvim-telescope/telescope.nvim',
+    'https://github.com/nvim-lua/plenary.nvim',
+    'https://github.com/folke/todo-comments.nvim',
+    'https://github.com/cameron-wags/rainbow_csv.nvim',
+    'https://github.com/kylechui/nvim-surround',
+    'https://github.com/nvim-treesitter/nvim-treesitter',
+    'https://github.com/stevearc/oil.nvim',
+    'https://github.com/NeogitOrg/neogit',
+    'https://github.com/nvim-pack/nvim-spectre',
+    'https://github.com/Julian/lean.nvim',
+    'https://github.com/MeanderingProgrammer/render-markdown.nvim',
+    'https://github.com/jglasovic/venv-lsp.nvim',
+    'https://github.com/folke/which-key.nvim',
+    'https://github.com/Saghen/blink.cmp',
+    'https://github.com/FilMar/nabla.nvim',
+    'https://github.com/williamboman/mason.nvim',
+    -- disabilitato
+    -- 'https://github.com/cordx56/rustowl',
+})
