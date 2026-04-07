@@ -3,7 +3,7 @@
     "height": 24,
     "modules-left": ["custom/window-list"],
     "modules-center": [],
-    "modules-right": ["tray", "clock" ,"pulseaudio", "memory", "disk", "cpu"],
+    "modules-right": ["tray", "clock" ,"pulseaudio", "memory", "disk", "cpu", "battery#BAT0", "battery#BAT1"],
     
     "custom/window-list": {
         "format": "{}",
@@ -47,5 +47,23 @@
     
     "tray": {
         "spacing": 10
+    },
+
+    "battery#BAT0": {
+        "bat": "BAT0",
+        "format": "int: {capacity}%",
+        "states": {
+            "warning": 30,
+            "critical": 15
+        }
+    },
+
+    "battery#BAT1": {
+        "bat": "BAT1",
+        "format": "ext: {capacity}%",
+        "states": {
+            "warning": 30,
+            "critical": 15
+        }
     }
 }

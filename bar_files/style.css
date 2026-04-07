@@ -61,7 +61,8 @@ window#waybar {
 #cpu,
 #pulseaudio,
 #clock,
-#tray {
+#tray,
+#battery {
     background: @base;
     color: @text;
     padding: 0 6px;
@@ -81,6 +82,23 @@ window#waybar {
 
 #cpu {
     color: @peach;
+}
+
+/* Battery */
+#battery {
+    color: @sapphire;
+}
+
+#battery.charging {
+    color: @teal;
+}
+
+#battery.warning {
+    color: @yellow;
+}
+
+#battery.critical {
+    color: @red;
 }
 
 /* Audio */
