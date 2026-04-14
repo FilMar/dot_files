@@ -26,6 +26,7 @@ clipboard-write = allow
 
 # Cursor animation shader
 custom-shader = ~/.config/ghostty/cursor-smooth.glsl
+custom-shader-animation = always
 
 # Keybindings
 keybind = ctrl+shift+c=copy_to_clipboard
