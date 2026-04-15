@@ -1,6 +1,6 @@
 // --- CONFIGURATION ---
 vec4 TRAIL_COLOR = iCurrentCursorColor; // can change to eg: vec4(0.2, 0.6, 1.0, 0.5);
-const float DURATION = 0.5; // total animation time
+const float DURATION = 0.3; // total animation time
 const float TRAIL_SIZE = 0.8; // 0.0 = all corners move together. 1.0 = max smear (leading corners jump instantly)
 const float THRESHOLD_MIN_DISTANCE = 1.5; // min distance to show trail (units of cursor height)
 const float BLUR = 1.0; // blur size in pixels (for antialiasing)
@@ -58,21 +58,21 @@ const float SPRING_DAMPING = 0.9;
 // }
 
 // EaseOutCirc
-float ease(float x) {
-    return sqrt(1.0 - pow(x - 1.0, 2.0));
-}
+//float ease(float x) {
+//    return sqrt(1.0 - pow(x - 1.0, 2.0));
+//}
 
 // // EaseOutBack
 // float ease(float x) {
 //     return 1.0 + C3_BACK * pow(x - 1.0, 3.0) + C1_BACK * pow(x - 1.0, 2.0);
 // }
 
-// // EaseOutElastic
-// float ease(float x) {
-//     return x == 0.0 ? 0.0
-//          : x == 1.0 ? 1.0
-//                     : pow(2.0, -10.0 * x) * sin((x * 10.0 - 0.75) * C4_ELASTIC) + 1.0;
-// }
+ // EaseOutElastic
+ float ease(float x) {
+     return x == 0.0 ? 0.0
+          : x == 1.0 ? 1.0
+                     : pow(2.0, -10.0 * x) * sin((x * 10.0 - 0.75) * C4_ELASTIC) + 1.0;
+ }
 
 // // Parametric Spring
 // float ease(float x) {
