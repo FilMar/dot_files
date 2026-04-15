@@ -95,6 +95,13 @@ window-rule {
 
 binds {
     Alt+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
+
+    XF86AudioRaiseVolume  { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"; }
+    XF86AudioLowerVolume  { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"; }
+    XF86AudioMute         { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    XF86AudioMicMute      { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+    XF86MonBrightnessUp   { spawn "brightnessctl" "set" "10%+"; }
+    XF86MonBrightnessDown { spawn "brightnessctl" "set" "10%-"; }
     Alt+P { spawn-sh "ghostty --title=launcher -e $HOME/git_projects/dot_files/scripts/launcher.py apps"; }
     Alt+C { spawn-sh "ghostty --title=launcher -e $HOME/git_projects/dot_files/scripts/launcher.py clipboard"; }
 
