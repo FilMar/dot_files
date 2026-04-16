@@ -102,8 +102,9 @@ binds {
     XF86AudioMicMute      { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
     XF86MonBrightnessUp   { spawn "brightnessctl" "set" "10%+"; }
     XF86MonBrightnessDown { spawn "brightnessctl" "set" "10%-"; }
-    Alt+P { spawn-sh "ghostty --title=launcher -e $HOME/git_projects/dot_files/scripts/launcher.py apps"; }
-    Alt+C { spawn-sh "ghostty --title=launcher -e $HOME/git_projects/dot_files/scripts/launcher.py clipboard"; }
+
+    Alt+P { spawn-sh "foot --title=launcher -e $HOME/git_projects/dot_files/scripts/launcher.py apps"; }
+    Alt+C { spawn-sh "foot --title=launcher -e $HOME/git_projects/dot_files/scripts/launcher.py clipboard"; }
 
     Alt+Q repeat=false { close-window; }
     Alt+Shift+Q { quit; }
