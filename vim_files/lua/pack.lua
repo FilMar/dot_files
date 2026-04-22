@@ -16,7 +16,6 @@ vim.pack.add({
     'https://github.com/jglasovic/venv-lsp.nvim',
     'https://github.com/folke/which-key.nvim',
     'https://github.com/Saghen/blink.cmp',
-    'https://github.com/FilMar/nabla.nvim',
     'https://github.com/williamboman/mason.nvim',
     -- disabilitato
     -- 'https://github.com/cordx56/rustowl',

@@ -16,6 +16,18 @@ input {
 
 }
 
+environment {
+    // Forza il tema scuro per le app GTK4/Libadwaita
+    "GTK_THEME" "Adwaita-dark" 
+    
+    // Indica alle app di preferire lo schema scuro tramite XDG Desktop Portal
+    "XDG_CURRENT_DESKTOP" "niri"
+    
+    // Per le app Qt (come Telegram Desktop)
+    "QT_QPA_PLATFORM" "wayland"
+    "QT_QPA_PLATFORMTHEME" "qt6ct" // O "gnome" se preferisci
+}
+
 output "eDP-1" {
     mode "1920x1080@60"
     scale 1
