@@ -122,8 +122,12 @@ binds {
     Alt+Shift+Q { quit; }
 
     Alt+H    { focus-column-left; }
+    Alt+K    { focus-workspace-up; }
+    Alt+J    { focus-workspace-down; }
     Alt+L     { focus-column-right; }
     Alt+Shift+H     { move-column-left; }
+    //Alt+Shift+K    { move-workspace-up; }
+    //Alt+Shift+J    { move-workspace-down; }
     Alt+Shift+L     { move-column-right; }
     Alt+F { maximize-column; }
     Alt+V       { toggle-window-floating; }
