@@ -1,0 +1,10 @@
+chain_id: thinking_test_v1
+steps:
+  - type: llm
+    name: research
+    prompt: "cerca informazioni su asyncio in Python: cos'e' e a cosa serve. rispondi in 5 righe max."
+    timeout: 30
+  - type: llm
+    name: summarize
+    prompt: "riassumi in 3 punti chiave perche' asyncio e' utile per agenti AI."
+    timeout: 30

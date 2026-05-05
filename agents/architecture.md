@@ -5,8 +5,8 @@
 - Orchestratore: Claude Sonnet (Segretario)
 - Worker: Claude Haiku (risposte sempre JSON strutturato)
 - Controller: Python + asyncio
-- Stato operativo: SQLite
-- Memoria narrativa: Qdrant
+- Stato operativo: SQLite (locale per progetto)
+- Memoria narrativa e output: Qdrant (globale, unica collection)
 - Supervisione processi: supervisord
 - Versioning chain: Git
 - Budget: ~50 euro/mese via API Anthropic
@@ -18,14 +18,15 @@
 ### Segretario
 
 - Claude Sonnet, orchestratore ad alto livello
-- assegna obiettivi ai Controller di chain
-- riprende il contesto da SQLite a ogni sessione
-- a fine sessione legge da Qdrant e genera due file Markdown per l'umano
+- avvia il Controller via MCP passando `chain_yaml` e `project_dir`
+- riprende il contesto da Qdrant a ogni sessione (retrieval per `project`)
+- genera MD solo se l'umano li richiede esplicitamente
 - unico punto di coordinamento tra chain diverse
 
 ### Controller di Chain
 
 - Python + asyncio: legge YAML, esegue script, chiama Haiku, scrive su SQLite
+- avviato dal Segretario via MCP con `chain_yaml` e `project_dir`
 - supervisord gestisce crash, restart e timeout a livello di processo
 - lo stato non e' nel processo: e' tutto su SQLite
 - se il processo muore e rinasce, legge da SQLite dove era arrivato
@@ -48,7 +49,7 @@
   "step": "nome_step",
   "what": "cosa ha fatto",
   "why": "perche' lo ha fatto",
-  "output_ref": ".agent/thinking/output.md"
+  "output": "testo o JSON inline dell'output"
 }
 ```
 
@@ -56,8 +57,17 @@
 
 - osserva log e performance delle chain attive
 - propone nuove chain o modifiche come YAML
-- output: documento Markdown + YAML leggibile
 - gate umano obbligatorio prima di ogni esecuzione
+
+---
+
+## Qdrant
+
+- collection unica globale: tutti i progetti nello stesso spazio vettoriale
+- filtro per `project` nel payload per retrieval contestuale
+- vantaggio: retrieval semantico cross-progetto (esempi, pattern, soluzioni passate)
+- nessun file MD volante: tutto persiste qui
+- dashboard web su porta 6333 per ispezione diretta
 
 ---
 
@@ -89,7 +99,7 @@ defaults:
 
 ### Chain Fondamentali
 
-- `thinking.yaml`: ricerca, analisi, raffinazione documenti
+- `thinking.yaml`: ricerca, analisi, raffinazione
 - `programming.yaml`: codice, test, review
 - `meta.yaml`: osserva le altre due, propone modifiche
 
@@ -99,11 +109,9 @@ defaults:
 
 ```
 ./nome_progetto/
-  README.md              # output finale leggibile dall'umano
+  README.md          # unico MD fisso, scritto dal Segretario a fine sessione
   .agent/
-    thinking/            # MD intermedi prodotti dalla chain thinking
-    tasks/               # task breakdown prodotti dalla chain programming
-    state.sqlite         # stato operativo locale della sessione
+    state.sqlite     # stato operativo locale (flag, retry, lock)
 ```
 
 ---
@@ -126,29 +134,21 @@ Umano
   |
   v
 Segretario (Sonnet)
-  |-- avvia thinking.yaml
-  |     |-- step 1: domande, ricerca
-  |     |-- step 2: raffinazione
-  |     |-- step N: documenti MD in .agent/thinking/
-  |
-  |-- [gate umano: approva documenti]
-  |
-  |-- avvia programming.yaml
-  |     |-- step 1: divide in task
-  |     |-- step 2..N: sviluppo
+  |-- avvia Controller via MCP (chain_yaml, project_dir)
+  |     |-- thinking.yaml
+  |     |     |-- step 1..N: output scritti su Qdrant
+  |     |
+  |     |-- [gate umano]
+  |     |
+  |     |-- programming.yaml
+  |           |-- step 1..N: output scritti su Qdrant
   |
   v
 fine sessione:
-  Segretario legge Qdrant
-  genera summary.md e ideas.md
+  Segretario legge Qdrant (retrieval selettivo per project + session)
+  scrive README.md
+  genera MD aggiuntivi solo se richiesti dall'umano
 ```
-
----
-
-## Output per l'Umano
-
-- `summary.md`: riassunto del lavoro svolto nella sessione
-- `ideas.md`: concetti interessanti, spunti, osservazioni emerse
 
 ---
 
@@ -158,21 +158,17 @@ fine sessione:
 - LLM solo dove serve ragionamento o generazione
 - worker seriali: nessun problema di concorrenza su SQLite
 - ogni modifica del metathinking e' approvata dall'umano
-- SQLite per stato operativo, Qdrant per memoria narrativa e retrieval semantico
+- SQLite per stato operativo, Qdrant per tutto il persistente
 - tutto e' una chain, incluse thinking, programming e meta
 - Git e' il version control dei YAML, nessun meccanismo aggiuntivo necessario
-- Qdrant si popola da subito: i log narrativi accumulati sono il valore del sistema nel tempo
+- Qdrant si popola da subito: i log accumulati cross-progetto sono il valore del sistema
 
 ---
 
 ## Domande Aperte
 
-1. **Contratto Segretario -> Controller**: come passa l'obiettivo? File JSON in `.agent/`, chiamata MCP diretta, o altro? Questo e' il punto di rottura piu' probabile dell'intero sistema.
+1. **Qdrant down**: se Qdrant non risponde, il worker ha gia' lavorato ma non puo' completare l'ultimo step. Il Controller blocca la chain o accetta la perdita del log?
 
-2. **Qdrant down**: se Qdrant non risponde, il worker ha gia' lavorato ma non puo' completare l'ultimo step. Il Controller blocca la chain o setta `worker_done` comunque accettando la perdita del log?
+2. **Validazione logica dei YAML**: Pydantic valida lo schema, non la logica. Serve un dry-run in sandbox prima del deploy?
 
-3. **Context window del Segretario**: con sessioni lunghe, leggere tutta Qdrant per generare i due MD rischia di superare la context window. Serve una strategia di retrieval selettivo.
-
-4. **Validazione logica dei YAML**: Pydantic valida lo schema, non la logica. Un YAML sintatticamente corretto ma semanticamente sbagliato passa il boot. Serve un dry-run in sandbox prima del deploy?
-
-5. **Gate umano - meccanismo concreto**: "l'umano approva" e' un principio, non ancora un'implementazione. File sentinel `.agent/approved.flag`? Input da terminale? Va definito prima di scrivere il Controller.
+3. **Gate umano - meccanismo concreto**: file sentinel `.agent/gate.flag` con polling del Controller, o input interattivo?
