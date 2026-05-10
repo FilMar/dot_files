@@ -18,6 +18,7 @@ else
     CONFIG_HOME="$HOME/git_projects/dot_files"
 fi
 source "$CONFIG_HOME/zsh_files/env.sh"
+source "$CONFIG_HOME/zsh_files/secret_env.sh"
 
 
 # Source my zsh config
