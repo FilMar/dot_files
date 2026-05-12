@@ -1,0 +1,14 @@
+[llm]
+provider = "ollama"
+model = "gemma4:31b-cloud"
+
+[qdrant]
+url = "http://localhost:6333"
+collection = "alfred"
+
+[embedding]
+provider = "ollama"
+model = "nomic-embed-text"
+
+[model]
+default = "gpt-oss:20b-cloud"

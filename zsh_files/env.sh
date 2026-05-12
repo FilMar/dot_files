@@ -27,7 +27,7 @@ export EDITOR="/usr/bin/nvim"
 
 
 # Path modifications (portable)
-export PATH="$PATH:$HOME/.modular/bin":$HOME/.elan/env:$HOME/.opencode/bin:$HOME/.local/bin:$HOME/.local/share/bob/nvim-bin
+export PATH="$PATH:$HOME/.modular/bin":$HOME/.elan/env:$HOME/.opencode/bin:$HOME/.local/bin:$HOME/.local/share/bob/nvim-bin:$HOME/.npm-global/bin/
 
 # Shell identification for starship
 export STARSHIP_SHELL="zsh"
