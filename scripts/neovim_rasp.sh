@@ -23,7 +23,7 @@ else
     git -C "$NVIM_SRC" merge --ff-only origin/stable
 fi
 
-cmake -S "$NVIM_SRC" -B "$NVIM_SRC/build" -DCMAKE_BUILD_TYPE=Release
+cmake -S "$NVIM_SRC" -B "$NVIM_SRC/build" -DCMAKE_BUILD_TYPE=Release -DUSE_BUNDLED_LUV=ON
 cmake --build "$NVIM_SRC/build" -- -j"$(nproc)"
 
 cd "$NVIM_SRC/build"
