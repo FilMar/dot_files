@@ -10,12 +10,8 @@ if [[ -e ~/.profile ]]; then
     source ~/.profile
 fi
 
-### Source shared environment variables from relative path
-# First determine CONFIG_HOME to find env.sh
-if [[ -e $HOME/MEGA/dot_files/ ]]; then
-    CONFIG_HOME="$HOME/MEGA/dot_files"
-else
-    CONFIG_HOME="$HOME/git_projects/dot_files"
+if [[ -z "$CONFIG_HOME" ]]; then
+    export CONFIG_HOME="$(dirname "$(dirname "$(readlink -f ~/.zshrc)")")"
 fi
 source "$CONFIG_HOME/zsh_files/env.sh"
 [[ -e "$CONFIG_HOME/zsh_files/secret_env.sh" ]] && source "$CONFIG_HOME/zsh_files/secret_env.sh"

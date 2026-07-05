@@ -5,8 +5,8 @@ set -e
 
 [[ $EUID -eq 0 ]] && { echo "run as normal user, not root"; exit 1; }
 
-GIT_DIR="$HOME/git_projects"
-DOT="$GIT_DIR/dot_files"
+DOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+GIT_DIR="$(dirname "$DOT")"
 PI="$GIT_DIR/pi"
 
 # --- 1. packages (official repos) ---
@@ -60,7 +60,7 @@ done
 touch "$DOT/zsh_files/secret_env.sh"
 
 # --- 7. dotfile symlinks ---
-bash "$DOT/scripts/init_dot.sh"
+bash "$DOT/scripts/init_dot.sh" full
 
 # --- 8. alfred: identity, skills, tb/th ---
 bash "$PI/setup.sh"

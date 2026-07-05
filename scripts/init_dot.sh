@@ -1,32 +1,32 @@
-
 #!/bin/bash
-# Initialize all dotfiles symlinks
+# Initialize dotfile symlinks.
+# Usage: bash init_dot.sh [full|terminal]  (default: full)
+set -e
 
-DOT_FILES="$HOME/git_projects/dot_files"
+PROFILE="${1:-full}"
+DOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-if [ -e "$DOT_FILES" ]; then
-    echo "dot_files found"
+[[ -d "$DOT" ]] || { echo "dot_files not found at $DOT"; exit 1; }
 
-    echo "ghostty"
-    ln -sf "$DOT_FILES/ghostty_files" "$HOME/.config/ghostty"
-    
-    echo "zsh"
-    ln -sf "$DOT_FILES/zsh_files/zsh_config" "$HOME/.zshrc"
+mkdir -p "$HOME/.config"
 
-    echo "starship"
-    ln -sf "$DOT_FILES/zsh_files/starship.toml" "$HOME/.config/starship.toml"
-    
-    echo "neovim"
-    ln -sf "$DOT_FILES/vim_files" "$HOME/.config/nvim"
-    
-    echo "niri"
-    ln -sf "$DOT_FILES/niri_files" "$HOME/.config/niri"
-    
-    echo "noctalia"
-    ln -sf "$DOT_FILES/noctalia_files" "$HOME/.config/noctalia"
-    
-    echo "Setup complete!"
-else
-    echo "Error: dot_files directory not found"
-    exit 1
+link() {
+    local src="$DOT/$1" dst="$2"
+    mkdir -p "$(dirname "$dst")"
+    ln -sf "$src" "$dst"
+    echo "  $dst -> $src"
+}
+
+echo "profile: $PROFILE"
+
+link "zsh_files/zsh_config"    "$HOME/.zshrc"
+link "zsh_files/starship.toml" "$HOME/.config/starship.toml"
+link "vim_files"               "$HOME/.config/nvim"
+
+if [[ "$PROFILE" == "full" ]]; then
+    link "ghostty_files"   "$HOME/.config/ghostty"
+    link "niri_files"      "$HOME/.config/niri"
+    link "noctalia_files"  "$HOME/.config/noctalia"
 fi
+
+echo "Done."

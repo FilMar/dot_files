@@ -2,12 +2,6 @@
 # Shared environment variables for zsh
 
 # Dotfiles configuration path with portable fallback
-if [[ -e $HOME/MEGA/dot_files/ ]]; then
-    export CONFIG_HOME="$HOME/MEGA/dot_files"
-else
-    export CONFIG_HOME="$HOME/git_projects/dot_files"
-fi
-
 # Derived paths
 export VIM_FILES="$CONFIG_HOME/vim_files"
 export ZSH_FILES="$CONFIG_HOME/zsh_files"
