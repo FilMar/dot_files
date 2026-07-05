@@ -15,7 +15,7 @@ else
     git -C "$NVIM_SRC" fetch origin stable
     LOCAL=$(git -C "$NVIM_SRC" rev-parse HEAD)
     REMOTE=$(git -C "$NVIM_SRC" rev-parse FETCH_HEAD)
-    if [[ "$LOCAL" == "$REMOTE" ]]; then
+    if [[ "$LOCAL" == "$REMOTE" ]] && command -v nvim &>/dev/null; then
         echo "Already up to date ($(nvim --version | head -1)). Nothing to do."
         exit 0
     fi

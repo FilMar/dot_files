@@ -40,26 +40,7 @@ if ! command -v pi &>/dev/null; then
     curl -fsSL https://pi.dev/install.sh | sh
 fi
 
-# --- 7. SSH key ---
-SSH_KEY="$HOME/.ssh/id_ed25519"
-if [[ ! -f "$SSH_KEY" ]]; then
-    ssh-keygen -t ed25519 -f "$SSH_KEY" -N ""
-fi
-if [[ ! -d "$DOT" ]] && \
-   ! ssh -o BatchMode=yes -o ConnectTimeout=5 -T git@github.com 2>&1 | grep -q "successfully authenticated"; then
-    echo ""
-    echo "Add this public key to GitHub (https://github.com/settings/keys):"
-    echo ""
-    cat "$SSH_KEY.pub"
-    echo ""
-    read -rp "Press enter once added to continue..."
-fi
-
-# --- 8. dot_files repo ---
-mkdir -p "$GIT_DIR"
-[[ -d "$DOT" ]] || git clone git@github.com:FilMar/dot_files.git "$DOT"
-
-# --- 9. oh-my-zsh + plugins ---
+# --- 6. oh-my-zsh + plugins ---
 ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
 [[ -d "$HOME/.oh-my-zsh" ]] || \
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
