@@ -14,14 +14,18 @@ DOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 # --- 1. apt packages ---
 sudo apt-get update -qq
 sudo apt-get install -y \
-    zsh fzf git curl build-essential cmake \
+    zsh fzf git curl \
     autojump openssh-client \
     fd-find ripgrep python3-pip
 
 [[ $WITH_PODMAN -eq 1 ]] && sudo apt-get install -y podman
 
-# --- 2. neovim (build from source — apt version is too old) ---
-bash "$DOT/scripts/neovim_rasp.sh"
+# --- 2. mise + neovim ---
+if ! command -v mise &>/dev/null; then
+    curl https://mise.run | sh
+    export PATH="$HOME/.local/bin:$PATH"
+fi
+mise use -g neovim@latest
 
 # --- 3. starship ---
 if ! command -v starship &>/dev/null; then
