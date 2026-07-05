@@ -19,8 +19,7 @@ else
         echo "Already up to date ($(nvim --version | head -1)). Nothing to do."
         exit 0
     fi
-    git -C "$NVIM_SRC" checkout stable
-    git -C "$NVIM_SRC" merge --ff-only origin/stable
+    git -C "$NVIM_SRC" checkout FETCH_HEAD
 fi
 
 cmake -S "$NVIM_SRC" -B "$NVIM_SRC/build" -DCMAKE_BUILD_TYPE=Release -DUSE_BUNDLED_LUV=ON
