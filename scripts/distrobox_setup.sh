@@ -6,7 +6,7 @@ set -e
 
 [[ $EUID -eq 0 ]] && { echo "run as the normal user, not root"; exit 1; }
 
-DOT="$HOME/git_projects/dot_files"
+DOT="$HOME/projects/dot_files"
 
 # --- 1. yay + AUR packages (exa and autojump are AUR-only on Arch) ---
 if ! command -v yay &>/dev/null; then
