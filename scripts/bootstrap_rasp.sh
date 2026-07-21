@@ -34,7 +34,7 @@ fi
 
 # --- 4. bun ---
 if ! command -v bun &>/dev/null; then
-    curl -fsSL https://bun.sh/install | bash
+    curl -fsSL https://bun.com/install | bash
     export BUN_INSTALL="$HOME/.bun"
     export PATH="$BUN_INSTALL/bin:$PATH"
 fi

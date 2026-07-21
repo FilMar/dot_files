@@ -11,12 +11,13 @@ vim.pack.add({
     'https://github.com/stevearc/oil.nvim',
     'https://github.com/NeogitOrg/neogit',
     'https://github.com/nvim-pack/nvim-spectre',
-    'https://github.com/Julian/lean.nvim',
     'https://github.com/MeanderingProgrammer/render-markdown.nvim',
     'https://github.com/jglasovic/venv-lsp.nvim',
     'https://github.com/folke/which-key.nvim',
-    'https://github.com/Saghen/blink.cmp',
+    'https://github.com/saghen/blink.lib',
+    'https://github.com/saghen/blink.cmp',
     'https://github.com/williamboman/mason.nvim',
     -- disabilitato
     -- 'https://github.com/cordx56/rustowl',
+    --'https://github.com/Julian/lean.nvim',
 })
