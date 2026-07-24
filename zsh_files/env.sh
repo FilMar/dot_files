@@ -30,6 +30,21 @@ export STARSHIP_SHELL="zsh"
 # export PROJECT_HOME="$HOME/projects"
 # export WORKSPACE="$CONFIG_HOME/workspace"
 
+# Taskwarrior: auto-detect repo-local .taskrc on cd.
+# Use chpwd_functions so TASKRC is re-evaluated on every directory change
+# (env.sh is sourced once at shell start, not on cd).
+autoload -U add-zsh-hook
+__taskrc_chpwd() {
+  if [[ -f .taskrc ]]; then
+    export TASKRC="$PWD/.taskrc"
+  else
+    unset TASKRC
+  fi
+}
+add-zsh-hook chpwd __taskrc_chpwd
+# Initial check for the current directory at shell start
+__taskrc_chpwd
+
 # Source profile if exists
 if [[ -e ~/.profile ]]; then
     source ~/.profile
