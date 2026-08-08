@@ -1,4 +1,6 @@
-require('blink.cmp').setup({
+local bli = require('blink.cmp')
+bli.build():pwait()
+bli.setup({
     keymap = {
         ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
         ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
@@ -18,3 +20,4 @@ require('blink.cmp').setup({
         },
     },
 })
+
