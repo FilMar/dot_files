@@ -6,6 +6,8 @@ COMPLETION_WAITING_DOTS=true
 DISABLE_UNTRACKED_FILES_DIRTY=true
 # set -o vi  # Disabled vi mode
 ## Alias section 
+alias ls="exa -lh --total-size"
+alias la="exa -lha --total-size"
 alias cp="cp -i"        # Confirm before overwriting something
 alias df='df -h'        # Human-readable sizes
 alias free='free -m'    # Show sizes in MB
@@ -15,8 +17,6 @@ alias batInfo="sudo tlp-stat -b"
 alias tree="tree -C"
 alias py="python3"
 #alias cat="bat"
-alias ls="exa -l"
-alias la="exa -lah"
 #alias warp="cd \$(find $HOME -type d -not -path '*/.*' 2>/dev/null | fzf) && if [[ -e .venv ]]; then source .venv/bin/activate; else deactivate 2>/dev/null; fi"
 alias sheet="curl cht.sh/\$(curl cht.sh/:list | fzf)"
 alias hist="history | fzf"

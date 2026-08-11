@@ -17,17 +17,17 @@ source "$CONFIG_HOME/zsh_files/env.sh"
 [[ -e "$CONFIG_HOME/zsh_files/secret_env.sh" ]] && source "$CONFIG_HOME/zsh_files/secret_env.sh"
 
 
+# Source for zsh plugins
+if [[ -e $ZSH_FILES/zsh/zsh-plugin ]]; then
+  source $ZSH_FILES/zsh/zsh-plugin
+fi
 # Source my zsh config
 if [[ -e $ZSH_FILES/zsh/zsh-basic ]]; then
   source $ZSH_FILES/zsh/zsh-basic
 fi
-# Source for zsh theme 
+# Source for zsh theme
 if [[ -e $ZSH_FILES/zsh/zsh-theme ]]; then
   source $ZSH_FILES/zsh/zsh-theme
-fi
-# Source for zsh plugins
-if [[ -e $ZSH_FILES/zsh/zsh-plugin ]]; then
-  source $ZSH_FILES/zsh/zsh-plugin
 fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
