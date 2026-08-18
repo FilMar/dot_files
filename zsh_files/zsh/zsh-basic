@@ -119,20 +119,6 @@ function getignore() {
     curl $url
 }
 
-export PI_REPO="/home/filippo/Alfred_agents"
-
-pi-just() {
-  local skill="$1"; shift
-  local f
-  f=$(find "$PI_REPO/skills" "$PI_REPO/tools" -maxdepth 2 -name justfile -path "*/$skill/justfile" 2>/dev/null | head -1)
-  if [[ -z "$f" ]]; then
-    echo "pi-just: no justfile found for skill '$skill'" >&2
-    return 1
-  fi
-  just --justfile "$f" --working-directory "$(pwd)" "$@"
-}
-
-
 autoload -U compinit
 compinit
 
