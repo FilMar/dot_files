@@ -119,7 +119,7 @@ function getignore() {
     curl $url
 }
 
-export PI_REPO="/home/filippo/git_projects/pi"
+export PI_REPO="/home/filippo/Alfred_agents"
 
 pi-just() {
   local skill="$1"; shift
