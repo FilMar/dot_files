@@ -17,7 +17,9 @@ vim.pack.add({
     'https://github.com/saghen/blink.lib',
     'https://github.com/saghen/blink.cmp',
     'https://github.com/williamboman/mason.nvim',
+    'https://github.com/pablopunk/pi.nvim',
     -- disabilitato
     -- 'https://github.com/cordx56/rustowl',
     --'https://github.com/Julian/lean.nvim',
 })
+

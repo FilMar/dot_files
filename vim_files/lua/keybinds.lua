@@ -42,6 +42,10 @@ vim.keymap.set("v", "<leader>r", ":s/", { desc = "Search and replace (selection)
 vim.keymap.set("n", "u", "u", { desc = "Undo" })
 vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 
+-- ═══ TASKLIST ═══
+vim.api.nvim_create_user_command("Tasks", "edit ~/git_projects/essays/mastertasklist.md", {})
+vim.keymap.set("n", "<leader>nt", vim.cmd.Tasks, { desc = "Open tasklist" })
+
 -- ═══ QUIT ═══
 vim.api.nvim_create_user_command('Q', 'qa', {})
 vim.cmd('cnoreabbrev q qa')

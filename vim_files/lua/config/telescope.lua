@@ -103,7 +103,7 @@ vim.keymap.set('n', '<leader>fh', "<cmd>lua Super_help_fullpage()<CR>", { desc =
 vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = "Find keymaps" })
 vim.keymap.set('n', '<leader>fc', vim.cmd.TodoTelescope, { desc = "Find comments/todos" })
 vim.keymap.set('n', '<leader>fr', builtin.oldfiles, { desc = "Recent files" })
-vim.keymap.set('n', '<leader>f/', builtin.current_buffer_fuzzy_find, { desc = "Fuzzy find in buffer" })
+vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find, { desc = "Fuzzy find in buffer" })
 
 -- keymaps notes
 vim.keymap.set("n", "<leader>nf", "<cmd>lua Super_find_file({ cwd = '$NOTES_HOME'})<CR>",
