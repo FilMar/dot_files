@@ -12,6 +12,12 @@ bli.setup({
     },
     sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
+        per_filetype = {
+            markdown = { 'duedates', 'lsp', 'path', 'snippets', 'buffer' },
+        },
+        providers = {
+            duedates = { name = 'due', module = 'config.duedates' },
+        },
     },
     completion = {
         documentation = {
