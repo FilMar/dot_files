@@ -76,7 +76,7 @@ layout {
     }
 }
 
-spawn-at-startup "qs" "-c" "noctalia-shell"
+spawn-at-startup "noctalia"
 spawn-sh-at-startup "wl-paste --type text --watch cliphist store"
 spawn-sh-at-startup "wl-paste --type image --watch cliphist store"
 hotkey-overlay {
@@ -87,15 +87,23 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 animations {
 }
 
+// Noctalia: rounded corners for a modern look.
+window-rule {
+    geometry-corner-radius 20
+    clip-to-geometry true
+}
+
+// Noctalia: floating settings window.
+window-rule {
+    match app-id="dev.noctalia.Noctalia"
+    open-floating true
+    default-column-width { fixed 1080; }
+    default-window-height { fixed 920; }
+}
 
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     open-floating true
-}
-
-window-rule {
-    geometry-corner-radius 10
-    clip-to-geometry true
 }
 
 window-rule {
@@ -104,16 +112,63 @@ window-rule {
     default-column-width { fixed 1200; }
 }
 
+// Noctalia: allow notification actions and window activation.
+debug {
+    honor-xdg-activation-with-invalid-serial
+}
+
+// Noctalia: blurred overview wallpaper backdrop.
+layer-rule {
+    match namespace="^noctalia-backdrop"
+    place-within-backdrop true
+}
+
+// Noctalia: blur behind windows and surfaces.
+window-rule {
+    background-effect {
+        blur true
+        xray false
+    }
+}
+
+layer-rule {
+    match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"
+    background-effect {
+        xray false
+    }
+}
+
+layer-rule {
+    match namespace="noctalia-window-switcher"
+    background-effect {
+        blur true
+        xray false
+    }
+}
+
+blur {
+    passes 2
+    offset 3.0
+    noise 0.03
+    saturation 1.0
+}
 
 binds {
     Alt+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
 
-    XF86AudioRaiseVolume  { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"; }
-    XF86AudioLowerVolume  { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"; }
-    XF86AudioMute         { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    // Noctalia core binds
+    Mod+Space { spawn-sh "noctalia msg panel-toggle launcher"; }
+    Mod+S { spawn-sh "noctalia msg panel-toggle control-center"; }
+    Mod+Comma { spawn-sh "noctalia msg settings-toggle"; }
+    Alt+Tab { spawn-sh "noctalia msg window-switcher"; }
+
+    // Audio & Brightness (Noctalia OSD)
+    XF86AudioRaiseVolume  { spawn-sh "noctalia msg volume-up"; }
+    XF86AudioLowerVolume  { spawn-sh "noctalia msg volume-down"; }
+    XF86AudioMute         { spawn-sh "noctalia msg volume-mute"; }
     XF86AudioMicMute      { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
-    XF86MonBrightnessUp   { spawn "brightnessctl" "set" "10%+"; }
-    XF86MonBrightnessDown { spawn "brightnessctl" "set" "10%-"; }
+    XF86MonBrightnessUp   { spawn-sh "noctalia msg brightness-up"; }
+    XF86MonBrightnessDown { spawn-sh "noctalia msg brightness-down"; }
 
     Alt+P { spawn-sh "foot --title=launcher -e $HOME/git_projects/dot_files/scripts/launcher.py apps"; }
     Alt+C { spawn-sh "foot --title=launcher -e $HOME/git_projects/dot_files/scripts/launcher.py clipboard"; }
@@ -135,6 +190,4 @@ binds {
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
-
-
 }

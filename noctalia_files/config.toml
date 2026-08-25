@@ -1,0 +1,218 @@
+# Noctalia v5 config — migrated from v4 (noctalia-shell) settings.json
+# Theme: Catppuccin dark
+
+[theme]
+mode = "dark"
+source = "builtin"
+builtin = "Catppuccin"
+
+[shell]
+avatar_path = "/home/filippo/.face"
+font_family = "Sans Serif"
+telemetry_enabled = true
+clipboard_enabled = false
+card_borders = false
+
+[shell.animation]
+enabled = true
+speed = 1.0
+
+[shell.shadow]
+direction = "down_right"
+alpha = 0.55
+
+[shell.panel]
+transparency_mode = "soft"
+launcher_placement = "floating"
+launcher_position = "center"
+
+[shell.launcher]
+compact = true
+categories = false
+sort_by_usage = true
+pinned = []
+auto_paste = "off"
+
+[shell.launcher.providers.session]
+global = true
+
+[shell.launcher.providers.windows]
+global = true
+
+[shell.screen_corners]
+enabled = false
+
+[shell.mpris]
+blacklist = []
+
+[bar.default]
+position = "top"
+enabled = true
+auto_hide = false
+reserve_space = true
+background_opacity = 0.93
+border_width = 0.0
+radius = 12
+margin_ends = 4
+margin_edge = 4
+widget_spacing = 6
+capsule = true
+capsule_opacity = 1.0
+show_on_workspace_switch = true
+start = ["control-center", "sysmon-cpu", "sysmon-temp", "sysmon-ram"]
+center = ["active_window"]
+end = ["tray", "clock", "notifications", "battery", "volume", "brightness"]
+
+[widget.active_window]
+max_length = 145
+title_scroll = "on_hover"
+display = "icon_and_text"
+
+[widget.sysmon-cpu]
+type = "sysmon"
+stat = "cpu_usage"
+
+[widget.sysmon-temp]
+type = "sysmon"
+stat = "cpu_temp"
+
+[widget.sysmon-ram]
+type = "sysmon"
+stat = "ram_used"
+
+[widget.tray]
+drawer = true
+hide_passive = false
+pinned = []
+
+[widget.clock]
+format = "{:%H:%M %a, %b %d}"
+tooltip_format = "{:%H:%M %a, %b %d}"
+
+[widget.notifications]
+hide_when_no_unread = false
+
+[widget.battery]
+display_mode = "graphic"
+
+[control_center]
+sidebar = "compact"
+hidden_tabs = ["monitor"]
+
+[[control_center.shortcuts]]
+type = "wifi"
+[[control_center.shortcuts]]
+type = "bluetooth"
+[[control_center.shortcuts]]
+type = "wallpaper"
+[[control_center.shortcuts]]
+type = "notification"
+[[control_center.shortcuts]]
+type = "power_profile"
+[[control_center.shortcuts]]
+type = "caffeine"
+
+[wallpaper]
+enabled = true
+fill_mode = "crop"
+fill_color = "#000000"
+directory = "/home/filippo/Immagini"
+per_monitor_directories = false
+transition = ["fade", "wipe", "disc", "stripes", "zoom", "honeycomb"]
+transition_duration = 1500
+edge_smoothness = 0.05
+transition_on_startup = false
+
+[wallpaper.automation]
+enabled = false
+interval_seconds = 300
+order = "random"
+
+[backdrop]
+enabled = false
+blur_intensity = 0.4
+tint_intensity = 0.6
+
+[audio]
+enable_overdrive = false
+enable_sounds = false
+
+[brightness]
+enable_ddcutil = false
+
+[nightlight]
+enabled = false
+force = false
+temperature_day = 6500
+temperature_night = 4000
+
+[weather]
+enabled = true
+unit = "metric"
+effects = true
+
+[location]
+auto_locate = false
+
+[notification]
+enable_daemon = true
+position = "top_right"
+layer = "overlay"
+background_opacity = 1.0
+monitors = []
+
+[osd]
+position = "top_right"
+background_opacity = 1.0
+
+[system.monitor]
+enabled = true
+cpu_usage_activity_threshold = 80
+cpu_usage_critical_threshold = 90
+cpu_temp_activity_threshold = 80
+cpu_temp_critical_threshold = 90
+ram_pct_activity_threshold = 80
+ram_pct_critical_threshold = 90
+swap_pct_activity_threshold = 80
+swap_pct_critical_threshold = 90
+disk_used_pct_activity_threshold = 80
+disk_used_pct_critical_threshold = 90
+gpu_usage_activity_threshold = 80
+gpu_usage_critical_threshold = 90
+
+[battery]
+warning_threshold = 20
+
+[plugins]
+auto_update = "none"
+
+[shell.session]
+show_shortcuts = true
+
+[[shell.session.actions]]
+action = "lock"
+shortcut = "1"
+[[shell.session.actions]]
+action = "suspend"
+shortcut = "2"
+[[shell.session.actions]]
+action = "command"
+label = "Hibernate"
+glyph = "bedtime"
+command = "systemctl hibernate"
+shortcut = "3"
+[[shell.session.actions]]
+action = "reboot"
+shortcut = "4"
+[[shell.session.actions]]
+action = "logout"
+shortcut = "5"
+[[shell.session.actions]]
+action = "shutdown"
+shortcut = "6"
+[[shell.session.actions]]
+action = "command"
+label = "Reboot to UEFI"
+glyph = "restart"
+command = "systemctl reboot --firmware-setup"
+shortcut = "7"
