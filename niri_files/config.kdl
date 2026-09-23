@@ -157,10 +157,10 @@ binds {
     Alt+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
 
     // Noctalia core binds
-    Mod+Space { spawn-sh "noctalia msg panel-toggle launcher"; }
-    Mod+S { spawn-sh "noctalia msg panel-toggle control-center"; }
-    Mod+Comma { spawn-sh "noctalia msg settings-toggle"; }
-    Alt+Tab { spawn-sh "noctalia msg window-switcher"; }
+    //Mod+Space { spawn-sh "noctalia msg panel-toggle launcher"; }
+    //Mod+S { spawn-sh "noctalia msg panel-toggle control-center"; }
+    //Mod+Comma { spawn-sh "noctalia msg settings-toggle"; }
+    //Alt+Tab { spawn-sh "noctalia msg window-switcher"; }
 
     // Audio & Brightness (Noctalia OSD)
     XF86AudioRaiseVolume  { spawn-sh "noctalia msg volume-up"; }
@@ -187,7 +187,7 @@ binds {
     Alt+F { maximize-column; }
     Alt+V       { toggle-window-floating; }
 
-    Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
-    Alt+Print { screenshot-window; }
+    Alt+S { screenshot; }
+    Alt+Shift+S { screenshot-screen; }
+    Alt+Ctrl+S { screenshot-window; }
 }

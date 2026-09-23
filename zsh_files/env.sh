@@ -19,6 +19,9 @@ export TERM="xterm-256color"
 export SHELL="/usr/bin/zsh"
 export EDITOR="/usr/bin/nvim"
 
+# ollama
+export OLLAMA_HOST=https://bazzite.fennec-gila.ts.net
+
 
 # Path modifications (portable)
 export PATH="$PATH:$HOME/.modular/bin"
