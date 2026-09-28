@@ -19,7 +19,7 @@ export TERM="xterm-256color"
 export SHELL="/usr/bin/zsh"
 export EDITOR="/usr/bin/nvim"
 
-# ollama
+# ollama solo per ollama, non per pi che vive in .pi/agent/models.json
 export OLLAMA_HOST="https://bazzite.fennec-gila.ts.net"
 
 # third log (tl) — the archive lives on the Rasp, the CLI is a client of it
