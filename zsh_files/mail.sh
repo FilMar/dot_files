@@ -1,23 +1,77 @@
 #!/bin/zsh
 # Mail commands on top of himalaya.
-#   mread  [account]  pick a mail with fzf, then pick an action
-#   mwrite [account]  write a new mail in nvim, :wq sends, :q! aborts
+#   mread  [account]               pick one of the last 100 mails, then an action
+#   mread  [account] -s <query>    same, on a server search in INBOX
+#   mwrite [account]               write a new mail in nvim, :wq sends, :q! aborts
 # No account means the himalaya default account.
+# Query: himalaya syntax, phrases need no quotes:
+#   mread -s body grazie mille and from mario and not flag seen
 
 _mail_hm() {
     local account=$1; shift
     himalaya ${account:+--account=$account} "$@"
 }
 
+# Quotes the words after from/to/subject/body up to and/or/order by.
+# A query that already has double quotes passes through untouched.
+_mail_query() {
+    local q="$*"
+    if [[ $q == *'"'* ]]; then
+        print -r -- "$q"
+        return
+    fi
+    local sort=''
+    if [[ " $q " == *' order by '* ]]; then
+        sort="order by ${q#* order by }"
+        q=${q%% order by *}
+    fi
+    q=${q//\(/ ( }
+    q=${q//\)/ ) }
+
+    local -a out phrase
+    local tok collecting=0
+    for tok in ${=q}; do
+        if (( collecting )) && [[ $tok != (and|or|\)) ]]; then
+            phrase+=$tok
+            continue
+        fi
+        if (( ${#phrase} )); then
+            out+="\"${phrase[*]}\""
+            phrase=()
+        fi
+        collecting=0
+        [[ $tok == (from|to|subject|body) ]] && collecting=1
+        out+=$tok
+    done
+    (( ${#phrase} )) && out+="\"${phrase[*]}\""
+    q="${out[*]}"
+    q=${q//\( /(}
+    q=${q// \)/)}
+    print -r -- "$q${sort:+ $sort}"
+}
+
 _mail_list() {
-    _mail_hm "$1" envelope list --json -m INBOX -s 100 | jq -r '
+    local account=$1
+    local query=$2
+    local json
+    if [[ -n $query ]]; then
+        print -u2 'Searching...'
+        json=$(_mail_hm "$account" envelope search --json -m INBOX -s 100 "$query")
+    else
+        json=$(_mail_hm "$account" envelope list --json -m INBOX -s 100)
+    fi
+    if ! jq -e '.envelopes' <<< "$json" > /dev/null 2>&1; then
+        print -u2 -r -- "$(jq -r '.error // .' <<< "$json" 2>/dev/null || print -r -- "$json")"
+        return 1
+    fi
+    jq -r '
         .envelopes[]
         | [ .id,
             (if any(.flags[]; .iana == "seen") then " " else "N" end),
             ((.date // "")[0:16] | sub("T"; " ")),
             (.from[0] | .name // .email // ""),
             .subject ]
-        | @tsv'
+        | @tsv' <<< "$json"
 }
 
 _mail_header() {
@@ -90,10 +144,26 @@ mwrite() {
 # other types, pick xdg-open or just print the path (xdg-open is a risk
 # with untrusted files).
 mread() {
-    local account=$1
+    local account='' query=''
+    if [[ -n $1 && $1 != (-s|--search) ]]; then
+        account=$1
+        shift
+    fi
+    if [[ $1 == (-s|--search) ]]; then
+        shift
+        (( $# )) || { print -u2 'mread: -s needs a query'; return 1 }
+        query=$(_mail_query "$@")
+    elif (( $# )); then
+        print -u2 'usage: mread [account] [-s query]'
+        return 1
+    fi
     local preview="himalaya ${account:+--account=${(q)account}} message read -m INBOX {1}"
 
-    local line=$(_mail_list "$account" | fzf \
+    local list
+    list=$(_mail_list "$account" "$query") || return 1
+    [[ -n $list ]] || { print 'No mail found.'; return 0 }
+
+    local line=$(print -r -- "$list" | fzf \
         --delimiter '\t' --with-nth 2.. \
         --preview "$preview" --preview-window 'right,60%,wrap')
     [[ -n $line ]] || return 0
