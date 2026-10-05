@@ -15,6 +15,7 @@ if [[ -z "$CONFIG_HOME" ]]; then
 fi
 source "$CONFIG_HOME/zsh_files/env.sh"
 [[ -e "$CONFIG_HOME/zsh_files/secret_env.sh" ]] && source "$CONFIG_HOME/zsh_files/secret_env.sh"
+[[ -e "$CONFIG_HOME/zsh_files/mail.sh" ]] && source "$CONFIG_HOME/zsh_files/mail.sh"
 
 
 # Source for zsh plugins
