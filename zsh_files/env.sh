@@ -20,7 +20,8 @@ export SHELL="/usr/bin/zsh"
 export EDITOR="/usr/bin/nvim"
 
 # ollama solo per ollama, non per pi che vive in .pi/agent/models.json
-export OLLAMA_HOST="https://bazzite.fennec-gila.ts.net"
+#export OLLAMA_HOST="https://bazzite.fennec-gila.ts.net"
+export OLLAMA_HOST="http://localhost:11434"
 
 # third log (tl) — the archive lives on the Rasp, the CLI is a client of it
 export TL_API_URL="http://filrasp.fennec-gila.ts.net:8790"
