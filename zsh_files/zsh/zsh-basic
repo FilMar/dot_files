@@ -6,7 +6,8 @@ COMPLETION_WAITING_DOTS=true
 DISABLE_UNTRACKED_FILES_DIRTY=true
 # set -o vi  # Disabled vi mode
 ## Alias section 
-alias ls="exa -lh --total-size"
+alias ls="exa -lh"
+alias lst="exa -lh --total-size"
 alias la="exa -lha --total-size"
 alias cp="cp -i"        # Confirm before overwriting something
 alias df='df -h'        # Human-readable sizes
@@ -129,3 +130,33 @@ SAVEHIST=5000
 HISTSIZE=5000
 setopt share_history
 setopt hist_ignore_dups
+
+# tmux session switcher with fzf
+# Uso: ts  (da dentro o fuori tmux)
+# Mostra: nome | finestre | attachato? | directory corrente
+function ts() {
+    local line target
+    line=$(tmux list-sessions -F '#{session_name}  [#{session_windows}w]  #{?session_attached,attached,detached}  #{pane_current_path}' 2>/dev/null | fzf --prompt="tmux > ") || return
+    [ -z "$line" ] && return
+    target="${line%% *}"
+    if [ -n "$TMUX" ]; then
+        tmux switch-client -t "$target"
+    else
+        tmux attach -t "$target"
+    fi
+}
+
+# tmux prefix keybinding browser with fzf
+# Uso: tk  (da dentro tmux)
+# Mostra: tasto | comando — Enter esegue il comando
+function tk() {
+    "$ZSH_FILES/zsh/tmux-keys.sh"
+}
+
+# Auto-avvio tmux: ogni nuovo terminale crea la sua sessione univoca
+# Se il server non esiste, tmux new-session lo avvia automaticamente
+# Quando esci da tmux (detach o exit), il terminale si chiude
+if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ -n "$PS1" ]; then
+    tmux new-session -s "term-$(date +%s)"
+    exit
+fi

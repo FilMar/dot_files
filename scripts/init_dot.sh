@@ -21,6 +21,7 @@ echo "profile: $PROFILE"
 
 link "zsh_files/zsh_config"    "$HOME/.zshrc"
 link "zsh_files/starship.toml" "$HOME/.config/starship.toml"
+link "zsh_files/tmux.conf"     "$HOME/.config/tmux/tmux.conf"
 link "vim_files"               "$HOME/.config/nvim"
 
 if [[ "$PROFILE" == "full" ]]; then
