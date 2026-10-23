@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # tmux-commands.sh — telescope-like command palette over all tmux commands
-# Trigger: prefix + P. Enter runs the selected command bare (default args).
+# Trigger: prefix + m. Enter runs the selected command bare (default args).
 # Destructive commands (kill-*) are excluded on purpose: they stay reachable
 # only via the dedicated bindings (x, X) and the default < > menus.
 
