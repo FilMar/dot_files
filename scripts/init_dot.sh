@@ -23,7 +23,6 @@ link "zsh_files/zsh_config"    "$HOME/.zshrc"
 link "zsh_files/starship.toml" "$HOME/.config/starship.toml"
 link "zsh_files/tmux.conf"     "$HOME/.config/tmux/tmux.conf"
 link "zsh_files/tmux-keys.sh"   "$HOME/.config/tmux/tmux-keys.sh"
-link "zsh_files/tmux-menu.sh"   "$HOME/.config/tmux/tmux-menu.sh"
 link "zsh_files/tmux-commands.sh" "$HOME/.config/tmux/tmux-commands.sh"
 link "vim_files"               "$HOME/.config/nvim"
 
