@@ -146,11 +146,23 @@ function ts() {
     fi
 }
 
+# tmux window switcher with fzf
+# Uso: tw  (da dentro tmux)
+# Mostra: indice | nome | directory corrente | processo attivo
+function tw() {
+    [ -z "$TMUX" ] && { echo "tw: sei fuori da tmux" >&2; return 1; }
+    local line target
+    line=$(tmux list-windows -F '#{window_index}  #{window_name}  #{pane_current_path}  #{pane_current_command}' 2>/dev/null | fzf --prompt="win > ") || return
+    [ -z "$line" ] && return
+    target="${line%% *}"
+    tmux select-window -t "$target"
+}
+
 # tmux prefix keybinding browser with fzf
 # Uso: tk  (da dentro tmux)
 # Mostra: tasto | comando — Enter esegue il comando
 function tk() {
-    "$ZSH_FILES/zsh/tmux-keys.sh"
+    "$ZSH_FILES/tmux-keys.sh"
 }
 
 # Auto-avvio tmux: ogni nuovo terminale crea la sua sessione univoca
