@@ -131,39 +131,13 @@ HISTSIZE=5000
 setopt share_history
 setopt hist_ignore_dups
 
-# tmux session switcher with fzf
-# Uso: ts  (da dentro o fuori tmux)
-# Mostra: nome | finestre | attachato? | directory corrente
-function ts() {
-    local line target
-    line=$(tmux list-sessions -F '#{session_name}  [#{session_windows}w]  #{?session_attached,attached,detached}  #{pane_current_path}' 2>/dev/null | fzf --prompt="tmux > ") || return
-    [ -z "$line" ] && return
-    target="${line%% *}"
-    if [ -n "$TMUX" ]; then
-        tmux switch-client -t "$target"
-    else
-        tmux attach -t "$target"
-    fi
+# tmux: one fzf menu for everything (same as M-Esc inside tmux)
+# Uso: tm  (menu) | tm <azione> [arg]  (es. tm session work, tm rename logs)
+function tm() {
+    "$ZSH_FILES/tmux-menu.sh" "$@"
 }
-
-# tmux window switcher with fzf
-# Uso: tw  (da dentro tmux)
-# Mostra: indice | nome | directory corrente | processo attivo
-function tw() {
-    [ -z "$TMUX" ] && { echo "tw: sei fuori da tmux" >&2; return 1; }
-    local line target
-    line=$(tmux list-windows -F '#{window_index}  #{window_name}  #{pane_current_path}  #{pane_current_command}' 2>/dev/null | fzf --prompt="win > ") || return
-    [ -z "$line" ] && return
-    target="${line%% *}"
-    tmux select-window -t "$target"
-}
-
-# tmux prefix keybinding browser with fzf
-# Uso: tk  (da dentro tmux)
-# Mostra: tasto | comando — Enter esegue il comando
-function tk() {
-    "$ZSH_FILES/tmux-keys.sh"
-}
+alias ts='tm session'
+alias tw='tm window'
 
 # Auto-avvio tmux: ogni nuovo terminale si collega sempre alla sessione "default"
 # (-A la crea se non esiste, altrimenti si attacca a quella esistente)
