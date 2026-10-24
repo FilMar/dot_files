@@ -25,10 +25,11 @@ export OLLAMA_HOST="http://localhost:11434"
 
 # third log (tl) — the archive lives on the Rasp, the CLI is a client of it
 export TL_API_URL="http://filrasp.fennec-gila.ts.net:8790"
+export TL_API_URL="http://100.89.232.55:8790"
 
 # third brain/identity qdrant
 export QDRANT_URL="http://filrasp.fennec-gila.ts.net:6333"
-
+export QDRANT_URL="http://100.89.232.55:6333"
 
 # Path modifications (portable)
 export PATH="$PATH:$HOME/.modular/bin"
