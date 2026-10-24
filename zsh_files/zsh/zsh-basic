@@ -165,10 +165,11 @@ function tk() {
     "$ZSH_FILES/tmux-keys.sh"
 }
 
-# Auto-avvio tmux: ogni nuovo terminale crea la sua sessione univoca
+# Auto-avvio tmux: ogni nuovo terminale si collega sempre alla sessione "default"
+# (-A la crea se non esiste, altrimenti si attacca a quella esistente)
 # Se il server non esiste, tmux new-session lo avvia automaticamente
 # Quando esci da tmux (detach o exit), il terminale si chiude
 if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ -n "$PS1" ]; then
-    tmux new-session -s "term-$(date +%s)"
+    tmux new-session -A -s "default"
     exit
 fi
