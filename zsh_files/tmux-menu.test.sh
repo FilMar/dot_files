@@ -151,6 +151,10 @@ test_menu_lines_format() {
     [[ $actual == "$expected" ]] || return 1
 }
 
+test_menu_lines_unknown_name_dies() {
+    expect_die "menu_lines: label for boh" menu_lines <<< "boh"
+}
+
 test_q_without_client() {
     CLIENT=
     expect_die "q: client known" q '#S'

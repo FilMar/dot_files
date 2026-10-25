@@ -6,6 +6,7 @@
   - stato: sessioni, finestre, pane, client
   - fa: è l'unico proprietario dello stato; lo script lo legge e lo cambia solo con comandi tmux
   - non fa: barra di stato, prefix, split, tasti oltre a `M-Esc`
+  - manda: sessione e finestra nel titolo del terminale (`set-titles`), che è il posto dove lo stato si legge senza aprire niente
   - comanda: l'utente, attraverso il menu
 
 - **Contesto**
@@ -41,6 +42,8 @@
 
 - un solo tasto tmux: `M-Esc`; nessun prefix
 - nessuna barra di stato
+- lo stato passivo (sessione, finestra) viaggia nel titolo del terminale: `'#S:#W'`; la tab del terminale fa da barra, senza pixel e senza tasti
+- nessuna voce del menu senza etichetta: un nome che non ha etichetta ferma il menu con un errore, invece di stampare una riga vuota
 - `C-h/j/k/l` arrivano sempre alla shell e alle app
 - una voce sconosciuta (`tm boh`) è un errore di chi chiama: si ferma con un messaggio
 - ESC o una scelta vuota non è un errore: nessuna azione, uscita silenziosa
@@ -72,7 +75,7 @@
   - `2 1 0` → last window new rename close session rename-session copy save reload command
   - `1 2 1` → new rename session rename-session close-session copy save restore reload command
   - `3 2 1` → tutte e 13
-- `menu_lines`: legge nomi da stdin, stampa `printf '%-15s %s\n' <nome> <etichetta>` per ognuno
+- `menu_lines`: legge nomi da stdin, stampa `printf '%-15s %s\n' <nome> <etichetta>` per ognuno; un nome senza etichetta in `LABELS` è un errore di chi chiama (exit 70, messaggio `menu_lines: label for <nome>`)
 - `q <formato>`: `tmux display -p -t "$CLIENT" <formato>`
 - `header`: `q '#S  #{W:#{?window_active,[#W],#W} }'`
 - `pick <prompt> [header]`: fzf con `--prompt`, e `--header` se c'è; ESC o scelta vuota → return 1

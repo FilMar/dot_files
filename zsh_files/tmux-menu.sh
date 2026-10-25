@@ -81,7 +81,8 @@ menu_lines() {
     local name line
     while IFS= read -r name; do
         [[ -n $name ]] || continue
-        printf -v line '%-15s %s\n' "$name" "${LABELS[$name]:-}"
+        assert "menu_lines: label for $name" test -n "${LABELS[$name]:-}"
+        printf -v line '%-15s %s\n' "$name" "${LABELS[$name]}"
         result+="$line"
     done
     result=${result%$'\n'}
