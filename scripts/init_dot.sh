@@ -13,7 +13,7 @@ mkdir -p "$HOME/.config"
 link() {
     local src="$DOT/$1" dst="$2"
     mkdir -p "$(dirname "$dst")"
-    ln -sf "$src" "$dst"
+    ln -sfnT "$src" "$dst"
     echo "  $dst -> $src"
 }
 
