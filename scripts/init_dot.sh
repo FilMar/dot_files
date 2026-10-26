@@ -13,7 +13,7 @@ mkdir -p "$HOME/.config"
 link() {
     local src="$DOT/$1" dst="$2"
     mkdir -p "$(dirname "$dst")"
-    ln -sf "$src" "$dst"
+    ln -sfn "$src" "$dst"
     echo "  $dst -> $src"
 }
 
@@ -23,6 +23,7 @@ link "zsh_files/zsh_config"    "$HOME/.zshrc"
 link "zsh_files/starship.toml" "$HOME/.config/starship.toml"
 link "zsh_files/tmux.conf"     "$HOME/.config/tmux/tmux.conf"
 link "zsh_files/tmux-menu.sh"  "$HOME/.config/tmux/tmux-menu.sh"
+link "ssh_files/config"        "$HOME/.ssh/config"
 link "vim_files"               "$HOME/.config/nvim"
 
 if [[ "$PROFILE" == "full" ]]; then

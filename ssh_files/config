@@ -1,0 +1,10 @@
+# ssh config — hosts by MagicDNS name, resolved by Tailscale.
+# Place: ~/.ssh/config (symlinked from dot_files)
+
+Host filrasp
+    HostName filrasp
+    User filrasp
+
+Host filbazz
+    HostName bazzite
+    User filippo
