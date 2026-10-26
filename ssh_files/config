@@ -2,9 +2,9 @@
 # Place: ~/.ssh/config (symlinked from dot_files)
 
 Host filrasp
-    HostName filrasp
+    HostName filrasp.fennec-gila.ts.net
     User filrasp
 
 Host filbazz
-    HostName bazzite
+    HostName bazzite.fennec-gila.ts.net
     User filippo
