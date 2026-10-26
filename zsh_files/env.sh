@@ -23,11 +23,21 @@ export EDITOR="/usr/bin/nvim"
 #export OLLAMA_HOST="https://bazzite.fennec-gila.ts.net"
 export OLLAMA_HOST="http://localhost:11434"
 
-# third log (tl) — the archive lives on the Rasp, the CLI is a client of it
-export TL_API_URL="http://filrasp.fennec-gila.ts.net:8790"
+# third log (tl) + third brain/identity (qdrant) — the Rasp.
+# MagicDNS name when it resolves, Tailscale IP when NetworkManager has
+# overwritten resolv.conf. One probe per shell, 8ms when DNS is healthy.
+RASP_NAME="filrasp.fennec-gila.ts.net"
+RASP_IP="100.89.232.55"
+if getent hosts "$RASP_NAME" >/dev/null 2>&1; then
+    RASP_HOST=$RASP_NAME
+else
+    RASP_HOST=$RASP_IP
+fi
 
-# third brain/identity qdrant
-export QDRANT_URL="http://filrasp.fennec-gila.ts.net:6333"
+export RASP_HOST
+
+export TL_API_URL="http://$RASP_HOST:8790"
+export QDRANT_URL="http://$RASP_HOST:6333"
 
 # Path modifications (portable)
 export PATH="$PATH:$HOME/.modular/bin"
