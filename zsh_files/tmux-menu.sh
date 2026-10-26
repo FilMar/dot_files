@@ -4,7 +4,8 @@ set -uo pipefail
 readonly RESURRECT=$HOME/.tmux/plugins/tmux-resurrect/scripts
 readonly SAVE_LINK=$HOME/.local/share/tmux/resurrect/last
 readonly CONF=$HOME/.config/tmux/tmux.conf
-readonly ACTIONS=(last window new rename close session rename-session close-session copy save restore reload command)
+readonly HERE=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+readonly ACTIONS=(last window new rename close session ssh rename-session close-session copy save restore reload command)
 declare -rA LABELS=(
     [last]="ultima finestra"
     [window]="vai a finestra"
@@ -12,6 +13,7 @@ declare -rA LABELS=(
     [rename]="rinomina finestra"
     [close]="chiudi finestra"
     [session]="vai o crea sessione"
+    [ssh]="connetti ssh"
     [rename-session]="rinomina sessione"
     [close-session]="chiudi sessione"
     [copy]="copy mode"
@@ -184,6 +186,11 @@ act_session() {
     no_session "$name" && tmux new-session -d -s "$name" -c "$dir"
     tmux switch-client -c "$CLIENT" -t "=$name"
     assert "act_session: client on session" test "$(q '#S')" = "$name"
+}
+
+act_ssh() {
+    assert "act_ssh: script exists" test -x "$HERE/tmux-ssh.sh"
+    "$HERE/tmux-ssh.sh" "$@"
 }
 
 act_rename_session() {
