@@ -23,6 +23,8 @@ link "zsh_files/zsh_config"    "$HOME/.zshrc"
 link "zsh_files/starship.toml" "$HOME/.config/starship.toml"
 link "zsh_files/tmux.conf"     "$HOME/.config/tmux/tmux.conf"
 link "zsh_files/tmux-menu.sh"  "$HOME/.config/tmux/tmux-menu.sh"
+link "zsh_files/tmux-ssh.sh"   "$HOME/.config/tmux/tmux-ssh.sh"
+link "ssh_files/config"        "$HOME/.ssh/config"
 link "vim_files"               "$HOME/.config/nvim"
 
 if [[ "$PROFILE" == "full" ]]; then

@@ -131,11 +131,22 @@ test_visible_actions_saved_not_flag() {
 }
 
 test_visible_actions_table() {
-    [[ $(visible_actions 1 1 0) == "$(printf '%s\n' new rename session rename-session copy save reload command)" ]] || return 1
-    [[ $(visible_actions 2 1 0) == "$(printf '%s\n' last window new rename close session rename-session copy save reload command)" ]] || return 1
-    [[ $(visible_actions 1 2 1) == "$(printf '%s\n' new rename session rename-session close-session copy save restore reload command)" ]] || return 1
-    [[ $(visible_actions 3 2 1) == "$(printf '%s\n' last window new rename close session rename-session close-session copy save restore reload command)" ]] || return 1
-    [[ $(visible_actions 1 1 1) == "$(printf '%s\n' new rename session rename-session copy save restore reload command)" ]] || return 1
+    [[ $(visible_actions 1 1 0) == "$(printf '%s\n' new rename session ssh rename-session copy save reload command)" ]] || return 1
+    [[ $(visible_actions 2 1 0) == "$(printf '%s\n' last window new rename close session ssh rename-session copy save reload command)" ]] || return 1
+    [[ $(visible_actions 1 2 1) == "$(printf '%s\n' new rename session ssh rename-session close-session copy save restore reload command)" ]] || return 1
+    [[ $(visible_actions 3 2 1) == "$(printf '%s\n' last window new rename close session ssh rename-session close-session copy save restore reload command)" ]] || return 1
+    [[ $(visible_actions 1 1 1) == "$(printf '%s\n' new rename session ssh rename-session copy save restore reload command)" ]] || return 1
+}
+
+test_delegated_scripts_are_deployed() {
+    local dir found script
+    dir=$(dirname "${BASH_SOURCE[0]}")
+    found=$(grep -o '\$HERE/[a-z-]*\.sh' "$dir/tmux-menu.sh" | sed 's|.*/||' | sort -u)
+    [[ -n $found ]] || return 1
+    for script in $found; do
+        [[ -x "$dir/$script" ]] || return 1
+        grep -q "link \"zsh_files/$script\"" "$dir/../scripts/init_dot.sh" || return 1
+    done
 }
 
 test_menu_lines_format() {
