@@ -92,6 +92,7 @@ says() {
 
 windows() { tmux display -p -t "$CLIENT" '#{session_windows}'; }
 current_window() { tmux display -p -t "$CLIENT" '#{window_id}'; }
+has_window() { tmux list-windows -t "$(tmux display -p -t "$CLIENT" '#S')" -F '#W' | grep -qxF -- "$1"; }
 
 test_no_pattern() {
     expect_die "no_pattern: one argument" no_pattern || return 1
@@ -181,14 +182,13 @@ test_register() {
 test_connect() {
     expect_die "connect: one argument" connect || return 1
     expect_die "connect: alias valid for tmux" connect 'a.b' || return 1
+    local before
+    before=$(windows)
     connect alpha >/dev/null || return 1
-    tmux has-session -t "=ssh-alpha" || return 1
-    says "$SSH alpha" tmux list-windows -t "=ssh-alpha" -F '#{pane_start_command}' || return 1
-    [[ $(tmux display -p -t "$CLIENT" '#S') == ssh-alpha ]] || return 1
-    local err
-    err=$(connect alpha 2>&1 >/dev/null)
-    [[ -z $err ]] || return 1
-    [[ $(tmux list-windows -t "=ssh-alpha" | wc -l) -eq 1 ]]
+    says "$SSH alpha" tmux display -p -t "$CLIENT" '#{pane_start_command}' || return 1
+    tmux select-window -t "$CLIENT:^" || return 1
+    connect alpha >/dev/null || return 1
+    [[ $(windows) -eq $((before + 1)) ]]
 }
 
 test_edit_config() {
@@ -226,11 +226,11 @@ test_ssh_menu() {
     printf 'Host alpha\nHost newhost\n' >"$SSH_CONFIG"
     PICK=""
     quiet 0 ssh_menu || return 1
-    tmux has-session -t "=ssh-newhost" 2>/dev/null && return 1
+    has_window newhost && return 1
     : >"$PROMPTS"
     PICK=alpha
     ssh_menu >/dev/null || return 1
-    tmux has-session -t "=ssh-alpha" || return 1
+    has_window alpha || return 1
     [[ $(cat "$PROMPTS") == "host > " ]] || return 1
     PICK="$EDIT_LINE"
     before=$(windows)
@@ -241,7 +241,7 @@ test_ssh_menu() {
     answers "fresh" "bob@10.0.0.7"
     ssh_menu >/dev/null || return 1
     host_exists fresh || return 1
-    tmux has-session -t "=ssh-fresh"
+    has_window fresh
 }
 
 test_ssh_main() {
@@ -251,7 +251,7 @@ test_ssh_main() {
     TMUX=/tmp/sshtest-socket
     PICK=""
     ssh_main alpha >/dev/null || return 1
-    tmux has-session -t "=ssh-alpha" || return 1
+    has_window alpha || return 1
     [[ $(cat "$PROMPTS") != *"host > "* ]] || return 1
     TMUX=$tmux_env
 }

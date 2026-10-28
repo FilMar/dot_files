@@ -78,18 +78,18 @@ register() {
 connect() {
     assert "connect: one argument" test $# -eq 1
     assert "connect: alias valid for tmux" is_name "$1"
-    assert "connect: client known" test -n "${CLIENT:-}"
-    local result=""
-    local -r session="ssh-$1"
-    result=$session
-    if tmux has-session -t "=$session" 2>/dev/null; then
-        tmux switch-client -c "$CLIENT" -t "=$session"
+    local -r session=$(q '#S')
+    local id name cmd target=""
+    while IFS='|' read -r id name cmd; do
+        [[ $name == "$1" && $cmd == "$SSH $1" ]] && target=$id
+    done < <(tmux list-windows -t "=$session" -F '#{window_id}|#{window_name}|#{pane_start_command}')
+    if [[ -n $target ]]; then
+        tmux select-window -t "$target"
     else
-        tmux new-session -d -s "$session" -c "$(q '#{pane_current_path}')" "$SSH" "$1"
-        tmux switch-client -c "$CLIENT" -t "=$session"
+        tmux new-window -t "=$session:" -n "$1" -c "$(q '#{pane_current_path}')" "$SSH" "$1"
     fi
-    assert "connect: client on session" test "$(q '#S')" = "$result"
-    printf '%s\n' "$result"
+    assert "connect: client on the host window" test "$(q '#W')" = "$1"
+    printf '%s:%s\n' "$session" "$1"
 }
 
 edit_config() {
