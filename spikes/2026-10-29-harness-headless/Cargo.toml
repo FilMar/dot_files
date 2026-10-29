@@ -1,0 +1,13 @@
+[package]
+name = "spike-harness-headless"
+version = "0.0.0"
+edition = "2021"
+
+[workspace]
+
+[[bin]]
+name = "spike-harness-headless"
+path = "main.rs"
+
+[dependencies]
+serde_json = "1"
