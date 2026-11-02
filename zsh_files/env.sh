@@ -21,8 +21,6 @@ export EDITOR="/usr/bin/nvim"
 
 # ollama solo per ollama, non per pi che vive in .pi/agent/models.json
 #export OLLAMA_HOST="https://bazzite.fennec-gila.ts.net"
-export OLLAMA_HOST="http://localhost:11434"
-#export OLLAMA_HOST="http://100.89.232.55:11434"
 #export OLLAMA_URL="http://100.89.232.55:11434"
 
 # third log (tl) + third brain/identity (qdrant) — the Rasp.
