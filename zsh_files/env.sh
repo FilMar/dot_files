@@ -26,8 +26,8 @@ export EDITOR="/usr/bin/nvim"
 # third log (tl) + third brain/identity (qdrant) — the Rasp.
 # MagicDNS name when it resolves, Tailscale IP when NetworkManager has
 # overwritten resolv.conf. One probe per shell, 8ms when DNS is healthy.
-RASP_NAME="filrasp.fennec-gila.ts.net"
-RASP_IP="100.89.232.55"
+RASP_NAME="filcloud.fennec-gila.ts.net"
+RASP_IP="100.65.71.68"
 if getent hosts "$RASP_NAME" >/dev/null 2>&1; then
     RASP_HOST=$RASP_NAME
 else
