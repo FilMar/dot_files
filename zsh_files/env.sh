@@ -41,6 +41,9 @@ export RASP_HOST
 export TL_API_URL="http://$RASP_HOST:8790"
 export QDRANT_URL="http://$RASP_HOST:6333"
 
+# graphify: grafo del progetto in .graph/ (letto da omero, indiana, ritchie)
+export GRAPHIFY_OUT=".graph"
+
 # Path modifications (portable)
 export PATH="$PATH:$HOME/.modular/bin"
 export PATH="$PATH:$HOME/.elan/env"

@@ -12,4 +12,4 @@ emacs_files/eln-cache/
 emacs_files/elpa/
 **/__pycache__
 scripts/launchers/__pycache__/
-
+spikes/

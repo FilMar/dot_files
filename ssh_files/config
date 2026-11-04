@@ -1,9 +1,9 @@
 # ssh config — hosts by MagicDNS name, resolved by Tailscale.
 # Place: ~/.ssh/config (symlinked from dot_files)
 
-Host filrasp
-    HostName filrasp.fennec-gila.ts.net
-    User filrasp
+Host filcloud
+    HostName filcloud.fennec-gila.ts.net
+    User filcloud
 
 Host filbazz
     HostName bazzite.fennec-gila.ts.net
