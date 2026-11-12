@@ -35,5 +35,5 @@ keybind = ctrl+shift+v=paste_from_clipboard
 keybind = ctrl+shift+t=new_tab
 keybind = ctrl+shift+w=close_surface
 
-# No confirmation when closing a surface
-confirm-close-surface = false
+# Ask before closing a surface with a running process
+confirm-close-surface = true
