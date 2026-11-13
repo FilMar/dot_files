@@ -17,6 +17,7 @@ alias vid="nvim ."
 alias batInfo="sudo tlp-stat -b"
 alias tree="tree -C"
 alias py="python3"
+alias pi-ts="/usr/bin/pi"   # old TypeScript pi; plain `pi` is pi-rust (~/.local/bin)
 #alias cat="bat"
 #alias warp="cd \$(find $HOME -type d -not -path '*/.*' 2>/dev/null | fzf) && if [[ -e .venv ]]; then source .venv/bin/activate; else deactivate 2>/dev/null; fi"
 alias sheet="curl cht.sh/\$(curl cht.sh/:list | fzf)"
