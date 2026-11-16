@@ -23,7 +23,7 @@ export EDITOR="/usr/bin/nvim"
 #export OLLAMA_HOST="https://bazzite.fennec-gila.ts.net"
 #export OLLAMA_URL="http://100.89.232.55:11434"
 
-# third log (tl) + third brain/identity (qdrant) — the Rasp.
+# filcloud, the Steam Deck: alfred serve, the tl archive, qdrant.
 # MagicDNS name when it resolves, Tailscale IP when NetworkManager has
 # overwritten resolv.conf. One probe per shell, 8ms when DNS is healthy.
 RASP_NAME="filcloud.fennec-gila.ts.net"
@@ -36,6 +36,7 @@ fi
 
 export RASP_HOST
 
+export ALFRED_URL="http://$RASP_HOST:8791"
 export TL_API_URL="http://$RASP_HOST:8790"
 export QDRANT_URL="http://$RASP_HOST:6333"
 
